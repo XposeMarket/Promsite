@@ -2,14 +2,20 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createClient } from "@supabase/supabase-js";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
 export async function POST(request: Request) {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return NextResponse.json(
+      { error: "Stripe is not configured" },
+      { status: 500 }
+    );
+  }
+
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  const supabaseAdmin = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+
   const body = await request.text();
   const sig = request.headers.get("stripe-signature");
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -40,7 +46,10 @@ export async function POST(request: Request) {
           // Save Stripe customer ID to profile
           await supabaseAdmin
             .from("profiles")
-            .update({ stripe_customer_id: customerId, updated_at: new Date().toISOString() })
+            .update({
+              stripe_customer_id: customerId,
+              updated_at: new Date().toISOString(),
+            })
             .eq("id", userId);
         }
 
@@ -51,7 +60,9 @@ export async function POST(request: Request) {
             user_id: userId,
             status: sub.status,
             price_id: sub.items.data[0]?.price.id,
-            current_period_end: new Date((sub as unknown as { current_period_end: number }).current_period_end * 1000).toISOString(),
+            current_period_end: new Date(
+              (sub as unknown as { current_period_end: number }).current_period_end * 1000
+            ).toISOString(),
             cancel_at_period_end: sub.cancel_at_period_end,
             updated_at: new Date().toISOString(),
           });
@@ -76,7 +87,9 @@ export async function POST(request: Request) {
             user_id: profile.id,
             status: sub.status,
             price_id: sub.items.data[0]?.price.id,
-            current_period_end: new Date((sub as unknown as { current_period_end: number }).current_period_end * 1000).toISOString(),
+            current_period_end: new Date(
+              (sub as unknown as { current_period_end: number }).current_period_end * 1000
+            ).toISOString(),
             cancel_at_period_end: sub.cancel_at_period_end,
             updated_at: new Date().toISOString(),
           });
@@ -86,7 +99,10 @@ export async function POST(request: Request) {
     }
   } catch (err) {
     console.error("Webhook handler error:", err);
-    return NextResponse.json({ error: "Webhook handler failed" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Webhook handler failed" },
+      { status: 500 }
+    );
   }
 
   return NextResponse.json({ received: true });
