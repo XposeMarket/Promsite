@@ -1,16 +1,22 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
+function missingEnv(names: string[]) {
+  return names.filter((name) => !process.env[name]);
+}
+
 export async function POST(request: Request) {
   try {
-    if (!process.env.STRIPE_SECRET_KEY) {
+    const missingStripeEnv = missingEnv(["STRIPE_SECRET_KEY"]);
+    if (missingStripeEnv.length > 0) {
       return NextResponse.json(
-        { error: "Stripe is not configured" },
+        { error: `Missing server env: ${missingStripeEnv.join(", ")}` },
         { status: 500 }
       );
     }
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY as string;
+    const stripe = new Stripe(stripeSecretKey);
     const { customerId } = await request.json().catch(() => ({}));
     const origin = new URL(request.url).origin;
 
