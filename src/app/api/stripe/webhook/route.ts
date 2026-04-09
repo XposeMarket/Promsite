@@ -9,11 +9,17 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    return NextResponse.json(
+      { error: "Supabase server credentials are missing on the deployment." },
+      { status: 500 }
+    );
+  }
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   const supabaseAdmin = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY
   );
 
   const body = await request.text();

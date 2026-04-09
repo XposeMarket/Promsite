@@ -17,12 +17,19 @@ export async function POST(request: Request) {
         { status: 500 }
       );
     }
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      return NextResponse.json(
+        { error: "Supabase server credentials are missing on the deployment." },
+        { status: 500 }
+      );
+    }
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     const supabaseAdmin = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
     );
+    const origin = new URL(request.url).origin;
 
     const { priceId, returnPath } = await request.json();
     if (!priceId) {
@@ -63,8 +70,8 @@ export async function POST(request: Request) {
       mode: "subscription",
       payment_method_types: ["card"],
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}${safeReturnPath}?checkout=success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}${safeReturnPath}`,
+      success_url: `${origin}${safeReturnPath}?checkout=success`,
+      cancel_url: `${origin}${safeReturnPath}`,
       client_reference_id: userId,
       customer: profile?.stripe_customer_id ?? undefined,
       customer_email: profile?.stripe_customer_id ? undefined : userEmail,

@@ -84,6 +84,7 @@ export default function DashboardPage() {
   const [checkoutSuccess, setCheckoutSuccess] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const [actionLoading, setActionLoading] = useState(false);
+  const [actionError, setActionError] = useState<string | null>(null);
   const { subscription, isActive, loading: subLoading } = useSubscription(user?.id, refreshKey);
 
   const displayName = profile?.display_name ?? user?.email?.split("@")[0] ?? "there";
@@ -109,10 +110,12 @@ export default function DashboardPage() {
   }, [checkoutSuccess, isActive, user?.id]);
 
   async function handleActivatePlan() {
+    setActionError(null);
     setActionLoading(true);
     try {
       await createCheckoutSession(PLANS.pro.priceId, { returnPath: "/dashboard" });
-    } catch {
+    } catch (error) {
+      setActionError(error instanceof Error ? error.message : "Checkout could not be started.");
       setActionLoading(false);
     }
   }
@@ -139,6 +142,11 @@ export default function DashboardPage() {
       {/* Subscription status */}
       <motion.div initial="hidden" animate="visible" custom={1} variants={fadeUp}>
         <Card>
+          {actionError && (
+            <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400" role="alert">
+              {actionError}
+            </div>
+          )}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-lg bg-ember/10 flex items-center justify-center">

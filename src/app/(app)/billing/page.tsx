@@ -29,6 +29,7 @@ export default function BillingPage() {
   const [refreshKey, setRefreshKey] = useState(0);
   const { subscription, isActive, isVerified, loading: subLoading } = useSubscription(user?.id, refreshKey);
   const [actionLoading, setActionLoading] = useState(false);
+  const [actionError, setActionError] = useState<string | null>(null);
   const plan = PLANS.pro;
 
   const loading = userLoading || subLoading;
@@ -54,19 +55,23 @@ export default function BillingPage() {
   }, [checkoutSuccess, isActive, user?.id]);
 
   async function handleManage() {
+    setActionError(null);
     setActionLoading(true);
     try {
       await createPortalSession(profile?.stripe_customer_id ?? undefined);
-    } catch {
+    } catch (error) {
+      setActionError(error instanceof Error ? error.message : "Billing portal could not be opened.");
       setActionLoading(false);
     }
   }
 
   async function handleSubscribe() {
+    setActionError(null);
     setActionLoading(true);
     try {
       await createCheckoutSession(plan.priceId, { returnPath: "/billing" });
-    } catch {
+    } catch (error) {
+      setActionError(error instanceof Error ? error.message : "Checkout could not be started.");
       setActionLoading(false);
     }
   }
@@ -81,6 +86,11 @@ export default function BillingPage() {
       {/* Current plan */}
       <motion.div initial="hidden" animate="visible" custom={1} variants={fadeUp}>
         <Card>
+          {actionError && (
+            <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400" role="alert">
+              {actionError}
+            </div>
+          )}
           {loading ? (
             <p className="text-sm text-muted">Loading subscription…</p>
           ) : isActive ? (

@@ -12,6 +12,7 @@ export async function POST(request: Request) {
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     const { customerId } = await request.json().catch(() => ({}));
+    const origin = new URL(request.url).origin;
 
     if (!customerId) {
       return NextResponse.json(
@@ -22,7 +23,7 @@ export async function POST(request: Request) {
 
     const session = await stripe.billingPortal.sessions.create({
       customer: customerId,
-      return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/billing`,
+      return_url: `${origin}/billing`,
     });
 
     return NextResponse.json({ url: session.url });
