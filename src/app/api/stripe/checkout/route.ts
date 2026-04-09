@@ -2,6 +2,13 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createClient } from "@supabase/supabase-js";
 
+function normalizeReturnPath(raw: unknown) {
+  const value = typeof raw === "string" ? raw.trim() : "";
+  if (!value.startsWith("/")) return "/dashboard";
+  if (value.startsWith("//")) return "/dashboard";
+  return value;
+}
+
 export async function POST(request: Request) {
   try {
     if (!process.env.STRIPE_SECRET_KEY) {
@@ -17,25 +24,51 @@ export async function POST(request: Request) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
-    const { priceId } = await request.json();
+    const { priceId, returnPath } = await request.json();
+    if (!priceId) {
+      return NextResponse.json(
+        { error: "No price ID provided" },
+        { status: 400 }
+      );
+    }
 
     // Get the logged-in user from the Authorization header
     const authHeader = request.headers.get("authorization");
     let userId: string | undefined;
+    let userEmail: string | undefined;
 
     if (authHeader?.startsWith("Bearer ")) {
       const token = authHeader.slice(7);
       const { data: { user } } = await supabaseAdmin.auth.getUser(token);
       userId = user?.id;
+      userEmail = user?.email ?? undefined;
     }
+
+    if (!userId) {
+      return NextResponse.json(
+        { error: "You must be signed in to start checkout" },
+        { status: 401 }
+      );
+    }
+
+    const { data: profile } = await supabaseAdmin
+      .from("profiles")
+      .select("stripe_customer_id")
+      .eq("id", userId)
+      .maybeSingle();
+
+    const safeReturnPath = normalizeReturnPath(returnPath);
 
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       payment_method_types: ["card"],
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard?checkout=success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/pricing`,
-      metadata: userId ? { user_id: userId } : {},
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}${safeReturnPath}?checkout=success`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}${safeReturnPath}`,
+      client_reference_id: userId,
+      customer: profile?.stripe_customer_id ?? undefined,
+      customer_email: profile?.stripe_customer_id ? undefined : userEmail,
+      metadata: { user_id: userId },
     });
 
     return NextResponse.json({ url: session.url });

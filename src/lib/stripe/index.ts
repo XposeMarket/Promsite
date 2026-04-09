@@ -30,7 +30,11 @@ export const PLANS = {
   },
 } as const;
 
-export async function createCheckoutSession(priceId: string) {
+type CheckoutOptions = {
+  returnPath?: string;
+};
+
+export async function createCheckoutSession(priceId: string, options: CheckoutOptions = {}) {
   const { data: { session } } = await supabase.auth.getSession();
   const response = await fetch("/api/stripe/checkout", {
     method: "POST",
@@ -38,7 +42,10 @@ export async function createCheckoutSession(priceId: string) {
       "Content-Type": "application/json",
       ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
     },
-    body: JSON.stringify({ priceId }),
+    body: JSON.stringify({
+      priceId,
+      returnPath: options.returnPath || "/dashboard",
+    }),
   });
   const { url, error } = await response.json();
   if (error) throw new Error(error);
