@@ -55,6 +55,11 @@ const capabilities = [
     icon: "👥",
   },
   {
+    title: "Skills",
+    description: "Use 60+ built-in skills for specialized work, with the ability to add or create more as your needs grow.",
+    icon: "🛠️",
+  },
+  {
     title: "Integrations",
     description: "Connect to email, calendars, messaging, APIs, and databases. Prometheus reaches where you need it.",
     icon: "🔗",
