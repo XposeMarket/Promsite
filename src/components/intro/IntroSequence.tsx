@@ -6,6 +6,7 @@ import { AsciiReveal } from "@/components/ascii/AsciiReveal";
 import { STARTUP_ASCII } from "@/content/ascii/startup";
 import { LOGO_ASCII } from "@/content/ascii/logo";
 import { parseAsciiToLines } from "@/lib/ascii/loader";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { analytics } from "@/lib/analytics";
 
@@ -90,12 +91,20 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col items-center gap-10"
             >
-              <div className="flex flex-col items-center gap-3">
+              <div className="flex flex-col items-center gap-6">
+                <Image
+                  src="/images/prometheus-logo.png"
+                  alt="Prometheus"
+                  width={120}
+                  height={144}
+                  className="drop-shadow-[0_0_24px_rgba(220,74,26,0.6)]"
+                  priority
+                />
                 <Button size="lg" onClick={handleEnter} className="glow-ember-strong px-10 py-4 text-lg">
-                  Enter the fire
+                  Ignite your Flame
                 </Button>
-                <span className="text-xs text-muted/30 tracking-widest uppercase">
-                  Everything AI
+                <span className="text-sm text-muted/50 tracking-widest uppercase">
+                  The World&apos;s First Everything AI
                 </span>
               </div>
             </motion.div>
