@@ -202,21 +202,20 @@ export default function BlogPage() {
       <section className="py-16 md:py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <div className="rounded-2xl border border-border bg-gradient-to-r from-ember/10 to-transparent p-8 md:p-10">
-            <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">Editorial focus</p>
+            <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">Field notes</p>
             <div className="mt-4 grid gap-6 md:grid-cols-2">
               <div>
-                <h2 className="text-xl font-semibold text-white">Why this blog exists</h2>
+                <h2 className="text-xl font-semibold text-white">Learn how Prometheus works</h2>
                 <p className="mt-3 text-sm leading-7 text-muted">
-                  Prometheus needs a content layer that does more than announce features. The blog gives
-                  search engines and humans a structured place to understand how the system works in
-                  practice.
+                  Read practical walkthroughs on browser control, background tasks, memory, and the
+                  workflows that turn Prometheus into an AI system that can actually operate.
                 </p>
               </div>
               <div>
-                <h2 className="text-xl font-semibold text-white">What it supports</h2>
+                <h2 className="text-xl font-semibold text-white">Put the ideas to work</h2>
                 <p className="mt-3 text-sm leading-7 text-muted">
-                  Product storytelling, SEO visibility, onboarding education, trust building, and a clear
-                  paper trail of how the platform evolves over time.
+                  Use these posts to explore new ways to delegate research, automate repetitive web work,
+                  keep context between sessions, and build momentum with less manual follow-through.
                 </p>
               </div>
             </div>
