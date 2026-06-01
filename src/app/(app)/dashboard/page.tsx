@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { useUser } from "@/lib/auth/useUser";
 import { useSubscription } from "@/lib/auth/useSubscription";
 import { createCheckoutSession, PLANS } from "@/lib/stripe";
+import { blogPosts } from "@/content/blog/posts";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 12 },
@@ -67,12 +68,9 @@ const quickActions = [
   },
 ];
 
-const recentActivity = [
-  { action: "Task completed", detail: "Browser data extraction", time: "2 hours ago" },
-  { action: "Scheduled job ran", detail: "Daily report generation", time: "6 hours ago" },
-  { action: "Team deployed", detail: "Analysis team alpha", time: "1 day ago" },
-  { action: "Integration connected", detail: "Telegram channel", time: "2 days ago" },
-];
+const latestPosts = [...blogPosts]
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  .slice(0, 4);
 
 function formatDate(iso: string | null) {
   if (!iso) return "—";
@@ -205,18 +203,38 @@ export default function DashboardPage() {
         </div>
       </motion.div>
 
-      {/* Recent activity */}
+      {/* What's new */}
       <motion.div initial="hidden" animate="visible" custom={3} variants={fadeUp}>
-        <h2 className="text-lg font-semibold text-foreground mb-4">Recent activity</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-foreground">What&apos;s new</h2>
+          <a href="/blog" className="text-sm text-ember hover:text-ember-glow transition-colors">
+            View all posts →
+          </a>
+        </div>
         <Card>
           <ul className="divide-y divide-border" role="list">
-            {recentActivity.map((item, i) => (
-              <li key={i} className="flex items-center justify-between py-3 first:pt-0 last:pb-0">
-                <div>
-                  <p className="text-sm font-medium text-foreground">{item.action}</p>
-                  <p className="text-xs text-muted mt-0.5">{item.detail}</p>
-                </div>
-                <span className="text-xs text-muted whitespace-nowrap ml-4">{item.time}</span>
+            {latestPosts.map((post) => (
+              <li key={post.slug}>
+                <a
+                  href={`/blog/${post.slug}`}
+                  className="group flex items-start justify-between gap-4 py-3 first:pt-0 last:pb-0"
+                >
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[11px] uppercase tracking-wide text-ember/80">
+                        {post.category}
+                      </span>
+                      <span className="text-xs text-muted">· {post.readTime} read</span>
+                    </div>
+                    <p className="text-sm font-medium text-foreground mt-0.5 group-hover:text-ember transition-colors truncate">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-muted mt-0.5 line-clamp-1">{post.description}</p>
+                  </div>
+                  <span className="text-xs text-muted whitespace-nowrap mt-0.5">
+                    {formatDate(post.date)}
+                  </span>
+                </a>
               </li>
             ))}
           </ul>
