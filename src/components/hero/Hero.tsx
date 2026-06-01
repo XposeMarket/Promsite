@@ -13,7 +13,7 @@ export function Hero() {
     <section ref={heroRef} className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       {/* Ambient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-charcoal to-background" />
-      <div className="absolute -inset-x-[18%] -inset-y-[12%] opacity-48 mix-blend-screen">
+      <div className="absolute -inset-x-[18%] -top-[12%] -bottom-[32%] opacity-48 mix-blend-screen">
         <LineWaves
           speed={0.24}
           innerLineCount={46}
