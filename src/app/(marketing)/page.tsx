@@ -1,22 +1,22 @@
 import { IntroGate } from "@/components/intro/IntroGate";
 import { Hero } from "@/components/hero/Hero";
-import { CapabilitiesPreview } from "@/components/sections/CapabilitiesPreview";
-import { NotJustChat } from "@/components/sections/NotJustChat";
-import { DemoSection } from "@/components/sections/DemoSection";
-import { WorkflowStories } from "@/components/sections/WorkflowStories";
+import { BeyondChatbots } from "@/components/sections/BeyondChatbots";
+import { FourPillars } from "@/components/sections/FourPillars";
+import { RealWorkflows } from "@/components/sections/RealWorkflows";
+import { PrometheusExecutes } from "@/components/sections/PrometheusExecutes";
+import { PromptToProduction } from "@/components/sections/PromptToProduction";
 import { PricingPreview } from "@/components/sections/PricingPreview";
-import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function HomePage() {
   return (
     <IntroGate>
       <Hero />
-      <CapabilitiesPreview />
-      <NotJustChat />
-      <DemoSection />
-      <WorkflowStories />
+      <BeyondChatbots />
+      <FourPillars />
+      <RealWorkflows />
+      <PrometheusExecutes />
+      <PromptToProduction />
       <PricingPreview />
-      <FinalCTA />
     </IntroGate>
   );
 }
