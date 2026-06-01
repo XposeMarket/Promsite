@@ -1,6 +1,6 @@
 "use client";
 
-import { type ButtonHTMLAttributes, forwardRef } from "react";
+import { type AnchorHTMLAttributes, type ButtonHTMLAttributes, forwardRef } from "react";
 import Link from "next/link";
 
 type Variant = "primary" | "secondary" | "ghost" | "outline";
@@ -11,6 +11,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size;
   href?: string;
   className?: string;
+  download?: AnchorHTMLAttributes<HTMLAnchorElement>["download"];
+  rel?: AnchorHTMLAttributes<HTMLAnchorElement>["rel"];
+  target?: AnchorHTMLAttributes<HTMLAnchorElement>["target"];
 }
 
 const base =
@@ -32,12 +35,34 @@ const sizes: Record<Size, string> = {
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = "primary", size = "md", href, className = "", children, ...props }, ref) => {
+  (
+    { variant = "primary", size = "md", href, className = "", children, download, rel, target, ...props },
+    ref
+  ) => {
     const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
 
     if (href) {
+      if (href.startsWith("/api/") || download || target) {
+        return (
+          <a
+            href={href}
+            className={classes}
+            download={download}
+            rel={rel}
+            target={target}
+            onClick={props.onClick as AnchorHTMLAttributes<HTMLAnchorElement>["onClick"]}
+          >
+            {children}
+          </a>
+        );
+      }
+
       return (
-        <Link href={href} className={classes}>
+        <Link
+          href={href}
+          className={classes}
+          onClick={props.onClick as AnchorHTMLAttributes<HTMLAnchorElement>["onClick"]}
+        >
           {children}
         </Link>
       );
