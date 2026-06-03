@@ -17,7 +17,7 @@ export const PLANS = {
     name: "Prometheus Pro",
     price: 2.99,
     oldPrice: 8,
-    interval: "month" as const,
+    billingLabel: "one-time purchase" as const,
     productId: "prod_UdWIHQmD8ptqGK",
     priceId: "price_1TeFGG4K55W1qqBCKY1fcynE",
     features: [
@@ -27,6 +27,7 @@ export const PLANS = {
       "Persistent memory across sessions",
       "Team & subagent orchestration",
       "File & workflow execution",
+      "Lifetime access purchase",
       "Priority support",
     ],
   },

@@ -77,7 +77,7 @@ export async function POST(request: Request) {
     const safeReturnPath = normalizeReturnPath(returnPath);
 
     const session = await stripe.checkout.sessions.create({
-      mode: "subscription",
+      mode: "payment",
       payment_method_types: ["card"],
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${origin}${safeReturnPath}?checkout=success`,
@@ -85,7 +85,8 @@ export async function POST(request: Request) {
       client_reference_id: userId,
       customer: profile?.stripe_customer_id ?? undefined,
       customer_email: profile?.stripe_customer_id ? undefined : userEmail,
-      metadata: { user_id: userId },
+      customer_creation: profile?.stripe_customer_id ? undefined : "always",
+      metadata: { user_id: userId, price_id: priceId, access_type: "lifetime" },
     });
 
     return NextResponse.json({ url: session.url });

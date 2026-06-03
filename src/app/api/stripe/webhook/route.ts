@@ -55,8 +55,9 @@ export async function POST(request: Request) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
         const userId = session.metadata?.user_id;
-        const customerId = session.customer as string;
-        const subscriptionId = session.subscription as string;
+        const customerId = session.customer as string | null;
+        const subscriptionId = session.subscription as string | null;
+        const priceId = session.metadata?.price_id ?? null;
 
         if (userId && customerId) {
           // Save Stripe customer ID to profile
@@ -80,6 +81,16 @@ export async function POST(request: Request) {
               (sub as unknown as { current_period_end: number }).current_period_end * 1000
             ).toISOString(),
             cancel_at_period_end: sub.cancel_at_period_end,
+            updated_at: new Date().toISOString(),
+          });
+        } else if (userId) {
+          await supabaseAdmin.from("subscriptions").upsert({
+            id: (session.payment_intent as string | null) ?? session.id,
+            user_id: userId,
+            status: "active",
+            price_id: priceId,
+            current_period_end: null,
+            cancel_at_period_end: false,
             updated_at: new Date().toISOString(),
           });
         }

@@ -4,16 +4,16 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "What exactly do I get for $2.99/month?",
+    q: "What exactly do I get for $2.99?",
     a: "Everything. Full system access — browser automation, background tasks, scheduling, team orchestration, desktop control, persistent memory, integrations. No feature tiers, no usage caps. The entire Prometheus system.",
   },
   {
     q: "Is there a free tier?",
-    a: "Not currently. Prometheus is a production system with real compute costs. We'd rather offer the full system at a fair price than a crippled free version that wastes your time.",
+    a: "Not currently. Prometheus is a production system. We'd rather offer the full system for one simple purchase than a crippled free version that wastes your time.",
   },
   {
-    q: "Can I cancel anytime?",
-    a: "Yes. Cancel from your account settings and you'll retain access through the end of your billing period. No cancellation fees, no retention tricks.",
+    q: "Is this a recurring charge?",
+    a: "No. Prometheus Pro is a one-time purchase. Pay once, unlock the full system for your account, and use that account for future updates.",
   },
   {
     q: "Where does my data go?",

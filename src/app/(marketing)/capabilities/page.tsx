@@ -123,7 +123,7 @@ export default function CapabilitiesPage() {
 
       <Section>
         <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">All of this. $8/month.</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">All of this. $2.99 once.</h2>
           <p className="text-muted text-lg mb-8">
             No feature tiers. No per-tool pricing. Every capability ships with every account.
           </p>

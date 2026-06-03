@@ -45,8 +45,8 @@ const quickActions = [
     ),
   },
   {
-    label: "Billing",
-    description: "Manage your subscription",
+    label: "Access",
+    description: "Manage your purchase",
     href: "/billing",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -86,7 +86,6 @@ export default function DashboardPage() {
   const { subscription, isActive, loading: subLoading } = useSubscription(user?.id, refreshKey);
 
   const displayName = profile?.display_name ?? user?.email?.split("@")[0] ?? "there";
-  const renewalLabel = subscription?.cancel_at_period_end ? "Access ends" : "Renews";
 
   useEffect(() => {
     setCheckoutSuccess(new URLSearchParams(window.location.search).get("checkout") === "success");
@@ -137,7 +136,7 @@ export default function DashboardPage() {
         </div>
       </motion.div>
 
-      {/* Subscription status */}
+      {/* Access status */}
       <motion.div initial="hidden" animate="visible" custom={1} variants={fadeUp}>
         <Card>
           {actionError && (
@@ -167,18 +166,18 @@ export default function DashboardPage() {
                   {subLoading
                     ? "Loading…"
                     : isActive && subscription?.current_period_end
-                      ? `$${PLANS.pro.price} / month · ${renewalLabel} ${formatDate(subscription.current_period_end)}`
+                      ? `Legacy access renews ${formatDate(subscription.current_period_end)}`
                       : subscription
-                        ? `Subscription status: ${subscription.status}`
-                        : "No active subscription"}
+                        ? `Access status: ${subscription.status}`
+                        : "No purchase found"}
                 </p>
               </div>
             </div>
             {!subLoading && (
               isActive
-                ? <Button variant="secondary" size="sm" href="/billing">Manage plan</Button>
+                ? <Button variant="secondary" size="sm" href="/billing">Manage access</Button>
                 : <Button variant="primary" size="sm" onClick={handleActivatePlan} disabled={actionLoading}>
-                    {actionLoading ? "Redirecting…" : "Activate plan"}
+                    {actionLoading ? "Redirecting…" : "Buy access"}
                   </Button>
             )}
           </div>

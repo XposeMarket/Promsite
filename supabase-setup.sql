@@ -50,9 +50,9 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
 
--- ── 3. Subscriptions table ───────────────────────────────────
+-- ── 3. Access records table ───────────────────────────────────
 create table if not exists public.subscriptions (
-  id                    text primary key,  -- Stripe subscription ID
+  id                    text primary key,  -- Stripe subscription or payment intent ID
   user_id               uuid references auth.users(id) on delete cascade not null,
   status                text not null,     -- active | trialing | past_due | canceled
   price_id              text,
@@ -64,11 +64,11 @@ create table if not exists public.subscriptions (
 
 alter table public.subscriptions enable row level security;
 
-create policy "Users can view their own subscriptions"
+create policy "Users can view their own access records"
   on public.subscriptions for select
   using (auth.uid() = user_id);
 
-create policy "Service role full access on subscriptions"
+create policy "Service role full access on access records"
   on public.subscriptions for all
   using (auth.role() = 'service_role');
 

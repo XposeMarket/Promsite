@@ -9,7 +9,7 @@ import { PLANS } from "@/lib/stripe";
 export const metadata = createMetadata({
   title: "Pricing",
   description:
-    "Prometheus Pro: $2.99/month for the full AI execution system. No feature tiers, no usage caps. Browser automation, scheduling, teams, memory, desktop control — everything.",
+    "Prometheus Pro: $2.99 once for the full AI execution system. No feature tiers, no usage caps. Browser automation, scheduling, teams, memory, desktop control — everything.",
   path: "/pricing",
 });
 
@@ -24,12 +24,12 @@ export default function PricingPage() {
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
             One plan. Full power.
             <br />
-            <span className="text-muted line-through decoration-ember/80">${plan.oldPrice}/month</span>{" "}
-            <span className="text-ember">${plan.price}/month.</span>
+            <span className="text-muted line-through decoration-ember/80">${plan.oldPrice}</span>{" "}
+            <span className="text-ember">${plan.price} once.</span>
           </h1>
           <p className="text-lg text-muted leading-relaxed">
             We don't believe in feature gates. Every Prometheus user gets the complete system.
-            No starter tier. No enterprise upsell. Just the tool, at a price that respects your intelligence.
+            No starter tier. No recurring charge. Just the tool, at a price that respects your intelligence.
           </p>
         </div>
       </Section>

@@ -43,11 +43,11 @@ export function PricingCard({ featured = true }: PricingCardProps) {
           </span>
           <div className="flex items-baseline gap-2">
             <span className="text-6xl font-bold">${plan.price}</span>
-            <span className="text-muted">/{plan.interval}</span>
+            <span className="text-muted">once</span>
           </div>
         </div>
       </div>
-      <p className="text-sm text-muted mb-8">Everything. No limits. Cancel anytime.</p>
+      <p className="text-sm text-muted mb-8">Everything. No limits. One-time purchase.</p>
 
       <Button size="lg" href="/signup" className="w-full mb-8">
         Start with Prometheus

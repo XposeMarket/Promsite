@@ -9,7 +9,7 @@ import type { User } from "@supabase/supabase-js";
 const sidebarLinks = [
   { label: "Dashboard", href: "/dashboard", icon: "grid" },
   { label: "Get Started", href: "/get-started", icon: "rocket" },
-  { label: "Billing", href: "/billing", icon: "card" },
+  { label: "Access", href: "/billing", icon: "card" },
   { label: "Settings", href: "/settings", icon: "gear" },
 ];
 

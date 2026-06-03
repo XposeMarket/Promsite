@@ -299,35 +299,35 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "pricing-at-eight-dollars",
-    title: "Why Prometheus Costs $8/Month",
+    title: "Why Prometheus Costs $2.99 Once",
     description:
-      "The pricing model is intentionally simple: one clear plan, one honest price, and enough room to keep shipping execution features quickly.",
+      "The pricing model is intentionally simple: one clear purchase, one honest price, and enough room to keep shipping execution features quickly.",
     date: "2026-03-08",
     author: "Prometheus Team",
     category: "Pricing",
-    tags: ["pricing", "product", "subscription"],
+    tags: ["pricing", "product", "purchase"],
     readTime: "4 min",
-    heroKicker: "Simple subscription",
+    heroKicker: "Simple purchase",
     heroStatement:
       "Prometheus is priced to be easy to try, honest to explain, and sustainable enough to keep improving the execution layer.",
     takeaways: [
-      "The $8/month plan keeps the product simple and accessible.",
+      "The $2.99 one-time purchase keeps the product simple and accessible.",
       "Clear pricing reduces decision friction and supports conversion.",
-      "The subscription funds a product direction centered on real execution rather than shallow feature theater.",
+      "The purchase supports a product direction centered on real execution rather than shallow feature theater.",
     ],
     sections: [
       {
         heading: "Why simple pricing wins early",
         body: [
           "Complicated pricing creates hesitation. For Prometheus, the early promise is straightforward: one system that can execute real workflows from your machine. The pricing should be just as straightforward.",
-          "At $2.99/month, the decision is easy to understand. It gives users a low-friction way to enter the product while keeping the business model subscription-first from day one.",
+          "At $2.99 once, the decision is easy to understand. It gives users a low-friction way to enter the product without adding another recurring bill.",
         ],
       },
       {
         heading: "What the plan represents",
         body: [
           "The price is not just access to a chat UI. It is access to a growing local AI operating layer: browser automation, memory, background tasks, scheduling, files, integrations, and multi-agent workflows.",
-          "The goal is to make Prometheus feel like an obvious utility. If it saves one hour, catches one issue, or completes one tedious workflow, the monthly price should feel almost boring.",
+          "The goal is to make Prometheus feel like an obvious utility. If it saves one hour, catches one issue, or completes one tedious workflow, the one-time price should feel almost boring.",
         ],
       },
       {
@@ -341,7 +341,7 @@ export const blogPosts: BlogPost[] = [
         heading: "The bigger promise",
         body: [
           "Prometheus is being built for people who want an assistant that actually helps operate their life and work. The pricing should invite them in, then let the product prove itself through execution.",
-          "That is the bargain: simple subscription, serious capability, and a product that keeps compounding.",
+          "That is the bargain: simple purchase, serious capability, and a product that keeps compounding.",
         ],
       },
     ],

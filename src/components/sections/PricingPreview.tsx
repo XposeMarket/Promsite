@@ -9,7 +9,7 @@ import { PLANS } from "@/lib/stripe";
 const features = [
   "All capabilities included",
   "No feature gates",
-  "Cancel anytime",
+  "One-time purchase",
 ];
 
 export function PricingPreview() {
@@ -39,10 +39,10 @@ export function PricingPreview() {
               </span>
               <div className="flex items-baseline gap-2">
                 <span className="text-5xl md:text-6xl font-bold">${plan.price}</span>
-                <span className="text-muted text-lg">/{plan.interval}</span>
+                <span className="text-muted text-lg">once</span>
               </div>
             </div>
-            <p className="text-muted mt-2">Full system access. Cancel anytime.</p>
+            <p className="text-muted mt-2">Full system access. Pay once.</p>
           </div>
 
           {/* Features + CTA */}

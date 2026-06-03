@@ -135,7 +135,7 @@ export default function ProductPage() {
         <div className="text-center max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to stop asking and start executing?</h2>
           <p className="text-muted text-lg mb-8">
-            Prometheus Pro gives you the full system for $2.99/month. No usage caps. No feature gates.
+            Prometheus Pro gives you the full system for $2.99 once. No usage caps. No feature gates.
           </p>
           <Button size="lg" href="/pricing">See Pricing</Button>
         </div>

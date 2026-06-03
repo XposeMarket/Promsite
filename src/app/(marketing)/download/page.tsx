@@ -149,7 +149,7 @@ export default async function DownloadPage() {
                 ["RAM", "8 GB minimum, 16 GB recommended"],
                 ["Storage", "2 GB available space"],
                 ["Network", "Required for AI model access (or run local models offline)"],
-                ["Account", "Prometheus account with active subscription"],
+                ["Account", "Prometheus account with active purchase"],
               ].map(([label, value]) => (
                 <li key={label} className="flex gap-3">
                   <span className="text-ember font-medium w-20 flex-shrink-0">{label}</span>

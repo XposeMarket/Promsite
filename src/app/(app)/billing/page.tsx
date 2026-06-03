@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { PLANS, createPortalSession, createCheckoutSession } from "@/lib/stripe";
+import { PLANS, createCheckoutSession } from "@/lib/stripe";
 import { useUser } from "@/lib/auth/useUser";
 import { useSubscription } from "@/lib/auth/useSubscription";
 
@@ -18,13 +18,8 @@ const fadeUp = {
   }),
 };
 
-function formatDate(iso: string | null) {
-  if (!iso) return "—";
-  return new Date(iso).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
-}
-
 export default function BillingPage() {
-  const { user, profile, loading: userLoading } = useUser();
+  const { user, loading: userLoading } = useUser();
   const [checkoutSuccess, setCheckoutSuccess] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const { subscription, isActive, isVerified, loading: subLoading } = useSubscription(user?.id, refreshKey);
@@ -33,7 +28,6 @@ export default function BillingPage() {
   const plan = PLANS.pro;
 
   const loading = userLoading || subLoading;
-  const billingLabel = subscription?.cancel_at_period_end ? "Access ends" : "Next billing date";
 
   useEffect(() => {
     setCheckoutSuccess(new URLSearchParams(window.location.search).get("checkout") === "success");
@@ -54,18 +48,7 @@ export default function BillingPage() {
     return () => window.clearInterval(interval);
   }, [checkoutSuccess, isActive, user?.id]);
 
-  async function handleManage() {
-    setActionError(null);
-    setActionLoading(true);
-    try {
-      await createPortalSession(profile?.stripe_customer_id ?? undefined);
-    } catch (error) {
-      setActionError(error instanceof Error ? error.message : "Billing portal could not be opened.");
-      setActionLoading(false);
-    }
-  }
-
-  async function handleSubscribe() {
+  async function handlePurchase() {
     setActionError(null);
     setActionLoading(true);
     try {
@@ -79,11 +62,10 @@ export default function BillingPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <motion.div initial="hidden" animate="visible" custom={0} variants={fadeUp}>
-        <h1 className="text-2xl font-bold text-foreground">Billing</h1>
-        <p className="text-muted mt-1">Manage your subscription and payment details.</p>
+        <h1 className="text-2xl font-bold text-foreground">Access</h1>
+        <p className="text-muted mt-1">Manage your Prometheus purchase and account access.</p>
       </motion.div>
 
-      {/* Current plan */}
       <motion.div initial="hidden" animate="visible" custom={1} variants={fadeUp}>
         <Card>
           {actionError && (
@@ -92,27 +74,22 @@ export default function BillingPage() {
             </div>
           )}
           {loading ? (
-            <p className="text-sm text-muted">Loading subscription…</p>
+            <p className="text-sm text-muted">Loading access...</p>
           ) : isActive ? (
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
               <div className="space-y-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1">
                     <h2 className="text-lg font-semibold text-foreground">{plan.name}</h2>
-                    <Badge variant="green">
-                      {subscription?.status === "trialing" ? "Trial" : "Active"}
-                    </Badge>
+                    <Badge variant="green">Active</Badge>
                     {isVerified && <Badge variant="ember">Verified</Badge>}
-                    {subscription?.cancel_at_period_end && (
-                      <Badge variant="default">Cancels at period end</Badge>
-                    )}
                   </div>
                   <p className="text-sm text-muted">
-                    ${plan.price}/{plan.interval} · {billingLabel}: {formatDate(subscription?.current_period_end ?? null)}
+                    ${plan.price} one-time purchase. Full access is unlocked for this account.
                   </p>
                   {checkoutSuccess && (
                     <p className="text-xs text-muted mt-2">
-                      Checkout completed. Verifying subscription with Stripe and Supabase…
+                      Checkout completed. Verifying access with Stripe and Supabase...
                     </p>
                   )}
                 </div>
@@ -133,19 +110,19 @@ export default function BillingPage() {
               <div className="flex flex-col gap-2 sm:items-end shrink-0">
                 <div className="text-3xl font-bold text-foreground">
                   ${plan.price}
-                  <span className="text-base font-normal text-muted">/{plan.interval}</span>
+                  <span className="text-base font-normal text-muted"> once</span>
                 </div>
-                <Button variant="primary" size="sm" onClick={handleManage} disabled={actionLoading}>
-                  {actionLoading ? "Redirecting…" : "Manage Subscription"}
+                <Button variant="secondary" size="sm" href="/dashboard">
+                  Go to dashboard
                 </Button>
               </div>
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
               <div>
-                <h2 className="text-lg font-semibold text-foreground mb-1">No active subscription</h2>
+                <h2 className="text-lg font-semibold text-foreground mb-1">No purchase found</h2>
                 <p className="text-sm text-muted">
-                  Subscribe to Prometheus Pro to unlock the full system for ${plan.price}/month.
+                  Buy Prometheus Pro once to unlock the full system for ${plan.price}.
                 </p>
                 {subscription && (
                   <p className="text-xs text-muted mt-2">
@@ -153,32 +130,22 @@ export default function BillingPage() {
                   </p>
                 )}
               </div>
-                <Button variant="primary" size="sm" onClick={handleSubscribe} disabled={actionLoading}>
-                {actionLoading ? "Redirecting…" : `Subscribe — $${plan.price}/mo`}
+              <Button variant="primary" size="sm" onClick={handlePurchase} disabled={actionLoading}>
+                {actionLoading ? "Redirecting..." : `Buy - $${plan.price} once`}
               </Button>
             </div>
           )}
         </Card>
       </motion.div>
 
-      {/* Manage / change plan */}
-      {isActive && (
-        <motion.div initial="hidden" animate="visible" custom={2} variants={fadeUp}>
-          <h2 className="text-lg font-semibold text-foreground mb-4">Need to make changes?</h2>
-          <Card>
-            <p className="text-sm text-muted">
-              You can update your payment method, download invoices, or cancel your subscription
-              at any time through the Stripe customer portal. Changes take effect immediately and
-              are prorated automatically.
-            </p>
-            <div className="mt-4 flex gap-3">
-              <Button variant="secondary" size="sm" onClick={handleManage} disabled={actionLoading}>
-                Open billing portal
-              </Button>
-            </div>
-          </Card>
-        </motion.div>
-      )}
+      <motion.div initial="hidden" animate="visible" custom={2} variants={fadeUp}>
+        <h2 className="text-lg font-semibold text-foreground mb-4">Simple access</h2>
+        <Card>
+          <p className="text-sm text-muted">
+            Prometheus is now a one-time purchase. Create an account, complete checkout once, and use that account for access and future updates.
+          </p>
+        </Card>
+      </motion.div>
     </div>
   );
 }
