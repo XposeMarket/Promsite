@@ -153,8 +153,8 @@ export default function BillingPage() {
                   </p>
                 )}
               </div>
-              <Button variant="primary" size="sm" onClick={handleSubscribe} disabled={actionLoading}>
-                {actionLoading ? "Redirecting…" : "Subscribe — $8/mo"}
+                <Button variant="primary" size="sm" onClick={handleSubscribe} disabled={actionLoading}>
+                {actionLoading ? "Redirecting…" : `Subscribe — $${plan.price}/mo`}
               </Button>
             </div>
           )}

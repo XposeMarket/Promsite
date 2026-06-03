@@ -15,9 +15,11 @@ export function getStripe() {
 export const PLANS = {
   pro: {
     name: "Prometheus Pro",
-    price: 8,
+    price: 2.99,
+    oldPrice: 8,
     interval: "month" as const,
-    priceId: process.env.NEXT_PUBLIC_STRIPE_PRO_PRICE_ID || "price_placeholder",
+    productId: "prod_UdWIHQmD8ptqGK",
+    priceId: "price_1TeFGG4K55W1qqBCKY1fcynE",
     features: [
       "Full AI system access",
       "Browser automation",

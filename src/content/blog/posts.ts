@@ -320,7 +320,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Why simple pricing wins early",
         body: [
           "Complicated pricing creates hesitation. For Prometheus, the early promise is straightforward: one system that can execute real workflows from your machine. The pricing should be just as straightforward.",
-          "At $8/month, the decision is easy to understand. It gives users a low-friction way to enter the product while keeping the business model subscription-first from day one.",
+          "At $2.99/month, the decision is easy to understand. It gives users a low-friction way to enter the product while keeping the business model subscription-first from day one.",
         ],
       },
       {

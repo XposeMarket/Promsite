@@ -167,7 +167,7 @@ export default function DashboardPage() {
                   {subLoading
                     ? "Loading…"
                     : isActive && subscription?.current_period_end
-                      ? `$8 / month · ${renewalLabel} ${formatDate(subscription.current_period_end)}`
+                      ? `$${PLANS.pro.price} / month · ${renewalLabel} ${formatDate(subscription.current_period_end)}`
                       : subscription
                         ? `Subscription status: ${subscription.status}`
                         : "No active subscription"}

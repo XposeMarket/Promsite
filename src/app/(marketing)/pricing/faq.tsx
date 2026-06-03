@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "What exactly do I get for $8/month?",
+    q: "What exactly do I get for $2.99/month?",
     a: "Everything. Full system access — browser automation, background tasks, scheduling, team orchestration, desktop control, persistent memory, integrations. No feature tiers, no usage caps. The entire Prometheus system.",
   },
   {

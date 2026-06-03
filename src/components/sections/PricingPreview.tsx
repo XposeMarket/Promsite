@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { analytics } from "@/lib/analytics";
+import { PLANS } from "@/lib/stripe";
 
 const features = [
   "All capabilities included",
@@ -12,6 +13,8 @@ const features = [
 ];
 
 export function PricingPreview() {
+  const plan = PLANS.pro;
+
   return (
     <Section id="pricing-preview">
       <div className="rounded-2xl border border-border bg-charcoal p-8 md:p-12 lg:p-14">
@@ -30,9 +33,14 @@ export function PricingPreview() {
 
           {/* Price */}
           <div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-5xl md:text-6xl font-bold">$8</span>
-              <span className="text-muted text-lg">/month</span>
+            <div className="flex flex-wrap items-end gap-3">
+              <span className="text-2xl font-semibold text-muted line-through decoration-ember/80">
+                ${plan.oldPrice}
+              </span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-5xl md:text-6xl font-bold">${plan.price}</span>
+                <span className="text-muted text-lg">/{plan.interval}</span>
+              </div>
             </div>
             <p className="text-muted mt-2">Full system access. Cancel anytime.</p>
           </div>

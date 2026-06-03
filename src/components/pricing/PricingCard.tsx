@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { PLANS } from "@/lib/stripe";
 
 interface PricingCardProps {
   featured?: boolean;
@@ -20,6 +21,8 @@ const features = [
 ];
 
 export function PricingCard({ featured = true }: PricingCardProps) {
+  const plan = PLANS.pro;
+
   return (
     <div
       className={`rounded-2xl p-8 md:p-10 ${
@@ -29,13 +32,20 @@ export function PricingCard({ featured = true }: PricingCardProps) {
       }`}
     >
       <div className="flex items-center gap-3 mb-6">
-        <h3 className="text-xl font-bold">Prometheus Pro</h3>
-        {featured && <Badge variant="ember">Most popular</Badge>}
+        <h3 className="text-xl font-bold">{plan.name}</h3>
+        {featured && <Badge variant="ember">Launch price</Badge>}
       </div>
 
-      <div className="flex items-baseline gap-2 mb-2">
-        <span className="text-5xl font-bold">$8</span>
-        <span className="text-muted">/month</span>
+      <div className="mb-2">
+        <div className="flex items-end gap-3">
+          <span className="text-2xl font-semibold text-muted line-through decoration-ember/80">
+            ${plan.oldPrice}
+          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-6xl font-bold">${plan.price}</span>
+            <span className="text-muted">/{plan.interval}</span>
+          </div>
+        </div>
       </div>
       <p className="text-sm text-muted mb-8">Everything. No limits. Cancel anytime.</p>
 
