@@ -26,14 +26,42 @@ export const metadata: Metadata = {
   },
   description:
     "Prometheus is an AI system that runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows. Not a chatbot. A system.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://prometheus.ai"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://prometheusaiagent.vercel.app"
+  ),
+  applicationName: "Prometheus",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     type: "website",
     siteName: "Prometheus",
-    images: [{ url: "/og/default.png", width: 1200, height: 630 }],
+    title: "Prometheus — The AI System That Actually Executes",
+    description:
+      "Prometheus runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows.",
+    images: [
+      {
+        url: "/og/default.png",
+        width: 1200,
+        height: 630,
+        alt: "Prometheus — The AI system that actually executes",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    title: "Prometheus — The AI System That Actually Executes",
+    description:
+      "Prometheus runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows.",
+    images: ["/og/default.png"],
   },
   robots: {
     index: true,

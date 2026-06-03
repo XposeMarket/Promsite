@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="28" fill="#050505"/>
+  <path d="M64 8c12 20 11 34-2 51 16-8 23-22 23-36 15 17 19 41 2 59-7 8-17 13-23 25-5-13-17-18-24-27C25 61 32 37 50 24c-2 15 3 27 14 35C54 39 56 24 64 8Z" fill="url(#flame)"/>
+  <path d="M20 70 64 88l44-18-13 23-31 27-31-27-13-23Z" fill="url(#metal)"/>
+  <path d="M33 90 64 104l31-14-31 28-31-28Z" fill="#20262b"/>
+  <defs>
+    <linearGradient id="flame" x1="38" x2="88" y1="95" y2="10" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#df220f"/>
+      <stop offset=".52" stop-color="#ff7a00"/>
+      <stop offset="1" stop-color="#fff05a"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="22" x2="105" y1="80" y2="112" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4d5861"/>
+      <stop offset=".5" stop-color="#c7ccd1"/>
+      <stop offset="1" stop-color="#313941"/>
+    </linearGradient>
+  </defs>
+</svg>
