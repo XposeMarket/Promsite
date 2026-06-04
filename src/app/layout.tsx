@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   description:
     "Prometheus is an AI system that runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows. Not a chatbot. A system.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://prometheusaiagent.vercel.app"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://prometheusaiagent.com"
   ),
   applicationName: "Prometheus",
   manifest: "/site.webmanifest",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
       "Prometheus runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows.",
     images: [
       {
-        url: "/og/prometheus-ai-agent-preview.png",
+        url: "/og/prometheus-ai-agent-preview-v2.png",
         width: 1731,
         height: 909,
         alt: "Prometheus AI Agent — Search, create, code, voice, and agents",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     title: "Prometheus — The AI System That Actually Executes",
     description:
       "Prometheus runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows.",
-    images: ["/og/prometheus-ai-agent-preview.png"],
+    images: ["/og/prometheus-ai-agent-preview-v2.png"],
   },
   robots: {
     index: true,

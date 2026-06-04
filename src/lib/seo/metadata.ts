@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://prometheus.ai";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://prometheusaiagent.com";
 const SITE_NAME = "Prometheus";
 
 interface PageMetaOptions {
@@ -15,7 +15,7 @@ export function createMetadata({
   title,
   description,
   path = "",
-  ogImage = "/og/default.png",
+  ogImage = "/og/prometheus-ai-agent-preview-v2.png",
   noIndex = false,
 }: PageMetaOptions): Metadata {
   const url = `${SITE_URL}${path}`;
@@ -31,7 +31,7 @@ export function createMetadata({
       description,
       url,
       siteName: SITE_NAME,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      images: [{ url: ogImage, width: 1731, height: 909, alt: title }],
       type: "website",
     },
     twitter: {
