@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://prometheusaiagent.com";
+const SITE_URL = "https://prometheusaiagent.com";
 const SITE_NAME = "Prometheus";
 
 interface PageMetaOptions {

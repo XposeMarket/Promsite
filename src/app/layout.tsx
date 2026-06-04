@@ -19,6 +19,8 @@ const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+const PUBLIC_SITE_URL = "https://prometheusaiagent.com";
+
 export const metadata: Metadata = {
   title: {
     default: "Prometheus — The AI System That Actually Executes",
@@ -26,9 +28,7 @@ export const metadata: Metadata = {
   },
   description:
     "Prometheus is an AI system that runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows. Not a chatbot. A system.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://prometheusaiagent.com"
-  ),
+  metadataBase: new URL(PUBLIC_SITE_URL),
   applicationName: "Prometheus",
   manifest: "/site.webmanifest",
   icons: {
