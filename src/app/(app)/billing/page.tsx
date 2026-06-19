@@ -1,13 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { PLANS, createCheckoutSession } from "@/lib/stripe";
-import { useUser } from "@/lib/auth/useUser";
-import { useSubscription } from "@/lib/auth/useSubscription";
+import { PLANS } from "@/lib/stripe";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 12 },
@@ -19,130 +16,95 @@ const fadeUp = {
 };
 
 export default function BillingPage() {
-  const { user, loading: userLoading } = useUser();
-  const [checkoutSuccess, setCheckoutSuccess] = useState(false);
-  const [refreshKey, setRefreshKey] = useState(0);
-  const { subscription, isActive, isVerified, loading: subLoading } = useSubscription(user?.id, refreshKey);
-  const [actionLoading, setActionLoading] = useState(false);
-  const [actionError, setActionError] = useState<string | null>(null);
   const plan = PLANS.pro;
-
-  const loading = userLoading || subLoading;
-
-  useEffect(() => {
-    setCheckoutSuccess(new URLSearchParams(window.location.search).get("checkout") === "success");
-  }, []);
-
-  useEffect(() => {
-    if (!checkoutSuccess || isActive || !user?.id) return;
-
-    let attempts = 0;
-    const interval = window.setInterval(() => {
-      attempts += 1;
-      setRefreshKey((value) => value + 1);
-      if (attempts >= 8) {
-        window.clearInterval(interval);
-      }
-    }, 2000);
-
-    return () => window.clearInterval(interval);
-  }, [checkoutSuccess, isActive, user?.id]);
-
-  async function handlePurchase() {
-    setActionError(null);
-    setActionLoading(true);
-    try {
-      await createCheckoutSession(plan.priceId, { returnPath: "/billing" });
-    } catch (error) {
-      setActionError(error instanceof Error ? error.message : "Checkout could not be started.");
-      setActionLoading(false);
-    }
-  }
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      <motion.div initial="hidden" animate="visible" custom={0} variants={fadeUp}>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        custom={0}
+        variants={fadeUp}
+      >
         <h1 className="text-2xl font-bold text-foreground">Access</h1>
-        <p className="text-muted mt-1">Manage your Prometheus purchase and account access.</p>
+        <p className="text-muted mt-1">
+          Prometheus is free to use for everyone.
+        </p>
       </motion.div>
 
-      <motion.div initial="hidden" animate="visible" custom={1} variants={fadeUp}>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        custom={1}
+        variants={fadeUp}
+      >
         <Card>
-          {actionError && (
-            <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400" role="alert">
-              {actionError}
-            </div>
-          )}
-          {loading ? (
-            <p className="text-sm text-muted">Loading access...</p>
-          ) : isActive ? (
-            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
-              <div className="space-y-4">
-                <div>
-                  <div className="flex items-center gap-3 mb-1">
-                    <h2 className="text-lg font-semibold text-foreground">{plan.name}</h2>
-                    <Badge variant="green">Active</Badge>
-                    {isVerified && <Badge variant="ember">Verified</Badge>}
-                  </div>
-                  <p className="text-sm text-muted">
-                    ${plan.price} one-time purchase. Full access is unlocked for this account.
-                  </p>
-                  {checkoutSuccess && (
-                    <p className="text-xs text-muted mt-2">
-                      Checkout completed. Verifying access with Stripe and Supabase...
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <h3 className="text-sm font-medium text-foreground mb-2">Included features</h3>
-                  <ul className="space-y-1.5">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2 text-sm text-muted">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-ember)" strokeWidth="2.5" aria-hidden="true">
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="flex flex-col gap-2 sm:items-end shrink-0">
-                <div className="text-3xl font-bold text-foreground">
-                  ${plan.price}
-                  <span className="text-base font-normal text-muted"> once</span>
-                </div>
-                <Button variant="secondary" size="sm" href="/dashboard">
-                  Go to dashboard
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+            <div className="space-y-4">
               <div>
-                <h2 className="text-lg font-semibold text-foreground mb-1">No purchase found</h2>
+                <div className="flex items-center gap-3 mb-1">
+                  <h2 className="text-lg font-semibold text-foreground">
+                    {plan.name}
+                  </h2>
+                  <Badge variant="green">Free</Badge>
+                  <Badge variant="ember">Full access</Badge>
+                </div>
                 <p className="text-sm text-muted">
-                  Buy Prometheus Pro once to unlock the full system for ${plan.price}.
+                  No purchase, checkout, or subscription is required. Create an
+                  account and use the full system.
                 </p>
-                {subscription && (
-                  <p className="text-xs text-muted mt-2">
-                    Latest verified status: {subscription.status}
-                  </p>
-                )}
               </div>
-              <Button variant="primary" size="sm" onClick={handlePurchase} disabled={actionLoading}>
-                {actionLoading ? "Redirecting..." : `Buy - $${plan.price} once`}
+              <div>
+                <h3 className="text-sm font-medium text-foreground mb-2">
+                  Included features
+                </h3>
+                <ul className="space-y-1.5">
+                  {plan.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-center gap-2 text-sm text-muted"
+                    >
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="var(--color-ember)"
+                        strokeWidth="2.5"
+                        aria-hidden="true"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 sm:items-end shrink-0">
+              <div className="text-3xl font-bold text-foreground">Free</div>
+              <Button variant="secondary" size="sm" href="/dashboard">
+                Go to dashboard
               </Button>
             </div>
-          )}
+          </div>
         </Card>
       </motion.div>
 
-      <motion.div initial="hidden" animate="visible" custom={2} variants={fadeUp}>
-        <h2 className="text-lg font-semibold text-foreground mb-4">Simple access</h2>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        custom={2}
+        variants={fadeUp}
+      >
+        <h2 className="text-lg font-semibold text-foreground mb-4">
+          Simple access
+        </h2>
         <Card>
           <p className="text-sm text-muted">
-            Prometheus is now a one-time purchase. Create an account, complete checkout once, and use that account for access and future updates.
+            Prometheus is now free to use. Create an account, download the app,
+            and use the complete system with your own connected AI providers and
+            local workspace.
           </p>
         </Card>
       </motion.div>

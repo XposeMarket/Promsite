@@ -4,16 +4,16 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "What exactly do I get for $2.99?",
+    q: "What exactly do I get for free?",
     a: "Everything. Full system access — browser automation, background tasks, scheduling, team orchestration, desktop control, persistent memory, integrations. No feature tiers, no usage caps. The entire Prometheus system.",
   },
   {
-    q: "Is there a free tier?",
-    a: "Not currently. Prometheus is a production system. We'd rather offer the full system for one simple purchase than a crippled free version that wastes your time.",
+    q: "Is there a paid tier?",
+    a: "No. Prometheus is free to use for everyone. There is no paid purchase, no recurring charge, and no crippled free version.",
   },
   {
     q: "Is this a recurring charge?",
-    a: "No. Prometheus Pro is a one-time purchase. Pay once, unlock the full system for your account, and use that account for future updates.",
+    a: "No. Prometheus is free to use. Create an account, download the app, and use the full system.",
   },
   {
     q: "Where does my data go?",
@@ -43,7 +43,10 @@ export function PricingFAQ() {
   return (
     <div className="max-w-3xl mx-auto space-y-3">
       {faqs.map((faq, i) => (
-        <div key={i} className="border border-border rounded-lg overflow-hidden">
+        <div
+          key={i}
+          className="border border-border rounded-lg overflow-hidden"
+        >
           <button
             onClick={() => setOpen(open === i ? null : i)}
             className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 hover:bg-surface-hover transition-colors"
@@ -56,7 +59,11 @@ export function PricingFAQ() {
               stroke="currentColor"
               strokeWidth={2}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </button>
           {open === i && (

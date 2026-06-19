@@ -4,17 +4,14 @@ import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { analytics } from "@/lib/analytics";
-import { PLANS } from "@/lib/stripe";
 
 const features = [
   "All capabilities included",
   "No feature gates",
-  "One-time purchase",
+  "No purchase required",
 ];
 
 export function PricingPreview() {
-  const plan = PLANS.pro;
-
   return (
     <Section id="pricing-preview">
       <div className="rounded-2xl border border-border bg-charcoal p-8 md:p-12 lg:p-14">
@@ -25,24 +22,19 @@ export function PricingPreview() {
               className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.05]"
               style={{ fontFamily: "var(--font-display), Georgia, serif" }}
             >
-              Simple pricing.
+              Free access.
               <br />
-              <span className="text-ember">Full access.</span>
+              <span className="text-ember">Full power.</span>
             </h2>
           </div>
 
           {/* Price */}
           <div>
-            <div className="flex flex-wrap items-end gap-3">
-              <span className="text-2xl font-semibold text-muted line-through decoration-ember/80">
-                ${plan.oldPrice}
-              </span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-5xl md:text-6xl font-bold">${plan.price}</span>
-                <span className="text-muted text-lg">once</span>
-              </div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-5xl md:text-6xl font-bold">Free</span>
+              <span className="text-muted text-lg">for everyone</span>
             </div>
-            <p className="text-muted mt-2">Full system access. Pay once.</p>
+            <p className="text-muted mt-2">Full system access. No checkout.</p>
           </div>
 
           {/* Features + CTA */}

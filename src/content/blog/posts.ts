@@ -78,7 +78,7 @@ export const blogPosts: BlogPost[] = [
     relatedLinks: [
       { label: "See the product overview", href: "/product" },
       { label: "Explore capabilities", href: "/capabilities" },
-      { label: "Start with the $8 plan", href: "/pricing" },
+      { label: "Start free", href: "/pricing" },
     ],
   },
   {
@@ -132,7 +132,10 @@ export const blogPosts: BlogPost[] = [
     relatedLinks: [
       { label: "Browser automation use case", href: "/ai-browser-automation" },
       { label: "How Prometheus works", href: "/how-it-works" },
-      { label: "Read about background tasks", href: "/blog/background-tasks-explained" },
+      {
+        label: "Read about background tasks",
+        href: "/blog/background-tasks-explained",
+      },
     ],
   },
   {
@@ -186,7 +189,10 @@ export const blogPosts: BlogPost[] = [
     relatedLinks: [
       { label: "Background tasks use case", href: "/background-tasks" },
       { label: "See orchestration capabilities", href: "/capabilities" },
-      { label: "Read about teams and subagents", href: "/blog/teams-and-subagents" },
+      {
+        label: "Read about teams and subagents",
+        href: "/blog/teams-and-subagents",
+      },
     ],
   },
   {
@@ -293,55 +299,58 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Capabilities overview", href: "/capabilities" },
-      { label: "Read about background tasks", href: "/blog/background-tasks-explained" },
+      {
+        label: "Read about background tasks",
+        href: "/blog/background-tasks-explained",
+      },
       { label: "Get started", href: "/get-started" },
     ],
   },
   {
-    slug: "pricing-at-eight-dollars",
-    title: "Why Prometheus Costs $2.99 Once",
+    slug: "prometheus-is-free",
+    title: "Prometheus Is Free to Use",
     description:
-      "The pricing model is intentionally simple: one clear purchase, one honest price, and enough room to keep shipping execution features quickly.",
+      "The core product is now free for everyone: one full system, no feature tiers, no checkout, and no recurring subscription.",
     date: "2026-03-08",
     author: "Prometheus Team",
     category: "Pricing",
-    tags: ["pricing", "product", "purchase"],
+    tags: ["pricing", "product", "free"],
     readTime: "4 min",
-    heroKicker: "Simple purchase",
+    heroKicker: "Free access",
     heroStatement:
-      "Prometheus is priced to be easy to try, honest to explain, and sustainable enough to keep improving the execution layer.",
+      "Prometheus is built to be used. The full local AI execution system is free so more people can try real browser, desktop, file, memory, scheduling, and agent workflows without a paywall.",
     takeaways: [
-      "The $2.99 one-time purchase keeps the product simple and accessible.",
-      "Clear pricing reduces decision friction and supports conversion.",
-      "The purchase supports a product direction centered on real execution rather than shallow feature theater.",
+      "Prometheus is free to use for everyone.",
+      "There are no feature gates, checkout steps, or paid core tiers.",
+      "Users still bring their own AI provider accounts or local models, which keeps spend under their control.",
     ],
     sections: [
       {
-        heading: "Why simple pricing wins early",
+        heading: "Why free access matters",
         body: [
-          "Complicated pricing creates hesitation. For Prometheus, the early promise is straightforward: one system that can execute real workflows from your machine. The pricing should be just as straightforward.",
-          "At $2.99 once, the decision is easy to understand. It gives users a low-friction way to enter the product without adding another recurring bill.",
+          "Prometheus is easier to understand when people can actually use it. The product is not a static demo or another chat box. It is a local operating layer that proves itself by executing real work from the user's machine.",
+          "Making the core product free removes the wrong kind of friction. Users should spend their energy connecting their tools, trying workflows, and deciding whether Prometheus fits their life, not thinking about a checkout page.",
         ],
       },
       {
-        heading: "What the plan represents",
+        heading: "What free includes",
         body: [
-          "The price is not just access to a chat UI. It is access to a growing local AI operating layer: browser automation, memory, background tasks, scheduling, files, integrations, and multi-agent workflows.",
-          "The goal is to make Prometheus feel like an obvious utility. If it saves one hour, catches one issue, or completes one tedious workflow, the one-time price should feel almost boring.",
+          "Free access includes the full local AI execution system: browser automation, memory, background tasks, scheduling, files, integrations, desktop control, and multi-agent workflows.",
+          "There is no crippled free tier. The point is to let the complete system speak for itself.",
         ],
       },
       {
-        heading: "Why not hide everything behind tiers",
+        heading: "What users still control",
         body: [
-          "Early products need trust more than pricing gymnastics. A single clear plan makes the value easier to communicate and avoids punishing users for wanting the features that make Prometheus different.",
-          "Future plans may make sense for teams, businesses, hosted infrastructure, or advanced support. But the core product needs a clean starting point.",
+          "Prometheus connects to AI providers using the user's own accounts, API keys, OAuth sessions, or local models. That keeps model choice and AI spend under the user's control instead of hiding usage inside a bundled subscription.",
+          "The local-first model stays the same: files, memory, browser sessions, and task history remain grounded on the user's own machine.",
         ],
       },
       {
         heading: "The bigger promise",
         body: [
-          "Prometheus is being built for people who want an assistant that actually helps operate their life and work. The pricing should invite them in, then let the product prove itself through execution.",
-          "That is the bargain: simple purchase, serious capability, and a product that keeps compounding.",
+          "Prometheus is being built for people who want an assistant that actually helps operate their life and work. Free access invites more people in and lets the product prove itself through execution.",
+          "The bargain is simple: no purchase required, serious capability, and a product that keeps compounding.",
         ],
       },
     ],
@@ -361,16 +370,24 @@ export function getRelatedBlogPosts(slug: string, limit = 3): BlogPost[] {
   const post = getBlogPost(slug);
 
   if (!post) {
-    return blogPosts.filter((candidate) => candidate.slug !== slug).slice(0, limit);
+    return blogPosts
+      .filter((candidate) => candidate.slug !== slug)
+      .slice(0, limit);
   }
 
   return blogPosts
     .filter((candidate) => candidate.slug !== slug)
     .map((candidate) => ({
       post: candidate,
-      score: candidate.tags.filter((tag) => post.tags.includes(tag)).length + (candidate.category === post.category ? 1 : 0),
+      score:
+        candidate.tags.filter((tag) => post.tags.includes(tag)).length +
+        (candidate.category === post.category ? 1 : 0),
     }))
-    .sort((a, b) => b.score - a.score || new Date(b.post.date).getTime() - new Date(a.post.date).getTime())
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        new Date(b.post.date).getTime() - new Date(a.post.date).getTime(),
+    )
     .slice(0, limit)
     .map(({ post: candidate }) => candidate);
 }

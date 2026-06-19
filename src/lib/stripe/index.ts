@@ -6,7 +6,7 @@ let stripePromise: Promise<Stripe | null>;
 export function getStripe() {
   if (!stripePromise) {
     stripePromise = loadStripe(
-      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "pk_test_placeholder"
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "pk_test_placeholder",
     );
   }
   return stripePromise;
@@ -14,12 +14,12 @@ export function getStripe() {
 
 export const PLANS = {
   pro: {
-    name: "Prometheus Pro",
-    price: 2.99,
-    oldPrice: 8,
-    billingLabel: "one-time purchase" as const,
-    productId: "prod_UdWIHQmD8ptqGK",
-    priceId: "price_1TeFGG4K55W1qqBCKY1fcynE",
+    name: "Prometheus Free",
+    price: 0,
+    priceLabel: "Free",
+    billingLabel: "free to use" as const,
+    productId: "",
+    priceId: "",
     features: [
       "Full AI system access",
       "Browser automation",
@@ -27,8 +27,8 @@ export const PLANS = {
       "Persistent memory across sessions",
       "Team & subagent orchestration",
       "File & workflow execution",
-      "Lifetime access purchase",
-      "Priority support",
+      "Free access for everyone",
+      "Community support",
     ],
   },
 } as const;
@@ -37,13 +37,20 @@ type CheckoutOptions = {
   returnPath?: string;
 };
 
-export async function createCheckoutSession(priceId: string, options: CheckoutOptions = {}) {
-  const { data: { session } } = await supabase.auth.getSession();
+export async function createCheckoutSession(
+  priceId: string,
+  options: CheckoutOptions = {},
+) {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
   const response = await fetch("/api/stripe/checkout", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
+      ...(session?.access_token
+        ? { Authorization: `Bearer ${session.access_token}` }
+        : {}),
     },
     body: JSON.stringify({
       priceId,
@@ -52,9 +59,12 @@ export async function createCheckoutSession(priceId: string, options: CheckoutOp
   });
 
   const payload = await response.json().catch(() => ({}));
-  const error = typeof payload?.error === "string"
-    ? payload.error
-    : (!response.ok ? "Checkout could not be started." : null);
+  const error =
+    typeof payload?.error === "string"
+      ? payload.error
+      : !response.ok
+        ? "Checkout could not be started."
+        : null;
 
   if (error) throw new Error(error);
 
@@ -66,7 +76,9 @@ export async function createCheckoutSession(priceId: string, options: CheckoutOp
 
 export async function createPortalSession(customerId?: string) {
   if (!customerId) {
-    return createCheckoutSession(PLANS.pro.priceId);
+    throw new Error(
+      "Billing portal is not required because Prometheus is free to use.",
+    );
   }
 
   const response = await fetch("/api/stripe/portal", {
@@ -76,9 +88,12 @@ export async function createPortalSession(customerId?: string) {
   });
 
   const payload = await response.json().catch(() => ({}));
-  const error = typeof payload?.error === "string"
-    ? payload.error
-    : (!response.ok ? "Billing portal could not be opened." : null);
+  const error =
+    typeof payload?.error === "string"
+      ? payload.error
+      : !response.ok
+        ? "Billing portal could not be opened."
+        : null;
 
   if (error) throw new Error(error);
 

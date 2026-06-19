@@ -4,32 +4,31 @@ import { PricingCard } from "@/components/pricing/PricingCard";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { PricingFAQ } from "./faq";
-import { PLANS } from "@/lib/stripe";
 
 export const metadata = createMetadata({
   title: "Pricing",
   description:
-    "Prometheus Pro: $2.99 once for the full AI execution system. No feature tiers, no usage caps. Browser automation, scheduling, teams, memory, desktop control — everything.",
+    "Prometheus is free to use for everyone. The full AI execution system with browser automation, scheduling, teams, memory, desktop control, and no feature tiers.",
   path: "/pricing",
 });
 
 export default function PricingPage() {
-  const plan = PLANS.pro;
-
   return (
     <>
       <Section className="pt-32 md:pt-40">
         <div className="max-w-3xl mx-auto text-center">
-          <Badge variant="ember" className="mb-6">Pricing</Badge>
+          <Badge variant="ember" className="mb-6">
+            Pricing
+          </Badge>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
             One plan. Full power.
             <br />
-            <span className="text-muted line-through decoration-ember/80">${plan.oldPrice}</span>{" "}
-            <span className="text-ember">${plan.price} once.</span>
+            <span className="text-ember">Free for everyone.</span>
           </h1>
           <p className="text-lg text-muted leading-relaxed">
-            We don't believe in feature gates. Every Prometheus user gets the complete system.
-            No starter tier. No recurring charge. Just the tool, at a price that respects your intelligence.
+            We don&apos;t believe in feature gates. Every Prometheus user gets
+            the complete system. No starter tier. No recurring charge. No
+            checkout. Just the tool, free to use.
           </p>
         </div>
       </Section>
@@ -42,7 +41,9 @@ export default function PricingPage() {
 
       <Section id="faq">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently asked questions</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Frequently asked questions
+          </h2>
           <p className="text-muted text-lg">Straight answers. No deflection.</p>
         </div>
         <PricingFAQ />
@@ -50,11 +51,16 @@ export default function PricingPage() {
 
       <Section dark>
         <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Stop paying for promises. Start paying for execution.</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Stop paying for promises. Start executing.
+          </h2>
           <p className="text-muted text-lg mb-8">
-            Prometheus does what other AI products only talk about. See for yourself.
+            Prometheus does what other AI products only talk about. See for
+            yourself.
           </p>
-          <Button size="lg" href="/signup">Start with Prometheus</Button>
+          <Button size="lg" href="/signup">
+            Start with Prometheus
+          </Button>
         </div>
       </Section>
     </>

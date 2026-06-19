@@ -33,21 +33,18 @@ export function PricingCard({ featured = true }: PricingCardProps) {
     >
       <div className="flex items-center gap-3 mb-6">
         <h3 className="text-xl font-bold">{plan.name}</h3>
-        {featured && <Badge variant="ember">Launch price</Badge>}
+        {featured && <Badge variant="ember">Free access</Badge>}
       </div>
 
       <div className="mb-2">
-        <div className="flex items-end gap-3">
-          <span className="text-2xl font-semibold text-muted line-through decoration-ember/80">
-            ${plan.oldPrice}
-          </span>
-          <div className="flex items-baseline gap-2">
-            <span className="text-6xl font-bold">${plan.price}</span>
-            <span className="text-muted">once</span>
-          </div>
+        <div className="flex items-baseline gap-2">
+          <span className="text-6xl font-bold">Free</span>
+          <span className="text-muted">for everyone</span>
         </div>
       </div>
-      <p className="text-sm text-muted mb-8">Everything. No limits. One-time purchase.</p>
+      <p className="text-sm text-muted mb-8">
+        Everything. No limits. No purchase required.
+      </p>
 
       <Button size="lg" href="/signup" className="w-full mb-8">
         Start with Prometheus
@@ -63,7 +60,11 @@ export function PricingCard({ featured = true }: PricingCardProps) {
               stroke="currentColor"
               strokeWidth={2}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
             </svg>
             <span className="text-muted">{feature}</span>
           </li>
