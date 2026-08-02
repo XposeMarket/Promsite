@@ -7,7 +7,7 @@ import { getLatestRelease } from "@/lib/releases/github";
 export const metadata = createMetadata({
   title: "Download Prometheus",
   description:
-    "Download the Prometheus desktop app for Windows. Local-first AI automation that runs on your machine.",
+    "Download the Prometheus desktop app for Windows or macOS. Local-first AI automation that runs on your machine.",
   path: "/download",
 });
 
@@ -106,11 +106,11 @@ export default async function DownloadPage() {
             </div>
           </div>
 
-          {/* macOS — coming soon */}
-          <div className="rounded-2xl border border-border bg-surface/50 p-6 flex flex-col gap-4 opacity-60">
+          {/* macOS — separate native tester builds */}
+          <div className="rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4 ring-1 ring-border/70">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-surface flex items-center justify-center border border-border">
+                <div className="w-10 h-10 rounded-xl bg-ember/10 flex items-center justify-center border border-ember/20">
                   <svg
                     className="w-5 h-5 text-muted"
                     viewBox="0 0 24 24"
@@ -121,20 +121,54 @@ export default async function DownloadPage() {
                 </div>
                 <div>
                   <div className="font-semibold text-foreground">macOS</div>
-                  <div className="text-xs text-muted">
-                    Apple Silicon + Intel
-                  </div>
+                  <div className="text-xs text-muted">Apple Silicon + Intel</div>
                 </div>
               </div>
-              <Badge className="text-xs">Soon</Badge>
+              <Badge variant="ember" className="text-xs">Tester build</Badge>
             </div>
-            <div className="mt-auto pt-2">
-              <button
-                disabled
-                className="w-full rounded-lg border border-border bg-surface/50 px-4 py-3 text-sm font-medium text-muted cursor-not-allowed"
-              >
-                Coming Soon
-              </button>
+            <p className="text-xs text-muted leading-relaxed">
+              Native DMGs for each Mac architecture. These unsigned tester
+              builds may require <span className="text-foreground">Open Anyway</span> in
+              Privacy &amp; Security after download.
+            </p>
+            <div className="mt-auto pt-2 grid gap-2">
+              {release.macArm64 ? (
+                <Button
+                  href={release.macArm64.browser_download_url}
+                  className="w-full"
+                  size="md"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Download for Apple Silicon
+                </Button>
+              ) : (
+                <button
+                  disabled
+                  className="w-full rounded-lg border border-border bg-surface/50 px-4 py-3 text-sm font-medium text-muted cursor-not-allowed"
+                >
+                  Apple Silicon — pending upload
+                </button>
+              )}
+              {release.macX64 ? (
+                <Button
+                  href={release.macX64.browser_download_url}
+                  className="w-full"
+                  size="md"
+                  target="_blank"
+                  rel="noreferrer"
+                  variant="secondary"
+                >
+                  Download for Intel Mac
+                </Button>
+              ) : (
+                <button
+                  disabled
+                  className="w-full rounded-lg border border-border bg-surface/50 px-4 py-3 text-sm font-medium text-muted cursor-not-allowed"
+                >
+                  Intel — pending upload
+                </button>
+              )}
             </div>
           </div>
 
@@ -175,7 +209,7 @@ export default async function DownloadPage() {
             <h2 className="text-xl font-bold mb-4">System Requirements</h2>
             <ul className="space-y-2 text-sm text-muted">
               {[
-                ["OS", "Windows 10 / 11 (64-bit)"],
+                ["OS", "Windows 10 / 11 or macOS 11+"],
                 ["RAM", "8 GB minimum, 16 GB recommended"],
                 ["Storage", "2 GB available space"],
                 [
@@ -225,6 +259,12 @@ export default async function DownloadPage() {
             </ul>
           </div>
         </div>
+
+        <p className="mt-8 text-xs text-muted max-w-2xl">
+          macOS tester builds are distributed directly from the public GitHub
+          release. Automatic Mac updates are not enabled for these unsigned
+          builds yet.
+        </p>
 
         {/* ── Footer CTA ── */}
         {!release.available && (

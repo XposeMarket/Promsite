@@ -6,9 +6,11 @@ export interface ReleaseInfo {
   releaseUrl?: string;
   downloadUrl?: string;
   fileSize?: number | null;
+  macArm64?: ReleaseAsset;
+  macX64?: ReleaseAsset;
 }
 
-interface GitHubAsset {
+export interface ReleaseAsset {
   name: string;
   browser_download_url: string;
   size: number;
@@ -19,7 +21,7 @@ interface GitHubRelease {
   name?: string;
   published_at?: string;
   html_url?: string;
-  assets?: GitHubAsset[];
+  assets?: ReleaseAsset[];
 }
 
 const LATEST_RELEASE_URL =
@@ -38,7 +40,12 @@ export async function getLatestRelease(): Promise<ReleaseInfo> {
     if (!res.ok) return { available: false };
 
     const data: GitHubRelease = await res.json();
-    const exeAsset = data.assets?.find((asset) => asset.name.endsWith(".exe"));
+    const assets = data.assets ?? [];
+    const exeAsset = assets.find((asset) => asset.name.endsWith(".exe"));
+    const macArm64 = assets.find(
+      (asset) => /-mac-arm64\.dmg$/i.test(asset.name),
+    );
+    const macX64 = assets.find((asset) => /-mac-x64\.dmg$/i.test(asset.name));
 
     return {
       available: true,
@@ -48,6 +55,8 @@ export async function getLatestRelease(): Promise<ReleaseInfo> {
       releaseUrl: data.html_url,
       downloadUrl: exeAsset?.browser_download_url ?? data.html_url,
       fileSize: exeAsset?.size ?? null,
+      macArm64,
+      macX64,
     };
   } catch {
     return { available: false };
