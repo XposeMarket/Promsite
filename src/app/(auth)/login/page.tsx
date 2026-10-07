@@ -127,7 +127,7 @@ export default function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            className="w-full rounded-lg border border-border bg-charcoal px-4 py-2.5 text-sm text-foreground placeholder-muted/60 transition-colors focus:border-ember focus:outline-none"
+            className="w-full rounded-lg border border-border bg-charcoal px-4 py-2.5 text-sm text-foreground placeholder-muted/60 transition-colors focus:border-gold focus:outline-none"
           />
         </div>
 
@@ -141,7 +141,7 @@ export default function LoginPage() {
             </label>
             <Link
               href="/forgot-password"
-              className="text-xs text-muted transition-colors hover:text-ember"
+              className="text-xs text-muted transition-colors hover:text-gold"
             >
               Forgot password?
             </Link>
@@ -154,7 +154,7 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
-            className="w-full rounded-lg border border-border bg-charcoal px-4 py-2.5 text-sm text-foreground placeholder-muted/60 transition-colors focus:border-ember focus:outline-none"
+            className="w-full rounded-lg border border-border bg-charcoal px-4 py-2.5 text-sm text-foreground placeholder-muted/60 transition-colors focus:border-gold focus:outline-none"
           />
         </div>
 
@@ -202,7 +202,7 @@ export default function LoginPage() {
         Don&apos;t have an account?{" "}
         <Link
           href="/signup"
-          className="font-medium text-ember transition-colors hover:text-ember-glow"
+          className="font-medium text-gold transition-colors hover:text-gold-light"
         >
           Create one
         </Link>

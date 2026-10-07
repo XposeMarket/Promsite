@@ -17,13 +17,13 @@ export default function PricingPage() {
     <>
       <Section className="pt-32 md:pt-40">
         <div className="max-w-3xl mx-auto text-center">
-          <Badge variant="ember" className="mb-6">
+          <Badge variant="gold" className="mb-6">
             Pricing
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
             One plan. Full power.
             <br />
-            <span className="text-ember">Free for everyone.</span>
+            <span className="text-gold">Free for everyone.</span>
           </h1>
           <p className="text-lg text-muted leading-relaxed">
             We don&apos;t believe in feature gates. Every Prometheus user gets

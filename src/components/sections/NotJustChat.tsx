@@ -14,7 +14,7 @@ export function NotJustChat() {
   return (
     <Section dark>
       <div className="text-center mb-16">
-        <p className="text-sm font-medium text-ember tracking-widest uppercase mb-4">
+        <p className="text-sm font-medium text-gold tracking-widest uppercase mb-4">
           Beyond chatbots
         </p>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
@@ -30,7 +30,7 @@ export function NotJustChat() {
           <div className="px-6 py-3 bg-surface border-b border-border text-sm font-semibold text-muted">
             Typical AI Chat
           </div>
-          <div className="px-6 py-3 bg-ember/5 border-b border-border text-sm font-semibold text-ember">
+          <div className="px-6 py-3 bg-gold/5 border-b border-border text-sm font-semibold text-gold">
             Prometheus
           </div>
           {comparisons.map((row, i) => (
@@ -38,7 +38,7 @@ export function NotJustChat() {
               <div className="px-6 py-4 border-b border-border text-sm text-muted/70">
                 {row.chat}
               </div>
-              <div className="px-6 py-4 border-b border-border text-sm text-foreground bg-ember/[0.02]">
+              <div className="px-6 py-4 border-b border-border text-sm text-foreground bg-gold/[0.02]">
                 {row.prometheus}
               </div>
             </div>

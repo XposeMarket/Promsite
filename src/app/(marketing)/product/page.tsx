@@ -18,7 +18,7 @@ const pillars = [
       "Prometheus doesn't suggest actions — it takes them. Real browser sessions, real file operations, real API calls. Every tool runs locally on your machine with full system access.",
     icon: (
       <svg
-        className="w-8 h-8 text-ember"
+        className="w-8 h-8 text-gold"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -38,7 +38,7 @@ const pillars = [
       "Sessions end. Memory doesn't. Prometheus maintains context across conversations, building a working understanding of your projects, preferences, and prior decisions.",
     icon: (
       <svg
-        className="w-8 h-8 text-ember"
+        className="w-8 h-8 text-gold"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -58,7 +58,7 @@ const pillars = [
       "Deploy teams of specialized agents that coordinate on complex tasks. A manager agent plans, delegates, and synthesizes results — just like a real team lead.",
     icon: (
       <svg
-        className="w-8 h-8 text-ember"
+        className="w-8 h-8 text-gold"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -78,7 +78,7 @@ const pillars = [
       "Schedule recurring jobs, dispatch background tasks, and let Prometheus handle workflows while you're away. Cron-powered execution with full audit trails.",
     icon: (
       <svg
-        className="w-8 h-8 text-ember"
+        className="w-8 h-8 text-gold"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -100,13 +100,13 @@ export default function ProductPage() {
       {/* Hero */}
       <Section className="pt-32 md:pt-40">
         <div className="max-w-3xl">
-          <Badge variant="ember" className="mb-6">
+          <Badge variant="gold" className="mb-6">
             The System
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
             AI that operates.
             <br />
-            <span className="text-ember">Not one that narrates.</span>
+            <span className="text-gold">Not one that narrates.</span>
           </h1>
           <p className="text-lg md:text-xl text-muted leading-relaxed mb-8">
             Prometheus is a local-first AI system that runs on your machine,
@@ -162,7 +162,7 @@ export default function ProductPage() {
         <div className="grid md:grid-cols-2 gap-8">
           {pillars.map((pillar) => (
             <Card key={pillar.title} hover className="flex flex-col gap-4">
-              <div className="p-3 bg-ember/10 rounded-lg w-fit">
+              <div className="p-3 bg-gold/10 rounded-lg w-fit">
                 {pillar.icon}
               </div>
               <h3 className="text-xl font-semibold">{pillar.title}</h3>
@@ -186,21 +186,21 @@ export default function ProductPage() {
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           <Card className="text-center">
-            <div className="text-3xl font-bold text-ember mb-2">Gateway</div>
+            <div className="text-3xl font-bold text-gold mb-2">Gateway</div>
             <p className="text-sm text-muted">
               Local TypeScript server handling requests, routing, and tool
               dispatch
             </p>
           </Card>
           <Card className="text-center">
-            <div className="text-3xl font-bold text-ember mb-2">Tool Layer</div>
+            <div className="text-3xl font-bold text-gold mb-2">Tool Layer</div>
             <p className="text-sm text-muted">
               Browser, desktop, file, network, and integration tools — all
               native
             </p>
           </Card>
           <Card className="text-center">
-            <div className="text-3xl font-bold text-ember mb-2">
+            <div className="text-3xl font-bold text-gold mb-2">
               Memory Store
             </div>
             <p className="text-sm text-muted">

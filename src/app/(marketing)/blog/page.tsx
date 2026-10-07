@@ -45,10 +45,10 @@ export default function BlogPage() {
 
       <section className="relative overflow-hidden py-20 md:py-28">
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-background to-background" />
-        <div className="absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-ember/10 blur-3xl" />
+        <div className="absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-gold/10 blur-3xl" />
         <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="mb-6 text-sm font-medium uppercase tracking-[0.35em] text-ember">Blog</p>
+            <p className="mb-6 text-sm font-medium uppercase tracking-[0.35em] text-gold">Blog</p>
             <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
               Essays, product stories, and operational guides from inside Prometheus.
             </h1>
@@ -59,9 +59,9 @@ export default function BlogPage() {
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
-            <article className="rounded-2xl border border-border bg-surface/70 p-8 shadow-[0_0_50px_rgba(255,107,53,0.08)] backdrop-blur">
+            <article className="rounded-2xl border border-border bg-surface/70 p-8 shadow-[0_0_50px_rgba(240,217,139,0.08)] backdrop-blur">
               <div className="flex flex-wrap items-center gap-3 text-xs text-muted">
-                <span className="rounded-full border border-ember/20 bg-ember/10 px-2.5 py-1 text-ember">
+                <span className="rounded-full border border-gold/20 bg-gold/10 px-2.5 py-1 text-gold">
                   Featured
                 </span>
                 <span>{featuredPost.category}</span>
@@ -71,7 +71,7 @@ export default function BlogPage() {
                 <span>{featuredPost.readTime} read</span>
               </div>
               <h2 className="mt-5 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                <Link href={`/blog/${featuredPost.slug}`} className="transition-colors hover:text-ember">
+                <Link href={`/blog/${featuredPost.slug}`} className="transition-colors hover:text-gold">
                   {featuredPost.title}
                 </Link>
               </h2>
@@ -89,7 +89,7 @@ export default function BlogPage() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href={`/blog/${featuredPost.slug}`}
-                  className="rounded-full bg-ember px-5 py-2.5 text-sm font-medium text-black transition-transform hover:-translate-y-0.5"
+                  className="rounded-full bg-gold px-5 py-2.5 text-sm font-medium text-black transition-transform hover:-translate-y-0.5"
                 >
                   Read featured post
                 </Link>
@@ -98,7 +98,7 @@ export default function BlogPage() {
             </article>
 
             <aside className="rounded-2xl border border-border bg-background/80 p-8">
-              <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">Editorial system</p>
+              <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Editorial system</p>
               <p className="mt-4 text-sm leading-7 text-muted">
                 Built as a real content hub with clean slugs, article metadata, categories, tags,
                 internal links, structured data, and room for long-tail SEO expansion.
@@ -126,7 +126,7 @@ export default function BlogPage() {
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">Latest posts</p>
+              <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Latest posts</p>
               <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
                 Current writing from the team
               </h2>
@@ -142,16 +142,16 @@ export default function BlogPage() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex min-h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all hover:border-ember/30 hover:shadow-[0_0_40px_rgba(255,107,53,0.08)]"
+                className="group flex min-h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all hover:border-gold/30 hover:shadow-[0_0_40px_rgba(240,217,139,0.08)]"
               >
                 <div className="flex flex-wrap items-center gap-3 text-xs text-muted">
-                  <span className="text-ember">{post.category}</span>
+                  <span className="text-gold">{post.category}</span>
                   <span>·</span>
                   <time dateTime={post.date}>{post.date}</time>
                   <span>·</span>
                   <span>{post.readTime} read</span>
                 </div>
-                <h3 className="mt-4 text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-ember">
+                <h3 className="mt-4 text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-gold">
                   {post.title}
                 </h3>
                 <p className="mt-3 flex-1 text-sm leading-7 text-muted">{post.description}</p>
@@ -165,7 +165,7 @@ export default function BlogPage() {
                     </span>
                   ))}
                 </div>
-                <span className="mt-6 text-sm font-medium text-ember">Read article →</span>
+                <span className="mt-6 text-sm font-medium text-gold">Read article →</span>
               </Link>
             ))}
           </div>
@@ -175,18 +175,18 @@ export default function BlogPage() {
       <section className="py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <div className="rounded-2xl border border-border bg-gradient-to-br from-ember/10 to-transparent p-8">
-              <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">Browse by category</p>
+            <div className="rounded-2xl border border-border bg-gradient-to-br from-gold/10 to-transparent p-8">
+              <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Browse by category</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {categories.map((category) => (
-                  <span key={category} className="rounded-full border border-ember/20 bg-ember/10 px-3 py-1 text-sm text-ember">
+                  <span key={category} className="rounded-full border border-gold/20 bg-gold/10 px-3 py-1 text-sm text-gold">
                     {category}
                   </span>
                 ))}
               </div>
             </div>
             <div className="rounded-2xl border border-border bg-background/80 p-8">
-              <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">SEO tags</p>
+              <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">SEO tags</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {allTags.map((tag) => (
                   <span key={tag} className="rounded-full border border-border bg-surface px-3 py-1 text-xs uppercase tracking-wide text-muted">
@@ -201,8 +201,8 @@ export default function BlogPage() {
 
       <section className="py-16 md:py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="rounded-2xl border border-border bg-gradient-to-r from-ember/10 to-transparent p-8 md:p-10">
-            <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">Field notes</p>
+          <div className="rounded-2xl border border-border bg-gradient-to-r from-gold/10 to-transparent p-8 md:p-10">
+            <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Field notes</p>
             <div className="mt-4 grid gap-6 md:grid-cols-2">
               <div>
                 <h2 className="text-xl font-semibold text-white">Learn how Prometheus works</h2>

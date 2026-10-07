@@ -131,7 +131,7 @@ export default function CapabilitiesPage() {
     <>
       <Section className="pt-32 md:pt-40">
         <div className="max-w-3xl mb-16">
-          <Badge variant="ember" className="mb-6">
+          <Badge variant="gold" className="mb-6">
             Capabilities
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
@@ -153,7 +153,7 @@ export default function CapabilitiesPage() {
             <Card key={cap.title} hover className="flex flex-col">
               <div className="flex items-center gap-3 mb-4">
                 <h2 className="text-xl font-semibold">{cap.title}</h2>
-                <Badge variant="ember">{cap.badge}</Badge>
+                <Badge variant="gold">{cap.badge}</Badge>
               </div>
               <p className="text-muted leading-relaxed mb-6">
                 {cap.description}
@@ -164,7 +164,7 @@ export default function CapabilitiesPage() {
                     key={f}
                     className="flex items-start gap-2 text-sm text-muted"
                   >
-                    <span className="text-ember mt-1">&#8226;</span>
+                    <span className="text-gold mt-1">&#8226;</span>
                     {f}
                   </li>
                 ))}

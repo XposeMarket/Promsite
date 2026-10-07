@@ -23,14 +23,14 @@ export function Hero() {
           edgeFadeWidth={0.7}
           colorCycleSpeed={0.22}
           brightness={0.13}
-          color1="#ff6b35"
-          color2="#dc4a1a"
-          color3="#ffffff"
+          color1="#f0d98b"
+          color2="#a98a3b"
+          color3="#f2ebdd"
           mouseInfluence={0.8}
           interactionElement={heroRef}
         />
       </div>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(220,74,26,0.08)_0%,transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(214,183,94,0.08)_0%,transparent_70%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.42)_0%,rgba(0,0,0,0.28)_34%,rgba(0,0,0,0.46)_100%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.2)_0%,transparent_24%,transparent_64%,rgba(0,0,0,0.48)_100%)]" />
 
@@ -50,21 +50,24 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">
-            The World&apos;s First Everything AI
-          </p>
+          <div className="flex flex-col items-center gap-5 mb-8">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/p1-mark-ring.png" alt="" width={56} height={56} className="w-14 h-14 opacity-95" />
+            <p className="kicker">Prometheus One · The everything agent</p>
+            <div className="rule-gold w-40" />
+          </div>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6"
+          className="text-5xl sm:text-6xl md:text-8xl font-medium tracking-tight leading-[1.02] mb-7"
           style={{ fontFamily: "var(--font-display), Georgia, serif" }}
         >
           &ldquo;Everything&rdquo; just got
           <br />
-          <span className="text-ember text-glow-ember">a whole lot easier.</span>
+          <em className="text-gold-metal italic pr-2">a whole lot easier.</em>
         </motion.h1>
 
         <motion.p
@@ -86,7 +89,7 @@ export function Hero() {
           <Button
             size="lg"
             href="/signup"
-            className="glow-ember"
+            className="glow-gold"
             onClick={() => analytics.track({ name: "hero_cta_clicked", properties: { cta: "get_started" } })}
           >
             Get started

@@ -53,7 +53,7 @@ export default function UseCasesPage() {
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal to-background" />
         <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">Use Cases</p>
+          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">Use Cases</p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
             What you can build with Prometheus
           </h1>
@@ -70,13 +70,13 @@ export default function UseCasesPage() {
               <Link
                 key={uc.title}
                 href={uc.href}
-                className="block bg-surface border border-border rounded-xl p-6 hover:border-ember/30 transition-all group"
+                className="block bg-surface border border-border rounded-xl p-6 hover:border-gold/30 transition-all group"
               >
-                <h2 className="text-lg font-semibold mb-2 group-hover:text-ember transition-colors">{uc.title}</h2>
+                <h2 className="text-lg font-semibold mb-2 group-hover:text-gold transition-colors">{uc.title}</h2>
                 <p className="text-sm text-muted leading-relaxed mb-4">{uc.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {uc.capabilities.map((cap) => (
-                    <span key={cap} className="text-xs px-2 py-0.5 rounded bg-ember/10 text-ember/70 border border-ember/10">
+                    <span key={cap} className="text-xs px-2 py-0.5 rounded bg-gold/10 text-gold/70 border border-gold/10">
                       {cap}
                     </span>
                   ))}

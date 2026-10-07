@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 export function FinalCTA() {
   return (
     <Section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(220,74,26,0.1)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(214,183,94,0.1)_0%,transparent_60%)]" />
       <div className="relative text-center max-w-2xl mx-auto">
         <h2
           className="text-3xl md:text-5xl font-bold tracking-tight mb-6"
@@ -21,7 +21,7 @@ export function FinalCTA() {
           Create your account and see what&apos;s possible.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" href="/signup" className="glow-ember">
+          <Button size="lg" href="/signup" className="glow-gold">
             Create your account
           </Button>
           <Button variant="secondary" size="lg" href="/pricing">

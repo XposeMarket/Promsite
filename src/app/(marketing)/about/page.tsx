@@ -12,9 +12,9 @@ export default function AboutPage() {
     <>
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(220,74,26,0.06)_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(214,183,94,0.06)_0%,transparent_60%)]" />
         <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">About</p>
+          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">About</p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
             AI should do the work,<br />not just talk about it.
           </h1>
@@ -47,7 +47,7 @@ export default function AboutPage() {
                 "Your data and control should stay with you.",
               ].map((belief) => (
                 <li key={belief} className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-ember mt-2 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2 shrink-0" />
                   <span className="text-muted leading-relaxed">{belief}</span>
                 </li>
               ))}

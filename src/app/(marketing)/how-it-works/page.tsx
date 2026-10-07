@@ -64,13 +64,13 @@ export default function HowItWorksPage() {
     <>
       <Section className="pt-32 md:pt-40">
         <div className="max-w-3xl">
-          <Badge variant="ember" className="mb-6">
+          <Badge variant="gold" className="mb-6">
             How It Works
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
             From intent to outcome.
             <br />
-            <span className="text-ember">Five stages. Zero hand-holding.</span>
+            <span className="text-gold">Five stages. Zero hand-holding.</span>
           </h1>
           <p className="text-lg text-muted leading-relaxed">
             Prometheus follows a consistent execution pipeline for every task —
@@ -85,12 +85,12 @@ export default function HowItWorksPage() {
           {steps.map((step, i) => (
             <div key={step.number} className="relative">
               {i < steps.length - 1 && (
-                <div className="absolute left-8 top-full w-px h-8 bg-gradient-to-b from-ember/40 to-transparent hidden md:block" />
+                <div className="absolute left-8 top-full w-px h-8 bg-gradient-to-b from-gold/40 to-transparent hidden md:block" />
               )}
               <Card className="md:flex items-start gap-8">
                 <div className="shrink-0 mb-4 md:mb-0">
-                  <div className="w-16 h-16 rounded-xl bg-ember/10 border border-ember/20 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-ember">
+                  <div className="w-16 h-16 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-gold">
                       {step.number}
                     </span>
                   </div>
@@ -132,7 +132,7 @@ export default function HowItWorksPage() {
               <span className="px-4 py-2 bg-surface border border-border rounded-lg font-medium">
                 {label}
               </span>
-              {i < 4 && <span className="text-ember font-bold">&rarr;</span>}
+              {i < 4 && <span className="text-gold font-bold">&rarr;</span>}
             </div>
           ))}
         </div>

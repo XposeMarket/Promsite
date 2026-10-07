@@ -70,7 +70,7 @@ export function CapabilitiesPreview() {
   return (
     <Section id="capabilities">
       <div className="text-center mb-16">
-        <p className="text-sm font-medium text-ember tracking-widest uppercase mb-4">
+        <p className="text-sm font-medium text-gold tracking-widest uppercase mb-4">
           Capabilities
         </p>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">

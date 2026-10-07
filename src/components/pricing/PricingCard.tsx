@@ -27,13 +27,13 @@ export function PricingCard({ featured = true }: PricingCardProps) {
     <div
       className={`rounded-2xl p-8 md:p-10 ${
         featured
-          ? "bg-surface border-2 border-ember/30 glow-ember"
+          ? "bg-surface border-2 border-gold/30 glow-gold"
           : "bg-surface border border-border"
       }`}
     >
       <div className="flex items-center gap-3 mb-6">
         <h3 className="text-xl font-bold">{plan.name}</h3>
-        {featured && <Badge variant="ember">Free access</Badge>}
+        {featured && <Badge variant="gold">Free access</Badge>}
       </div>
 
       <div className="mb-2">
@@ -54,7 +54,7 @@ export function PricingCard({ featured = true }: PricingCardProps) {
         {features.map((feature) => (
           <li key={feature} className="flex items-start gap-3 text-sm">
             <svg
-              className="w-5 h-5 text-ember shrink-0 mt-0.5"
+              className="w-5 h-5 text-gold shrink-0 mt-0.5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

@@ -47,7 +47,7 @@ function InputField({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
-        className="w-full rounded-lg border border-border bg-charcoal px-3 py-2 text-sm text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-ember/40 focus:border-ember/40 transition-colors disabled:opacity-50"
+        className="w-full rounded-lg border border-border bg-charcoal px-3 py-2 text-sm text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold/40 transition-colors disabled:opacity-50"
       />
     </div>
   );

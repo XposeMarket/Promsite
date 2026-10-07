@@ -31,9 +31,9 @@ export default function AIBrowserAutomationPage() {
     <>
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(220,74,26,0.06)_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(214,183,94,0.06)_0%,transparent_60%)]" />
         <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">Browser Automation</p>
+          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">Browser Automation</p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
             AI that controls<br />your browser for you
           </h1>
@@ -55,7 +55,7 @@ export default function AIBrowserAutomationPage() {
                 "Results are extracted, structured, and delivered to you — or piped into the next step"
               ].map((step, i) => (
                 <div key={i} className="flex items-start gap-4">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-ember/10 border border-ember/20 text-ember text-sm font-semibold shrink-0">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gold/10 border border-gold/20 text-gold text-sm font-semibold shrink-0">
                     {i + 1}
                   </span>
                   <p className="text-muted leading-relaxed pt-1">{step}</p>

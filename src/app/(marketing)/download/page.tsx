@@ -30,14 +30,14 @@ export default async function DownloadPage() {
     <Section className="pt-32 md:pt-40 pb-24">
       <div className="max-w-5xl">
         {/* ── Header ── */}
-        <Badge variant={release.available ? "green" : "ember"} className="mb-6">
+        <Badge variant={release.available ? "green" : "gold"} className="mb-6">
           {release.available
             ? `v${release.version} — Available Now`
             : "Coming Soon"}
         </Badge>
 
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
-          Download <span className="text-ember">Prometheus</span>
+          Download <span className="text-gold">Prometheus</span>
         </h1>
         <p className="text-lg text-muted leading-relaxed mb-12 max-w-2xl">
           A local-first AI system that executes real tasks — browser automation,
@@ -48,12 +48,12 @@ export default async function DownloadPage() {
         {/* ── Platform cards ── */}
         <div className="grid md:grid-cols-3 gap-4 mb-16">
           {/* Windows — primary */}
-          <div className="relative rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4 md:col-span-1 ring-1 ring-ember/20">
+          <div className="relative rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4 md:col-span-1 ring-1 ring-gold/20">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-ember/10 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center">
                   <svg
-                    className="w-5 h-5 text-ember"
+                    className="w-5 h-5 text-gold"
                     viewBox="0 0 24 24"
                     fill="currentColor"
                   >
@@ -110,7 +110,7 @@ export default async function DownloadPage() {
           <div className="rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4 ring-1 ring-border/70">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-ember/10 flex items-center justify-center border border-ember/20">
+                <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center border border-gold/20">
                   <svg
                     className="w-5 h-5 text-muted"
                     viewBox="0 0 24 24"
@@ -124,7 +124,7 @@ export default async function DownloadPage() {
                   <div className="text-xs text-muted">Apple Silicon + Intel</div>
                 </div>
               </div>
-              <Badge variant="ember" className="text-xs">Tester build</Badge>
+              <Badge variant="gold" className="text-xs">Tester build</Badge>
             </div>
             <p className="text-xs text-muted leading-relaxed">
               Native DMGs for each Mac architecture. These unsigned tester
@@ -219,7 +219,7 @@ export default async function DownloadPage() {
                 ["Account", "Free Prometheus account"],
               ].map(([label, value]) => (
                 <li key={label} className="flex gap-3">
-                  <span className="text-ember font-medium w-20 flex-shrink-0">
+                  <span className="text-gold font-medium w-20 flex-shrink-0">
                     {label}
                   </span>
                   <span>{value}</span>
@@ -241,7 +241,7 @@ export default async function DownloadPage() {
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <svg
-                    className="w-4 h-4 text-ember mt-0.5 flex-shrink-0"
+                    className="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -268,7 +268,7 @@ export default async function DownloadPage() {
 
         {/* ── Footer CTA ── */}
         {!release.available && (
-          <div className="mt-16 rounded-2xl border border-ember/20 bg-ember/5 p-8 text-center">
+          <div className="mt-16 rounded-2xl border border-gold/20 bg-gold/5 p-8 text-center">
             <h3 className="text-xl font-bold mb-2">Not available yet?</h3>
             <p className="text-muted mb-6">
               Sign up to be notified the moment Prometheus launches.

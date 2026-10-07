@@ -71,7 +71,7 @@ export function AppLayout({ children }: AppLayoutProps) {
       {/* Sidebar */}
       <aside className="hidden md:flex w-64 flex-col border-r border-border bg-charcoal">
         <div className="p-6">
-          <Link href="/" className="text-xl font-bold text-foreground hover:text-ember transition-colors">
+          <Link href="/" className="text-xl font-bold text-foreground hover:text-gold transition-colors">
             Prometheus
           </Link>
         </div>
@@ -84,7 +84,7 @@ export function AppLayout({ children }: AppLayoutProps) {
                 href={link.href}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1 transition-colors ${
                   isActive
-                    ? "bg-ember/10 text-ember border border-ember/20"
+                    ? "bg-gold/10 text-gold border border-gold/20"
                     : "text-muted hover:text-foreground hover:bg-surface"
                 }`}
               >

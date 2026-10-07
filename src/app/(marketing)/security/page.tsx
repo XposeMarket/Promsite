@@ -80,11 +80,11 @@ export default function SecurityPage() {
     <>
       <Section className="pt-32 md:pt-40">
         <div className="max-w-3xl">
-          <Badge variant="ember" className="mb-6">Security</Badge>
+          <Badge variant="gold" className="mb-6">Security</Badge>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
             Trust through transparency.
             <br />
-            <span className="text-ember">Security through architecture.</span>
+            <span className="text-gold">Security through architecture.</span>
           </h1>
           <p className="text-lg text-muted leading-relaxed">
             Most AI products ask you to trust their cloud. Prometheus asks you to trust your own machine.
@@ -97,7 +97,7 @@ export default function SecurityPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {principles.map((p) => (
             <Card key={p.title} hover>
-              <div className="text-ember mb-4">{p.icon}</div>
+              <div className="text-gold mb-4">{p.icon}</div>
               <h2 className="text-lg font-semibold mb-3">{p.title}</h2>
               <p className="text-muted text-sm leading-relaxed">{p.description}</p>
             </Card>

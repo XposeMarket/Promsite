@@ -34,7 +34,7 @@ function EmberAtmosphere({ active }: { active: boolean }) {
       animate={{ opacity: active ? 1 : 0 }}
       transition={{ duration: 1.2, ease: "easeOut" }}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(220,74,26,0.16)_0%,rgba(0,0,0,0)_46%),radial-gradient(ellipse_at_15%_55%,rgba(170,72,10,0.13)_0%,rgba(0,0,0,0)_38%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(214,183,94,0.16)_0%,rgba(0,0,0,0)_46%),radial-gradient(ellipse_at_15%_55%,rgba(170,72,10,0.13)_0%,rgba(0,0,0,0)_38%)]" />
       <motion.div
         className="absolute -left-[12%] top-[18%] h-[55%] w-[46%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,132,38,0.16),rgba(0,0,0,0)_68%)] blur-3xl"
         animate={{ x: [0, 28, 0], opacity: [0.26, 0.42, 0.26] }}
@@ -50,7 +50,7 @@ function EmberAtmosphere({ active }: { active: boolean }) {
       {emberParticles.map((particle) => (
         <motion.span
           key={particle.id}
-          className="absolute rounded-full bg-ember-glow shadow-[0_0_14px_rgba(255,107,53,0.75)]"
+          className="absolute rounded-full bg-gold-light shadow-[0_0_14px_rgba(240,217,139,0.75)]"
           style={{
             left: particle.left,
             bottom: particle.bottom,
@@ -135,16 +135,16 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
               className="relative flex h-[min(56vw,420px)] w-[min(56vw,420px)] items-center justify-center"
             >
               <motion.div
-                className="absolute inset-8 rounded-full bg-[radial-gradient(circle,rgba(255,107,53,0.22),rgba(0,0,0,0)_68%)] blur-2xl"
+                className="absolute inset-8 rounded-full bg-[radial-gradient(circle,rgba(240,217,139,0.22),rgba(0,0,0,0)_68%)] blur-2xl"
                 animate={{ opacity: [0.45, 0.75, 0.45], scale: [0.9, 1.05, 0.9] }}
                 transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
               />
               <Image
-                src="/images/prometheus-logo.png"
+                src="/images/p1-mark-ring.png"
                 alt="Prometheus"
                 width={512}
                 height={512}
-                className="relative h-full w-full select-none object-contain drop-shadow-[0_0_42px_rgba(220,74,26,0.7)]"
+                className="relative h-full w-full select-none object-contain drop-shadow-[0_0_42px_rgba(214,183,94,0.7)]"
                 priority
               />
             </motion.div>
@@ -166,18 +166,18 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
                   transition={{ duration: 0.7, ease: "easeOut" }}
                   className="relative"
                 >
-                  <div className="absolute inset-0 rounded-full bg-ember/20 blur-2xl" />
+                  <div className="absolute inset-0 rounded-full bg-gold/20 blur-2xl" />
                   <Image
-                    src="/images/prometheus-logo.png"
+                    src="/images/p1-mark-ring.png"
                     alt="Prometheus"
                     width={128}
                     height={128}
-                    className="relative drop-shadow-[0_0_28px_rgba(220,74,26,0.68)]"
+                    className="relative drop-shadow-[0_0_28px_rgba(214,183,94,0.68)]"
                     priority
                   />
                 </motion.div>
-                <Button size="lg" onClick={handleEnter} className="glow-ember-strong px-10 py-4 text-lg">
-                  Ignite your Flame
+                <Button size="lg" onClick={handleEnter} className="glow-gold-strong px-10 py-4 text-lg">
+                  Enter Prometheus One
                 </Button>
                 <span className="text-sm text-muted/50 tracking-widest uppercase">
                   The World&apos;s First Everything AI

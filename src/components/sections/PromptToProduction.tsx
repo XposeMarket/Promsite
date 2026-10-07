@@ -30,7 +30,7 @@ const tasks = [
 
 const statusStyles: Record<string, string> = {
   Completed: "text-terminal-green/90 bg-terminal-green/10",
-  "In progress": "text-ember bg-ember/10",
+  "In progress": "text-gold bg-gold/10",
   Pending: "text-muted/70 bg-surface",
 };
 
@@ -40,7 +40,7 @@ export function PromptToProduction() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left: narrative + steps */}
         <div>
-          <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">
+          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">
             In action
           </p>
           <h2
@@ -60,7 +60,7 @@ export function PromptToProduction() {
           <div className="space-y-6 mb-8">
             {steps.map((step) => (
               <div key={step.title} className="flex gap-4">
-                <div className="mt-1.5 flex-shrink-0 w-2.5 h-2.5 rounded-full bg-ember" />
+                <div className="mt-1.5 flex-shrink-0 w-2.5 h-2.5 rounded-full bg-gold" />
                 <div>
                   <h3 className="font-semibold mb-1">{step.title}</h3>
                   <p className="text-sm text-muted leading-relaxed">
@@ -73,7 +73,7 @@ export function PromptToProduction() {
 
           <Link
             href="/use-cases"
-            className="inline-flex items-center gap-2 text-ember font-medium hover:gap-3 transition-all"
+            className="inline-flex items-center gap-2 text-gold font-medium hover:gap-3 transition-all"
           >
             View case study
             <span aria-hidden>&rarr;</span>
@@ -98,7 +98,7 @@ export function PromptToProduction() {
                   key={item}
                   className={`text-xs px-2.5 py-1.5 rounded-md ${
                     i === 1
-                      ? "bg-ember/15 text-ember font-medium"
+                      ? "bg-gold/15 text-gold font-medium"
                       : "text-muted/70"
                   }`}
                 >

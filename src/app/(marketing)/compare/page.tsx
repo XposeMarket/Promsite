@@ -23,7 +23,7 @@ const features = [
 ];
 
 function CellValue({ value }: { value: boolean | string }) {
-  if (value === true) return <span className="text-ember font-medium">Yes</span>;
+  if (value === true) return <span className="text-gold font-medium">Yes</span>;
   if (value === false) return <span className="text-muted/40">No</span>;
   return <span className="text-muted/70">{value}</span>;
 }
@@ -34,7 +34,7 @@ export default function ComparePage() {
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal to-background" />
         <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">Compare</p>
+          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">Compare</p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
             Prometheus vs. the rest
           </h1>
@@ -51,7 +51,7 @@ export default function ComparePage() {
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-4 px-4 font-medium text-muted">Feature</th>
-                  <th className="text-center py-4 px-4 font-semibold text-ember">Prometheus</th>
+                  <th className="text-center py-4 px-4 font-semibold text-gold">Prometheus</th>
                   <th className="text-center py-4 px-4 font-medium text-muted">ChatGPT</th>
                   <th className="text-center py-4 px-4 font-medium text-muted">Claude</th>
                 </tr>

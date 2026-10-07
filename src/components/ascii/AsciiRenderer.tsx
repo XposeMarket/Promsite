@@ -3,13 +3,13 @@
 interface AsciiRendererProps {
   lines: string[];
   revealedLines?: number;
-  color?: "green" | "ember" | "white";
+  color?: "green" | "gold" | "white";
   className?: string;
 }
 
 const colorClasses = {
   green: "text-terminal-green text-glow-green",
-  ember: "text-ember text-glow-ember",
+  gold: "text-gold text-glow-gold",
   white: "text-foreground",
 };
 
