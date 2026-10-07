@@ -15,7 +15,7 @@ export function createMetadata({
   title,
   description,
   path = "",
-  ogImage = "/og/prometheus-ai-agent-preview-v2.png",
+  ogImage = "/og/p1-og.png",
   noIndex = false,
 }: PageMetaOptions): Metadata {
   const url = `${SITE_URL}${path}`;
@@ -31,7 +31,7 @@ export function createMetadata({
       description,
       url,
       siteName: SITE_NAME,
-      images: [{ url: ogImage, width: 1731, height: 909, alt: title }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
       type: "website",
     },
     twitter: {
