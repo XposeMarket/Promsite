@@ -50,16 +50,16 @@ export const metadata: Metadata = {
       "Prometheus runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows.",
     images: [
       {
-        url: "/og/prometheus-ai-agent-preview-v2.png",
-        width: 1731,
-        height: 909,
-        alt: "Prometheus AI Agent — Search, create, code, voice, and agents",
+        url: "/og/p1-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Prometheus One — the everything agent. Everything just got a whole lot easier.",
       },
       {
-        url: "/og/prometheus-ai-agent-square.png",
+        url: "/og/p1-og-square.png",
         width: 1254,
         height: 1254,
-        alt: "Prometheus AI Agent logo and product preview",
+        alt: "Prometheus One logo",
       },
     ],
   },
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: "Prometheus — The AI System That Actually Executes",
     description:
       "Prometheus runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows.",
-    images: ["/og/prometheus-ai-agent-preview-v2.png"],
+    images: ["/og/p1-og.png"],
   },
   robots: {
     index: true,

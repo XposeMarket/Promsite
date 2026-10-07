@@ -1,6 +1,8 @@
 import { createMetadata } from "@/lib/seo/metadata";
 import { docSections } from "@/content/docs/sections";
 import Link from "next/link";
+import { LuxHero, InstallSteps } from "@/components/showcase/PageVisuals";
+import { Button } from "@/components/ui/Button";
 
 export const metadata = createMetadata({
   title: "Documentation",
@@ -8,43 +10,91 @@ export const metadata = createMetadata({
   path: "/docs",
 });
 
+/** Articles that already have a real page on the site. Everything else is marked "Soon" instead of linking to a 404. */
+const LIVE: Record<string, string> = {
+  quickstart: "/download",
+  installation: "/download",
+  "first-task": "/how-it-works",
+  "how-it-works": "/how-it-works",
+  tools: "/capabilities",
+  memory: "/capabilities",
+  "browser-automation": "/ai-browser-automation",
+  "background-tasks": "/background-tasks",
+  scheduling: "/background-tasks",
+  teams: "/capabilities",
+  integrations: "/capabilities",
+  authentication: "/security",
+};
+
+const NUMERALS = ["I", "II", "III", "IV", "V", "VI"];
+
 export default function DocsPage() {
   return (
     <>
-      <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal to-background" />
-        <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">Documentation</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Learn Prometheus
-          </h1>
-          <p className="text-lg text-muted max-w-2xl mx-auto">
-            Guides, references, and tutorials to help you get the most from your AI system.
-          </p>
+      <LuxHero kicker="Documentation" title="The operating" accent="manual." sub="From first install to multi-agent teams. Start at chapter one, or jump to what you need.">
+        <div className="flex flex-wrap justify-center gap-4">
+          <Button href="/download" size="lg">Quickstart</Button>
+          <Button href="/how-it-works" variant="secondary" size="lg">How it works</Button>
+        </div>
+      </LuxHero>
+
+      <section className="pb-8">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <InstallSteps
+            steps={[
+              { t: "Install", l: "One installer for your platform." },
+              { t: "Connect a model", l: "Sign in to Claude or ChatGPT, or add a key." },
+              { t: "Ask for anything", l: "It plans, runs the tools, and reports back." },
+            ]}
+          />
         </div>
       </section>
 
-      <section className="py-16 md:py-20">
+      <section className="py-16 md:py-24">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {docSections.map((section) => (
-              <div key={section.slug} className="bg-surface border border-border rounded-xl p-6 hover:border-gold/30 transition-all">
-                <h2 className="text-xl font-semibold mb-2">{section.title}</h2>
-                <p className="text-sm text-muted mb-5">{section.description}</p>
-                <ul className="space-y-2">
-                  {section.articles.map((article) => (
-                    <li key={article.slug}>
-                      <Link
-                        href={`/docs/${section.slug}/${article.slug}`}
-                        className="flex items-center gap-2 text-sm text-muted hover:text-gold transition-colors group"
-                      >
-                        <svg className="w-4 h-4 text-gold/50 group-hover:text-gold transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                        </svg>
-                        {article.title}
-                      </Link>
-                    </li>
-                  ))}
+          <p className="kicker mb-4">Contents</p>
+          <h2 className="mb-12 text-4xl tracking-tight md:text-5xl">
+            Four <em className="text-gold-metal italic pr-1">chapters.</em>
+          </h2>
+
+          <div className="border-t border-gold/15">
+            {docSections.map((section, i) => (
+              <div key={section.slug} id={section.slug} className="grid gap-6 border-b border-gold/15 py-10 md:grid-cols-[5rem_1fr_1.2fr] md:gap-10">
+                <span className="num-display text-5xl text-gold/70">{NUMERALS[i] ?? i + 1}</span>
+                <div>
+                  <h3 className="text-3xl tracking-tight" style={{ fontFamily: "var(--font-display), Georgia, serif" }}>
+                    {section.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-muted">{section.description}</p>
+                </div>
+                <ul className="divide-y divide-gold/10">
+                  {section.articles.map((article, ai) => {
+                    const href = LIVE[article.slug];
+                    const inner = (
+                      <>
+                        <span className="font-mono text-[11px] text-gold/60 tabular-nums">
+                          {String(i + 1)}.{String(ai + 1)}
+                        </span>
+                        <span className="flex-1">{article.title}</span>
+                        {href ? (
+                          <span className="text-gold transition-transform group-hover:translate-x-1">→</span>
+                        ) : (
+                          <span className="rounded-full border border-gold/20 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.18em] text-muted">Soon</span>
+                        )}
+                      </>
+                    );
+                    return (
+                      <li key={article.slug}>
+                        {href ? (
+                          <Link href={href} className="group flex items-center gap-4 py-3 text-sm text-foreground/85 transition-colors hover:text-gold-light">
+                            {inner}
+                          </Link>
+                        ) : (
+                          <div className="flex items-center gap-4 py-3 text-sm text-muted/70">{inner}</div>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
