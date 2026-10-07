@@ -1,5 +1,9 @@
 import { createMetadata } from "@/lib/seo/metadata";
 import { Button } from "@/components/ui/Button";
+import { Section } from "@/components/ui/Section";
+import { SectionHead, StatStrip } from "@/components/showcase/Primitives";
+import { LuxHero, BoundaryDiagram, Principles } from "@/components/showcase/PageVisuals";
+import { YourMachine } from "@/components/sections/HomeVisual";
 
 export const metadata = createMetadata({
   title: "Local-First AI",
@@ -7,74 +11,49 @@ export const metadata = createMetadata({
   path: "/local-first-ai",
 });
 
-const principles = [
-  {
-    title: "Your machine, your data",
-    description: "Prometheus runs locally. Your files, browser sessions, and execution happen on your hardware. Nothing leaves your machine unless you explicitly connect to external services.",
-  },
-  {
-    title: "No cloud dependency",
-    description: "The core execution engine doesn't require a persistent cloud connection. Tasks, tools, and workflows run locally even if connectivity is intermittent.",
-  },
-  {
-    title: "Full control over permissions",
-    description: "Every tool has explicit permissions. Browser access, file operations, email sending — you decide what Prometheus can and can't do.",
-  },
-  {
-    title: "Transparent execution",
-    description: "Every action is logged. Every tool call is recorded. You can audit exactly what Prometheus did, when, and why.",
-  },
-  {
-    title: "No training on your data",
-    description: "Your conversations, files, and workflows are never used to train models. Your data stays yours.",
-  },
-  {
-    title: "Portable and self-contained",
-    description: "Your Prometheus instance is yours. Configuration, memory, and state are stored locally and can be backed up, moved, or reset at any time.",
-  },
-];
-
 export default function LocalFirstAIPage() {
   return (
     <>
-      <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(214,183,94,0.06)_0%,transparent_60%)]" />
-        <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">Local-First AI</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            AI that lives<br />on your machine
-          </h1>
-          <p className="text-lg text-muted max-w-2xl mx-auto mb-8">
-            No cloud lock-in. No data exfiltration. Prometheus executes locally, under your control.
-          </p>
-          <Button href="/signup" size="lg">Get started</Button>
+      <LuxHero kicker="Local-first AI" title="AI that lives" accent="on your machine." sub="No lock-in. No data leaving. Prometheus executes where you are.">
+        <Button href="/download" size="lg">Download Prometheus</Button>
+      </LuxHero>
+
+      <section className="pb-6">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <StatStrip
+            stats={[
+              { value: 0, label: "Servers between you and your data" },
+              { value: 100, suffix: "%", label: "Of memory stored locally" },
+              { value: 1, label: "Folder to back up or delete" },
+              { value: 0, label: "Training on your work" },
+            ]}
+          />
         </div>
       </section>
 
-      <section className="py-16 md:py-20">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {principles.map((p) => (
-              <div key={p.title} className="bg-surface border border-border rounded-xl p-6">
-                <h2 className="text-lg font-semibold mb-2">{p.title}</h2>
-                <p className="text-sm text-muted leading-relaxed">{p.description}</p>
-              </div>
-            ))}
-          </div>
+      <Section>
+        <SectionHead kicker="Where your data goes" title="It stays" accent="home." />
+        <BoundaryDiagram />
+      </Section>
 
-          <div className="max-w-3xl mx-auto mt-16 text-center">
-            <h2 className="text-2xl font-bold mb-4">Why local-first matters</h2>
-            <p className="text-muted leading-relaxed mb-4">
-              Cloud-only AI tools hold your data hostage. They see everything you type, every file you share, every workflow you build. When they change terms, raise prices, or shut down, your work goes with them.
-            </p>
-            <p className="text-muted leading-relaxed mb-8">
-              Prometheus is different. It runs where you are. Your data never leaves your machine unless you choose to send it somewhere. That&apos;s not a feature — it&apos;s the architecture.
-            </p>
-            <Button href="/security" variant="outline" size="lg">Learn about security</Button>
-          </div>
+      <YourMachine />
+
+      <Section>
+        <SectionHead kicker="Why it matters" title="Cloud AI holds your work." accent="Local AI hands it back." />
+        <Principles
+          items={[
+            { t: "No hostage data", l: "Price change or shutdown? Your work stays put." },
+            { t: "Works offline-ish", l: "Tools and jobs run even when the network flickers." },
+            { t: "Every action logged", l: "See exactly what ran, when and why." },
+            { t: "Portable", l: "Config, memory and state in one folder." },
+            { t: "Your permissions", l: "You decide what it can touch." },
+            { t: "Never trained on", l: "Your files and chats are yours." },
+          ]}
+        />
+        <div className="text-center mt-14">
+          <Button href="/security" variant="secondary" size="lg">How it&apos;s secured</Button>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

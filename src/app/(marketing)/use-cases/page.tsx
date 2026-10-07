@@ -1,6 +1,9 @@
 import { createMetadata } from "@/lib/seo/metadata";
 import { Button } from "@/components/ui/Button";
-import Link from "next/link";
+import { Section } from "@/components/ui/Section";
+import { SectionHead, Marquee } from "@/components/showcase/Primitives";
+import { LuxHero, UseCasePicker, type UseCase } from "@/components/showcase/PageVisuals";
+import { VizShowcase } from "@/components/showcase/VizShowcase";
 
 export const metadata = createMetadata({
   title: "Use Cases",
@@ -8,88 +11,38 @@ export const metadata = createMetadata({
   path: "/use-cases",
 });
 
-const useCases = [
-  {
-    title: "Research Automation",
-    description: "Prometheus browses the web, collects data from multiple sources, synthesizes findings, and delivers structured reports — on schedule or on demand.",
-    capabilities: ["Browser Automation", "Scheduling", "Memory"],
-    href: "/ai-browser-automation",
-  },
-  {
-    title: "Data Pipelines",
-    description: "Extract data from web dashboards, APIs, and documents. Transform, validate, and deliver to your spreadsheets, databases, or downstream systems.",
-    capabilities: ["Background Tasks", "File Operations", "Integrations"],
-    href: "/background-tasks",
-  },
-  {
-    title: "Customer Outreach",
-    description: "Draft personalized messages, manage follow-up sequences, track responses, and maintain relationship context across every interaction.",
-    capabilities: ["Memory", "Email", "Scheduling"],
-    href: "#",
-  },
-  {
-    title: "Code Review & DevOps",
-    description: "Analyze pull requests, run automated checks, prepare deployment summaries, and flag risks — integrated with your existing development workflow.",
-    capabilities: ["Integrations", "Teams", "File Operations"],
-    href: "#",
-  },
-  {
-    title: "Content Creation",
-    description: "Research topics, draft content, manage editorial calendars, and publish across channels. Prometheus handles the pipeline, you handle the voice.",
-    capabilities: ["Browser Automation", "Memory", "Scheduling"],
-    href: "#",
-  },
-  {
-    title: "Monitoring & Alerts",
-    description: "Watch websites, prices, availability, or any data source on a schedule. Get notified when conditions change. Act automatically when they do.",
-    capabilities: ["Scheduling", "Browser Automation", "Background Tasks"],
-    href: "#",
-  },
+const cases: UseCase[] = [
+  { title: "Research", line: "Browses, collects, synthesizes, and delivers a report on schedule.", caps: ["Browser", "Scheduling", "Memory"], viz: "browser",
+    steps: ["Search 14 sources", "Open and read each page", "Pull the numbers into a sheet", "Write a 1-page brief"] },
+  { title: "Data pipelines", line: "Pull from dashboards and docs, clean it, deliver it where it belongs.", caps: ["Background", "Files", "Integrations"], viz: "files",
+    steps: ["Log into the dashboard", "Export last week's data", "Validate and dedupe", "Update the master sheet"] },
+  { title: "Outreach", line: "Personal messages, follow-ups and context that never gets lost.", caps: ["Memory", "Email", "Scheduling"], viz: "memory",
+    steps: ["Recall each lead's history", "Draft personal follow-ups", "Hold sends for your approval", "Schedule the next touch"] },
+  { title: "Code & PRs", line: "Agent teams that branch, fix, test and open the PR for your review.", caps: ["Teams", "Files", "Git"], viz: "team",
+    steps: ["Split the task across agents", "Edit in an isolated branch", "Run typecheck + tests", "Open the PR, ping you"] },
+  { title: "Content", line: "Research, draft, design and schedule. You keep the voice.", caps: ["Browser", "Memory", "Media"], viz: "chart",
+    steps: ["Scan what's trending", "Draft 3 posts in your voice", "Make the graphic", "Queue for your approval"] },
+  { title: "Monitoring", line: "Watch prices, pages or stock, and act the moment something changes.", caps: ["Scheduling", "Browser", "Alerts"], viz: "schedule",
+    steps: ["Check every 30 minutes", "Diff against last run", "Price dropped 12%", "Alert sent to your phone"] },
 ];
 
 export default function UseCasesPage() {
   return (
     <>
-      <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal to-background" />
-        <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">Use Cases</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            What you can build with Prometheus
-          </h1>
-          <p className="text-lg text-muted max-w-2xl mx-auto">
-            Real workflows. Real outcomes. Not hypotheticals.
-          </p>
+      <LuxHero kicker="Use cases" title="Real workflows." accent="Real outcomes." sub="Pick one and watch it run." />
+      <Section className="!pt-0">
+        <UseCasePicker cases={cases} />
+      </Section>
+      <div className="py-6">
+        <Marquee items={["Lead hunting", "Weekly reports", "Price watching", "Inbox triage", "PR reviews", "Video edits", "Income tracking", "Morning briefs", "Competitor research", "Social posting"]} />
+      </div>
+      <Section dark>
+        <SectionHead kicker="And the answer comes back" title="Not a wall of text." accent="Something you can touch." />
+        <VizShowcase />
+        <div className="text-center mt-16">
+          <Button href="/download" size="lg">Start your first workflow</Button>
         </div>
-      </section>
-
-      <section className="py-16 md:py-20">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {useCases.map((uc) => (
-              <Link
-                key={uc.title}
-                href={uc.href}
-                className="block bg-surface border border-border rounded-xl p-6 hover:border-gold/30 transition-all group"
-              >
-                <h2 className="text-lg font-semibold mb-2 group-hover:text-gold transition-colors">{uc.title}</h2>
-                <p className="text-sm text-muted leading-relaxed mb-4">{uc.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {uc.capabilities.map((cap) => (
-                    <span key={cap} className="text-xs px-2 py-0.5 rounded bg-gold/10 text-gold/70 border border-gold/10">
-                      {cap}
-                    </span>
-                  ))}
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="text-center mt-16">
-            <Button href="/signup" size="lg">Start building your workflow</Button>
-          </div>
-        </div>
-      </section>
+      </Section>
     </>
   );
 }

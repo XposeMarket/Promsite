@@ -1,8 +1,10 @@
 import { createMetadata } from "@/lib/seo/metadata";
 import { Section } from "@/components/ui/Section";
 import { PricingCard } from "@/components/pricing/PricingCard";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { SectionHead } from "@/components/showcase/Primitives";
+import { LuxHero, CompareBoard } from "@/components/showcase/PageVisuals";
+import { MiniBrowser, MiniMemory, MiniTeam, MiniSchedule } from "@/components/showcase/MicroViz";
 import { PricingFAQ } from "./faq";
 
 export const metadata = createMetadata({
@@ -12,55 +14,63 @@ export const metadata = createMetadata({
   path: "/pricing",
 });
 
+const included = [
+  { t: "Browser", v: <MiniBrowser /> },
+  { t: "Memory", v: <MiniMemory /> },
+  { t: "Agent teams", v: <MiniTeam /> },
+  { t: "Scheduling", v: <MiniSchedule /> },
+];
+
 export default function PricingPage() {
   return (
     <>
-      <Section className="pt-32 md:pt-40">
-        <div className="max-w-3xl mx-auto text-center">
-          <Badge variant="gold" className="mb-6">
-            Pricing
-          </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-            One plan. Full power.
-            <br />
-            <span className="text-gold">Free for everyone.</span>
-          </h1>
-          <p className="text-lg text-muted leading-relaxed">
-            We don&apos;t believe in feature gates. Every Prometheus user gets
-            the complete system. No starter tier. No recurring charge. No
-            checkout. Just the tool, free to use.
-          </p>
+      <LuxHero kicker="Pricing" title="One plan. Full power." accent="Free for everyone." sub="No tiers. No card. No checkout. You bring the model, we bring everything else." />
+
+      <Section className="!pt-0">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.9fr] gap-10 items-center">
+          <div>
+            <p className="kicker mb-6">Every user gets all of it</p>
+            <div className="grid grid-cols-2 gap-3">
+              {included.map((i) => (
+                <div key={i.t} className="panel-quiet p-5 flex flex-col items-center text-center">
+                  <div className="h-24 flex items-center justify-center scale-90">{i.v}</div>
+                  <p className="mt-2 text-xl" style={{ fontFamily: "var(--font-display), Georgia, serif" }}>{i.t}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="max-w-lg w-full mx-auto">
+            <PricingCard featured />
+          </div>
         </div>
       </Section>
 
       <Section dark>
-        <div className="max-w-lg mx-auto">
-          <PricingCard featured />
+        <SectionHead kicker="Free, and still more" title="What $0 gets you" accent="vs. $20 a month." center />
+        <div className="max-w-5xl mx-auto">
+          <CompareBoard
+            rows={[
+              { name: "Browser automation", prometheus: true, chatgpt: false, claude: false },
+              { name: "Background tasks", prometheus: true, chatgpt: false, claude: false },
+              { name: "Persistent memory", prometheus: true, chatgpt: "Basic", claude: "Basic" },
+              { name: "Agent teams", prometheus: true, chatgpt: false, claude: false },
+              { name: "Runs on your machine", prometheus: true, chatgpt: false, claude: false },
+            ]}
+          />
         </div>
       </Section>
 
       <Section id="faq">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Frequently asked questions
-          </h2>
-          <p className="text-muted text-lg">Straight answers. No deflection.</p>
-        </div>
+        <SectionHead kicker="FAQ" title="Straight answers." accent="No deflection." center />
         <PricingFAQ />
       </Section>
 
       <Section dark>
         <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Stop paying for promises. Start executing.
+          <h2 className="text-4xl md:text-6xl tracking-tight leading-[1.05] mb-8">
+            Stop paying for promises. <em className="text-gold-metal italic">Start executing.</em>
           </h2>
-          <p className="text-muted text-lg mb-8">
-            Prometheus does what other AI products only talk about. See for
-            yourself.
-          </p>
-          <Button size="lg" href="/signup">
-            Start with Prometheus
-          </Button>
+          <Button size="lg" href="/download">Download Prometheus</Button>
         </div>
       </Section>
     </>

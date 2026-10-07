@@ -32,13 +32,13 @@ export function PricingCard({ featured = true }: PricingCardProps) {
       }`}
     >
       <div className="flex items-center gap-3 mb-6">
-        <h3 className="text-xl font-bold">{plan.name}</h3>
+        <h3 className="text-2xl">{plan.name}</h3>
         {featured && <Badge variant="gold">Free access</Badge>}
       </div>
 
       <div className="mb-2">
         <div className="flex items-baseline gap-2">
-          <span className="text-6xl font-bold">Free</span>
+          <span className="text-7xl italic text-gold-metal" style={{ fontFamily: "var(--font-display), Georgia, serif" }}>Free</span>
           <span className="text-muted">for everyone</span>
         </div>
       </div>
