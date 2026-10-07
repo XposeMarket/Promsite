@@ -1,5 +1,9 @@
 import { createMetadata } from "@/lib/seo/metadata";
 import { Button } from "@/components/ui/Button";
+import { Section } from "@/components/ui/Section";
+import { SectionHead } from "@/components/showcase/Primitives";
+import { LuxHero, TalkVsDo, Beliefs, FireMark } from "@/components/showcase/PageVisuals";
+import { AgentConsole } from "@/components/showcase/AgentConsole";
 
 export const metadata = createMetadata({
   title: "About",
@@ -10,72 +14,49 @@ export const metadata = createMetadata({
 export default function AboutPage() {
   return (
     <>
-      <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(220,74,26,0.06)_0%,transparent_60%)]" />
-        <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">About</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            AI should do the work,<br />not just talk about it.
-          </h1>
-          <p className="text-lg text-muted max-w-2xl mx-auto">
-            That conviction is why Prometheus exists.
-          </p>
+      <LuxHero kicker="About" title="AI should do the work," accent="not talk about it." sub="That conviction is the whole reason Prometheus exists." />
+
+      <Section>
+        <SectionHead kicker="The gap" title="Same question." accent="Different outcome." sub="Most AI stops at advice. Prometheus finishes the job." />
+        <TalkVsDo />
+      </Section>
+
+      <Section dark>
+        <SectionHead kicker="What we believe" title="Five rules" accent="we build by." />
+        <Beliefs
+          items={[
+            "AI should use tools, not describe them.",
+            "Memory should persist. Every session builds on the last.",
+            "Work should keep running while you're away.",
+            "A system should orchestrate, not just respond.",
+            "Your data and your control stay with you.",
+          ]}
+        />
+      </Section>
+
+      <Section>
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
+          <SectionHead kicker="How it works" title="It plans, acts," accent="and remembers." sub="Connected to your browser, files, calendar and email. Watch a real run." />
+          <AgentConsole />
         </div>
-      </section>
+      </Section>
 
-      <section className="py-16 md:py-20">
-        <div className="mx-auto max-w-3xl px-6 lg:px-8 space-y-12">
+      <Section dark>
+        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 md:gap-16 items-center">
+          <div className="flex justify-center"><FireMark /></div>
           <div>
-            <h2 className="text-2xl font-bold mb-4">The problem</h2>
-            <p className="text-muted leading-relaxed mb-4">
-              Most AI tools are conversation windows. You type, they respond, and then you go do the actual work yourself. The AI helped you think — but it didn&apos;t help you act.
+            <p className="kicker mb-5">The name</p>
+            <p className="text-3xl md:text-5xl leading-[1.15] tracking-tight" style={{ fontFamily: "var(--font-display), Georgia, serif" }}>
+              Prometheus took fire from the gods and <em className="text-gold-metal italic">put it in human hands.</em>
             </p>
-            <p className="text-muted leading-relaxed">
-              We kept running into the same gap: the distance between &ldquo;the AI told me what to do&rdquo; and &ldquo;the thing is actually done.&rdquo; Prometheus was built to close that gap.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold mb-4">What we believe</h2>
-            <ul className="space-y-4">
-              {[
-                "AI should be able to use tools, not just describe them.",
-                "Memory should persist. Every session should build on the last.",
-                "Background work should run whether you're watching or not.",
-                "A system should orchestrate, not just respond.",
-                "Your data and control should stay with you.",
-              ].map((belief) => (
-                <li key={belief} className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-ember mt-2 shrink-0" />
-                  <span className="text-muted leading-relaxed">{belief}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold mb-4">How Prometheus works</h2>
-            <p className="text-muted leading-relaxed mb-4">
-              Prometheus is a personal AI system. It connects to your browser, your files, your calendar, your email. It plans tasks, executes them with real tools, and remembers what happened.
-            </p>
-            <p className="text-muted leading-relaxed">
-              It runs background jobs on schedules you set. It coordinates teams of specialized agents. It doesn&apos;t just answer — it acts, reports, and learns.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold mb-4">The name</h2>
-            <p className="text-muted leading-relaxed">
-              In myth, Prometheus stole fire from the gods and gave it to humanity — the power to build, to create, to transform. This system carries the same idea: take the power of AI and put it directly in your hands, as a tool you control.
-            </p>
-          </div>
-
-          <div className="text-center pt-8">
-            <Button href="/signup" size="lg">Start with Prometheus</Button>
+            <p className="mt-6 text-muted text-lg max-w-xl">Same idea here: the power of AI, running on your machine, as a tool you control.</p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Button href="/download" size="lg">Download Prometheus</Button>
+              <Button href="/product" variant="secondary" size="lg">See the product</Button>
+            </div>
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

@@ -9,15 +9,15 @@ interface DemoVideoCardProps {
 
 export function DemoVideoCard({ title, description, thumbnailUrl }: DemoVideoCardProps) {
   return (
-    <div className="group rounded-xl border border-border bg-surface overflow-hidden hover:border-ember/30 transition-all">
+    <div className="group rounded-xl border border-border bg-surface overflow-hidden hover:border-gold/30 transition-all">
       <div className="relative aspect-video bg-charcoal">
         {thumbnailUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={thumbnailUrl} alt={title} className="w-full h-full object-cover" loading="lazy" />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 rounded-full bg-ember/20 border border-ember/30 flex items-center justify-center group-hover:bg-ember/30 transition-colors">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-ember ml-0.5">
+            <div className="w-12 h-12 rounded-full bg-gold/20 border border-gold/30 flex items-center justify-center group-hover:bg-gold/30 transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-gold ml-0.5">
                 <polygon points="5,3 19,12 5,21" />
               </svg>
             </div>

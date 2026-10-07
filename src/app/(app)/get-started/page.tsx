@@ -77,7 +77,7 @@ const steps: Step[] = [
 function StepIcon({ step, completed }: { step: number; completed: boolean }) {
   if (completed) {
     return (
-      <div className="w-8 h-8 rounded-full bg-ember flex items-center justify-center shrink-0">
+      <div className="w-8 h-8 rounded-full bg-gold flex items-center justify-center shrink-0">
         <svg
           width="16"
           height="16"
@@ -140,7 +140,7 @@ export default function GetStartedPage() {
           </div>
           <div className="h-2 rounded-full bg-surface-hover overflow-hidden">
             <motion.div
-              className="h-full rounded-full bg-ember"
+              className="h-full rounded-full bg-gold"
               initial={{ width: 0 }}
               animate={{ width: `${progressPercent}%` }}
               transition={{ duration: 0.4, ease: "easeOut" }}
@@ -162,7 +162,7 @@ export default function GetStartedPage() {
               custom={i + 2}
               variants={fadeUp}
             >
-              <Card className={completed ? "border-ember/20 bg-ember/[0.02]" : ""}>
+              <Card className={completed ? "border-gold/20 bg-gold/[0.02]" : ""}>
                 <div className="flex gap-4">
                   {/* Step indicator + connector */}
                   <div className="flex flex-col items-center">
@@ -234,7 +234,7 @@ export default function GetStartedPage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
         >
-          <Card className="border-ember/30 text-center">
+          <Card className="border-gold/30 text-center">
             <div className="py-4">
               <p className="text-lg font-semibold text-foreground mb-1">
                 All set!

@@ -54,13 +54,13 @@ export function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2.5 mb-4">
               <Image
-                src="/images/prometheus-logo.png"
+                src="/images/p1-mark-ring.png"
                 alt="Prometheus"
                 width={28}
                 height={28}
                 className="w-7 h-7 object-contain"
               />
-              <span className="text-lg font-bold tracking-tight text-foreground">
+              <span className="wordmark text-[1.05rem] text-foreground">
                 Prometheus
               </span>
             </Link>
@@ -76,7 +76,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-9 h-9 rounded-lg border border-border flex items-center justify-center text-muted hover:text-ember hover:border-ember/40 transition-colors"
+                  className="w-9 h-9 rounded-lg border border-border flex items-center justify-center text-muted hover:text-gold hover:border-gold/40 transition-colors"
                 >
                   {social.icon}
                 </a>
@@ -123,12 +123,12 @@ export function Footer() {
                 name="email"
                 placeholder="Enter your email"
                 aria-label="Email address"
-                className="flex-1 min-w-0 rounded-lg bg-surface border border-border px-3 py-2.5 text-sm text-foreground placeholder:text-muted/60 focus:border-ember/50 focus:outline-none"
+                className="flex-1 min-w-0 rounded-lg bg-surface border border-border px-3 py-2.5 text-sm text-foreground placeholder:text-muted/60 focus:border-gold/50 focus:outline-none"
               />
               <button
                 type="submit"
                 aria-label="Subscribe"
-                className="flex-shrink-0 w-10 h-10 rounded-lg bg-ember text-white flex items-center justify-center hover:bg-ember-dark transition-colors"
+                className="flex-shrink-0 w-10 h-10 rounded-lg bg-gold text-[#050505] flex items-center justify-center hover:bg-gold-dark transition-colors"
               >
                 <span aria-hidden>&rarr;</span>
               </button>

@@ -1,13 +1,13 @@
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: "default" | "ember" | "green";
+  variant?: "default" | "gold" | "green";
   className?: string;
 }
 
 export function Badge({ children, variant = "default", className = "" }: BadgeProps) {
   const variants = {
     default: "bg-surface text-muted border-border",
-    ember: "bg-ember/10 text-ember border-ember/20",
+    gold: "bg-gold/10 text-gold border-gold/20",
     green: "bg-green-900/20 text-green-400 border-green-800/30",
   };
 

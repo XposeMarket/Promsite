@@ -24,7 +24,7 @@ export function PricingPreview() {
             >
               Free access.
               <br />
-              <span className="text-ember">Full power.</span>
+              <span className="text-gold">Full power.</span>
             </h2>
           </div>
 
@@ -51,7 +51,7 @@ export function PricingPreview() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-ember flex-shrink-0"
+                    className="text-gold flex-shrink-0"
                   >
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
@@ -62,7 +62,6 @@ export function PricingPreview() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <Button
                 href="/signup"
-                className="glow-ember"
                 onClick={() =>
                   analytics.track({
                     name: "pricing_cta_clicked",
@@ -74,7 +73,7 @@ export function PricingPreview() {
               </Button>
               <Link
                 href="/pricing"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-ember hover:gap-2.5 transition-all"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-gold hover:gap-2.5 transition-all"
               >
                 View pricing details
                 <span aria-hidden>&rarr;</span>

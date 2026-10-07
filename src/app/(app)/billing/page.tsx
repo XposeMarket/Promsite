@@ -47,7 +47,7 @@ export default function BillingPage() {
                     {plan.name}
                   </h2>
                   <Badge variant="green">Free</Badge>
-                  <Badge variant="ember">Full access</Badge>
+                  <Badge variant="gold">Full access</Badge>
                 </div>
                 <p className="text-sm text-muted">
                   No purchase, checkout, or subscription is required. Create an
@@ -69,7 +69,7 @@ export default function BillingPage() {
                         height="14"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="var(--color-ember)"
+                        stroke="var(--color-gold)"
                         strokeWidth="2.5"
                         aria-hidden="true"
                       >

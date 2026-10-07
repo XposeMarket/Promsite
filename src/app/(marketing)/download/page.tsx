@@ -3,6 +3,7 @@ import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { getLatestRelease } from "@/lib/releases/github";
+import { InstallSteps, SpecTiles } from "@/components/showcase/PageVisuals";
 
 export const metadata = createMetadata({
   title: "Download Prometheus",
@@ -30,30 +31,29 @@ export default async function DownloadPage() {
     <Section className="pt-32 md:pt-40 pb-24">
       <div className="max-w-5xl">
         {/* ── Header ── */}
-        <Badge variant={release.available ? "green" : "ember"} className="mb-6">
+        <Badge variant={release.available ? "green" : "gold"} className="mb-6">
           {release.available
             ? `v${release.version} — Available Now`
             : "Coming Soon"}
         </Badge>
 
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
-          Download <span className="text-ember">Prometheus</span>
+        <h1 className="text-5xl md:text-7xl tracking-tight leading-[1.02] mb-6">
+          Bring Prometheus <em className="text-gold-metal italic pr-2">home.</em>
         </h1>
-        <p className="text-lg text-muted leading-relaxed mb-12 max-w-2xl">
-          A local-first AI system that executes real tasks — browser automation,
-          file operations, scheduling, and multi-agent workflows. Runs entirely
-          on your machine.
+        <div className="h-px w-28 bg-gradient-to-r from-gold to-transparent mb-6" />
+        <p className="text-lg text-muted leading-relaxed mb-12 max-w-xl">
+          The everything agent, installed on your machine. Free.
         </p>
 
         {/* ── Platform cards ── */}
         <div className="grid md:grid-cols-3 gap-4 mb-16">
           {/* Windows — primary */}
-          <div className="relative rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4 md:col-span-1 ring-1 ring-ember/20">
+          <div className="relative rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4 md:col-span-1 ring-1 ring-gold/20">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-ember/10 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center">
                   <svg
-                    className="w-5 h-5 text-ember"
+                    className="w-5 h-5 text-gold"
                     viewBox="0 0 24 24"
                     fill="currentColor"
                   >
@@ -110,7 +110,7 @@ export default async function DownloadPage() {
           <div className="rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4 ring-1 ring-border/70">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-ember/10 flex items-center justify-center border border-ember/20">
+                <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center border border-gold/20">
                   <svg
                     className="w-5 h-5 text-muted"
                     viewBox="0 0 24 24"
@@ -124,7 +124,7 @@ export default async function DownloadPage() {
                   <div className="text-xs text-muted">Apple Silicon + Intel</div>
                 </div>
               </div>
-              <Badge variant="ember" className="text-xs">Tester build</Badge>
+              <Badge variant="gold" className="text-xs">Tester build</Badge>
             </div>
             <p className="text-xs text-muted leading-relaxed">
               Native DMGs for each Mac architecture. These unsigned tester
@@ -203,73 +203,39 @@ export default async function DownloadPage() {
           </div>
         </div>
 
-        {/* ── System Requirements ── */}
-        <div className="grid md:grid-cols-2 gap-8 border-t border-border pt-12">
-          <div>
-            <h2 className="text-xl font-bold mb-4">System Requirements</h2>
-            <ul className="space-y-2 text-sm text-muted">
-              {[
-                ["OS", "Windows 10 / 11 or macOS 11+"],
-                ["RAM", "8 GB minimum, 16 GB recommended"],
-                ["Storage", "2 GB available space"],
-                [
-                  "Network",
-                  "Required for AI model access (or run local models offline)",
-                ],
-                ["Account", "Free Prometheus account"],
-              ].map(([label, value]) => (
-                <li key={label} className="flex gap-3">
-                  <span className="text-ember font-medium w-20 flex-shrink-0">
-                    {label}
-                  </span>
-                  <span>{value}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold mb-4">What&apos;s Included</h2>
-            <ul className="space-y-2 text-sm text-muted">
-              {[
-                "Prometheus desktop app (Electron)",
-                "Local gateway server (runs on port 18789)",
-                "Browser automation via Playwright",
-                "Bundled skill library (20+ skills)",
-                "Auto-update engine — always stays current",
-                "Your data stays on your machine",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <svg
-                    className="w-4 h-4 text-ember mt-0.5 flex-shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2.5}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
+        {/* ── Install flow + specs ── */}
+        <div className="border-t border-border pt-16 space-y-16">
+          <InstallSteps
+            steps={[
+              { t: "Download", l: "One installer for your platform." },
+              { t: "Connect a model", l: "Sign in to Claude or ChatGPT, or add a key." },
+              { t: "Ask for anything", l: "It runs on your machine, today." },
+            ]}
+          />
+          <SpecTiles
+            items={[
+              { k: "OS", v: "Win 10+ · macOS 11+" },
+              { k: "Memory", v: "8 GB", n: "16 GB recommended" },
+              { k: "Disk", v: "2 GB" },
+              { k: "Price", v: "Free", n: "No tiers, no card" },
+            ]}
+          />
+          <div className="flex flex-wrap gap-2">
+            {["Desktop app", "Local gateway", "Browser automation", "170+ skills", "Auto-updates", "Phone access", "Your data stays local"].map((x) => (
+              <span key={x} className="text-xs px-3 py-1.5 rounded-full border border-gold/20 text-gold/80">{x}</span>
+            ))}
           </div>
         </div>
 
         <p className="mt-8 text-xs text-muted max-w-2xl">
-          macOS tester builds are distributed directly from the public GitHub
-          release. Automatic Mac updates are not enabled for these unsigned
-          builds yet.
+          macOS tester builds come straight from the public GitHub release and may need
+          &ldquo;Open Anyway&rdquo; in Privacy &amp; Security. Auto-updates aren&apos;t enabled for them yet.
         </p>
 
         {/* ── Footer CTA ── */}
         {!release.available && (
-          <div className="mt-16 rounded-2xl border border-ember/20 bg-ember/5 p-8 text-center">
-            <h3 className="text-xl font-bold mb-2">Not available yet?</h3>
+          <div className="mt-16 rounded-2xl border border-gold/20 bg-gold/5 p-8 text-center">
+            <h3 className="text-3xl mb-2">Not available yet?</h3>
             <p className="text-muted mb-6">
               Sign up to be notified the moment Prometheus launches.
             </p>

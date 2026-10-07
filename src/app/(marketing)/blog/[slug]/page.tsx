@@ -65,7 +65,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
               name: "Prometheus",
               logo: {
                 "@type": "ImageObject",
-                url: `${SITE_URL}/images/prometheus-logo.png`,
+                url: `${SITE_URL}/images/p1-mark-ring.png`,
               },
             },
             mainEntityOfPage: articleUrl,
@@ -78,13 +78,13 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
       <article>
         <section className="relative overflow-hidden py-20 md:py-28">
           <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-background to-background" />
-          <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-ember/10 blur-3xl" />
+          <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-gold/10 blur-3xl" />
           <div className="relative mx-auto max-w-4xl px-6 lg:px-8">
-            <Link href="/blog" className="text-sm font-medium text-ember transition-colors hover:text-ember-light">
+            <Link href="/blog" className="text-sm font-medium text-gold transition-colors hover:text-gold-light">
               ← Back to blog
             </Link>
             <div className="mt-8 flex flex-wrap items-center gap-3 text-xs text-muted">
-              <span className="rounded-full border border-ember/20 bg-ember/10 px-2.5 py-1 text-ember">
+              <span className="rounded-full border border-gold/20 bg-gold/10 px-2.5 py-1 text-gold">
                 {post.category}
               </span>
               <time dateTime={post.date}>{post.date}</time>
@@ -114,16 +114,16 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
           <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
             <aside className="lg:sticky lg:top-24 lg:self-start">
               <div className="rounded-2xl border border-border bg-surface/70 p-6 backdrop-blur">
-                <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">Core thesis</p>
+                <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Core thesis</p>
                 <p className="mt-4 text-sm leading-7 text-muted">{post.heroStatement}</p>
               </div>
 
               <div className="mt-6 rounded-2xl border border-border bg-background/80 p-6">
-                <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">Key takeaways</p>
+                <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Key takeaways</p>
                 <ul className="mt-4 space-y-3 text-sm leading-6 text-muted">
                   {post.takeaways.map((takeaway) => (
                     <li key={takeaway} className="flex gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ember" />
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
                       <span>{takeaway}</span>
                     </li>
                   ))}
@@ -132,8 +132,8 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
             </aside>
 
             <div className="min-w-0">
-              <div className="rounded-2xl border border-border bg-gradient-to-br from-ember/10 via-surface to-surface p-8 md:p-10">
-                <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">{post.heroKicker}</p>
+              <div className="rounded-2xl border border-border bg-gradient-to-br from-gold/10 via-surface to-surface p-8 md:p-10">
+                <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">{post.heroKicker}</p>
                 <p className="mt-4 text-2xl font-semibold leading-9 tracking-tight text-white">{post.heroStatement}</p>
               </div>
 
@@ -153,14 +153,14 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
               </div>
 
               <div className="mt-12 rounded-2xl border border-border bg-charcoal p-8">
-                <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">Keep moving</p>
+                <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Keep moving</p>
                 <h2 className="mt-4 text-2xl font-semibold tracking-tight text-white">Next steps inside Prometheus</h2>
                 <div className="mt-6 grid gap-3 sm:grid-cols-3">
                   {post.relatedLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="rounded-xl border border-border bg-background/70 p-4 text-sm font-medium text-white transition-colors hover:border-ember/40 hover:text-ember"
+                      className="rounded-xl border border-border bg-background/70 p-4 text-sm font-medium text-white transition-colors hover:border-gold/40 hover:text-gold"
                     >
                       {link.label}
                     </Link>
@@ -176,12 +176,12 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <p className="text-sm font-medium uppercase tracking-[0.3em] text-ember">Related reading</p>
+              <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Related reading</p>
               <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
                 Continue through the operating manual
               </h2>
             </div>
-            <Link href="/blog" className="text-sm font-medium text-ember transition-colors hover:text-ember-light">
+            <Link href="/blog" className="text-sm font-medium text-gold transition-colors hover:text-gold-light">
               View all posts →
             </Link>
           </div>
@@ -191,14 +191,14 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
               <Link
                 key={related.slug}
                 href={`/blog/${related.slug}`}
-                className="group rounded-2xl border border-border bg-surface p-6 transition-all hover:border-ember/30 hover:shadow-[0_0_40px_rgba(255,107,53,0.08)]"
+                className="group rounded-2xl border border-border bg-surface p-6 transition-all hover:border-gold/30 hover:shadow-[0_0_40px_rgba(240,217,139,0.08)]"
               >
                 <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
-                  <span className="text-ember">{related.category}</span>
+                  <span className="text-gold">{related.category}</span>
                   <span>·</span>
                   <span>{related.readTime}</span>
                 </div>
-                <h3 className="mt-4 text-lg font-semibold tracking-tight text-white transition-colors group-hover:text-ember">
+                <h3 className="mt-4 text-lg font-semibold tracking-tight text-white transition-colors group-hover:text-gold">
                   {related.title}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-muted">{related.description}</p>

@@ -24,13 +24,13 @@ export function Navbar() {
       <nav className="mx-auto max-w-7xl px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
           <Image
-            src="/images/prometheus-logo.png"
-            alt="Prometheus"
-            width={32}
-            height={32}
-            className="w-8 h-8 object-contain"
+            src="/images/p1-mark-ring.png"
+            alt=""
+            width={30}
+            height={30}
+            className="w-[30px] h-[30px] object-contain"
           />
-          <span className="text-xl font-bold tracking-tight text-foreground group-hover:text-ember transition-colors">
+          <span className="wordmark text-[1.05rem] text-foreground group-hover:text-gold transition-colors">
             Prometheus
           </span>
         </Link>

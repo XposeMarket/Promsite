@@ -1,5 +1,6 @@
 import { createMetadata } from "@/lib/seo/metadata";
 import { Button } from "@/components/ui/Button";
+import { AgentConsole } from "@/components/showcase/AgentConsole";
 
 export const metadata = createMetadata({
   title: "Background Tasks",
@@ -12,9 +13,9 @@ export default function BackgroundTasksPage() {
     <>
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(220,74,26,0.06)_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(214,183,94,0.06)_0%,transparent_60%)]" />
         <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">Background Tasks</p>
+          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">Background Tasks</p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
             AI that works<br />while you don&apos;t
           </h1>
@@ -22,6 +23,9 @@ export default function BackgroundTasksPage() {
             Dispatch work, close the tab, and come back to results. Prometheus keeps going.
           </p>
           <Button href="/signup" size="lg">Try background tasks</Button>
+        </div>
+        <div className="relative mx-auto max-w-3xl px-6 lg:px-8 mt-14">
+          <AgentConsole scripts={["schedule", "team"]} />
         </div>
       </section>
 
@@ -61,7 +65,7 @@ export default function BackgroundTasksPage() {
                   "Set up automated responses to task completion",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-ember shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-muted">{item}</span>

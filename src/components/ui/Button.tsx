@@ -17,15 +17,15 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const base =
-  "inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember disabled:opacity-50 disabled:pointer-events-none rounded-lg";
+  "inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold disabled:opacity-50 disabled:pointer-events-none rounded-full tracking-wide";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-ember text-white hover:bg-ember-dark active:bg-ember-dark shadow-lg shadow-ember/20 hover:shadow-ember/30",
+    "bg-gold text-[#050505] font-semibold border border-gold hover:bg-gold-light hover:border-gold-light active:bg-gold-dark",
   secondary:
-    "bg-surface text-foreground border border-border hover:bg-surface-hover hover:border-muted/30",
-  ghost: "text-muted hover:text-foreground hover:bg-surface",
-  outline: "border border-ember/40 text-ember hover:bg-ember/10 hover:border-ember",
+    "bg-transparent text-foreground border border-gold/30 hover:bg-gold/[0.06] hover:border-gold/60",
+  ghost: "text-muted hover:text-foreground",
+  outline: "border border-gold/40 text-gold hover:bg-gold/10 hover:border-gold",
 };
 
 const sizes: Record<Size, string> = {

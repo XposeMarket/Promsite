@@ -147,13 +147,13 @@ export default function DashboardPage() {
         <Card>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-lg bg-ember/10 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">
                 <svg
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="var(--color-ember)"
+                  stroke="var(--color-gold)"
                   strokeWidth="2"
                 >
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -192,7 +192,7 @@ export default function DashboardPage() {
           {quickActions.map((action) => (
             <Card key={action.label} hover>
               <a href={action.href} className="block group">
-                <div className="text-muted group-hover:text-ember transition-colors mb-3">
+                <div className="text-muted group-hover:text-gold transition-colors mb-3">
                   {action.icon}
                 </div>
                 <h3 className="text-sm font-semibold text-foreground">
@@ -218,7 +218,7 @@ export default function DashboardPage() {
           </h2>
           <Link
             href="/blog"
-            className="text-sm text-ember hover:text-ember-glow transition-colors"
+            className="text-sm text-gold hover:text-gold-light transition-colors"
           >
             View all posts →
           </Link>
@@ -233,14 +233,14 @@ export default function DashboardPage() {
                 >
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-[11px] uppercase tracking-wide text-ember/80">
+                      <span className="text-[11px] uppercase tracking-wide text-gold/80">
                         {post.category}
                       </span>
                       <span className="text-xs text-muted">
                         · {post.readTime} read
                       </span>
                     </div>
-                    <p className="text-sm font-medium text-foreground mt-0.5 group-hover:text-ember transition-colors truncate">
+                    <p className="text-sm font-medium text-foreground mt-0.5 group-hover:text-gold transition-colors truncate">
                       {post.title}
                     </p>
                     <p className="text-xs text-muted mt-0.5 line-clamp-1">

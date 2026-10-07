@@ -59,7 +59,7 @@ export function FourPillars() {
   return (
     <Section>
       <div className="mb-14">
-        <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">
+        <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">
           The Prometheus system
         </p>
         <h2
@@ -75,14 +75,14 @@ export function FourPillars() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 border-t border-border pt-12">
         {pillars.map((pillar) => (
           <div key={pillar.title}>
-            <div className="text-ember mb-5">{pillar.icon}</div>
+            <div className="text-gold mb-5">{pillar.icon}</div>
             <h3 className="text-lg font-semibold mb-3">{pillar.title}</h3>
             <p className="text-sm text-muted leading-relaxed mb-5">
               {pillar.description}
             </p>
             <Link
               href={pillar.href}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-ember hover:gap-2.5 transition-all"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-gold hover:gap-2.5 transition-all"
             >
               {pillar.linkLabel}
               <span aria-hidden>&rarr;</span>

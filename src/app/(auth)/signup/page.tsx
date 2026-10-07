@@ -155,7 +155,7 @@ export default function SignupPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            className="w-full rounded-lg border border-border bg-charcoal px-4 py-2.5 text-sm text-foreground placeholder-muted/60 transition-colors focus:border-ember focus:outline-none"
+            className="w-full rounded-lg border border-border bg-charcoal px-4 py-2.5 text-sm text-foreground placeholder-muted/60 transition-colors focus:border-gold focus:outline-none"
           />
         </div>
 
@@ -174,7 +174,7 @@ export default function SignupPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="At least 8 characters"
-            className="w-full rounded-lg border border-border bg-charcoal px-4 py-2.5 text-sm text-foreground placeholder-muted/60 transition-colors focus:border-ember focus:outline-none"
+            className="w-full rounded-lg border border-border bg-charcoal px-4 py-2.5 text-sm text-foreground placeholder-muted/60 transition-colors focus:border-gold focus:outline-none"
           />
         </div>
 
@@ -193,7 +193,7 @@ export default function SignupPage() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Re-enter your password"
-            className="w-full rounded-lg border border-border bg-charcoal px-4 py-2.5 text-sm text-foreground placeholder-muted/60 transition-colors focus:border-ember focus:outline-none"
+            className="w-full rounded-lg border border-border bg-charcoal px-4 py-2.5 text-sm text-foreground placeholder-muted/60 transition-colors focus:border-gold focus:outline-none"
           />
         </div>
 
@@ -203,20 +203,20 @@ export default function SignupPage() {
             type="checkbox"
             checked={acceptedTerms}
             onChange={(e) => setAcceptedTerms(e.target.checked)}
-            className="mt-0.5 h-4 w-4 shrink-0 appearance-none rounded border border-border bg-charcoal transition-colors checked:border-ember checked:bg-ember focus:outline-none focus:ring-2 focus:ring-ember/40"
+            className="mt-0.5 h-4 w-4 shrink-0 appearance-none rounded border border-border bg-charcoal transition-colors checked:border-gold checked:bg-gold focus:outline-none focus:ring-2 focus:ring-gold/40"
           />
           <span className="text-xs leading-relaxed text-muted">
             I agree to the{" "}
             <Link
               href="/terms"
-              className="text-ember transition-colors hover:text-ember-glow"
+              className="text-gold transition-colors hover:text-gold-light"
             >
               Terms of Service
             </Link>{" "}
             and{" "}
             <Link
               href="/privacy"
-              className="text-ember transition-colors hover:text-ember-glow"
+              className="text-gold transition-colors hover:text-gold-light"
             >
               Privacy Policy
             </Link>
@@ -267,7 +267,7 @@ export default function SignupPage() {
         Already have an account?{" "}
         <Link
           href="/login"
-          className="font-medium text-ember transition-colors hover:text-ember-glow"
+          className="font-medium text-gold transition-colors hover:text-gold-light"
         >
           Sign in
         </Link>

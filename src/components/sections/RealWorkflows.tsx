@@ -58,7 +58,7 @@ export function RealWorkflows() {
     <Section className="bg-[#f4efe6] text-[#1a1410]">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start mb-14">
         <div>
-          <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">
+          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">
             Built for real workflows
           </p>
           <h2
@@ -106,7 +106,7 @@ export function RealWorkflows() {
       <div className="mt-10">
         <Link
           href="/use-cases"
-          className="inline-flex items-center gap-2 text-ember font-medium hover:gap-3 transition-all"
+          className="inline-flex items-center gap-2 text-gold font-medium hover:gap-3 transition-all"
         >
           Explore more use cases
           <span aria-hidden>&rarr;</span>

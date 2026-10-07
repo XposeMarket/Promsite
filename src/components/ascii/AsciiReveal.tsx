@@ -5,7 +5,7 @@ import { AsciiRenderer } from "./AsciiRenderer";
 
 interface AsciiRevealProps {
   lines: string[];
-  color?: "green" | "ember" | "white";
+  color?: "green" | "gold" | "white";
   msPerLine?: number;
   onComplete?: () => void;
   className?: string;

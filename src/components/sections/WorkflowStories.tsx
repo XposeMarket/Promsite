@@ -34,7 +34,7 @@ export function WorkflowStories() {
   return (
     <Section dark>
       <div className="text-center mb-16">
-        <p className="text-sm font-medium text-ember tracking-widest uppercase mb-4">
+        <p className="text-sm font-medium text-gold tracking-widest uppercase mb-4">
           Real workflows
         </p>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
@@ -54,7 +54,7 @@ export function WorkflowStories() {
               {wf.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs px-2 py-1 rounded bg-ember/10 text-ember/80 border border-ember/10"
+                  className="text-xs px-2 py-1 rounded bg-gold/10 text-gold/80 border border-gold/10"
                 >
                   {tag}
                 </span>

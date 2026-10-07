@@ -21,7 +21,7 @@ export function PrometheusExecutes() {
     <Section>
       <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-start">
         <div>
-          <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">
+          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">
             Not a chatbot
           </p>
           <h2
@@ -29,7 +29,7 @@ export function PrometheusExecutes() {
             style={{ fontFamily: "var(--font-display), Georgia, serif" }}
           >
             Prometheus{" "}
-            <span className="text-ember">executes.</span>
+            <span className="text-gold">executes.</span>
           </h2>
         </div>
 
@@ -38,7 +38,7 @@ export function PrometheusExecutes() {
           <div className="grid grid-cols-[1.4fr_0.6fr_1.2fr] gap-4 pb-3 border-b border-border text-sm font-semibold">
             <span />
             <span className="text-muted">Typical AI Chat</span>
-            <span className="text-ember">Prometheus</span>
+            <span className="text-gold">Prometheus</span>
           </div>
           {comparisons.map((row) => (
             <div
@@ -47,7 +47,7 @@ export function PrometheusExecutes() {
             >
               <span className="text-muted/80">{row.feature}</span>
               <span className="text-muted/60">Yes</span>
-              <span className="text-ember">{row.prometheus}</span>
+              <span className="text-gold">{row.prometheus}</span>
             </div>
           ))}
         </div>

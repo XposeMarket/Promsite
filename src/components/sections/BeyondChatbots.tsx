@@ -8,7 +8,7 @@ export function BeyondChatbots() {
     <Section>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
         <div>
-          <p className="text-sm font-medium text-ember tracking-widest uppercase mb-6">
+          <p className="text-sm font-medium text-gold tracking-widest uppercase mb-6">
             Beyond chatbots
           </p>
           <h2
@@ -28,7 +28,7 @@ export function BeyondChatbots() {
           </p>
           <Link
             href="/how-it-works"
-            className="inline-flex items-center gap-2 text-ember font-medium hover:gap-3 transition-all"
+            className="inline-flex items-center gap-2 text-gold font-medium hover:gap-3 transition-all"
           >
             Read our principles
             <span aria-hidden>&rarr;</span>
