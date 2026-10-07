@@ -1,5 +1,7 @@
 import { createMetadata } from "@/lib/seo/metadata";
 import { Button } from "@/components/ui/Button";
+import { AgentConsole } from "@/components/showcase/AgentConsole";
+import { MiniBrowser } from "@/components/showcase/MicroViz";
 
 export const metadata = createMetadata({
   title: "AI Browser Automation",
@@ -41,6 +43,10 @@ export default function AIBrowserAutomationPage() {
             Prometheus uses a real Chrome browser to navigate, click, extract, and interact with any website. No scripts. No selectors. Just tell it what you need.
           </p>
           <Button href="/signup" size="lg">Try browser automation</Button>
+        </div>
+        <div className="relative mx-auto max-w-4xl px-6 lg:px-8 mt-14 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center">
+          <AgentConsole scripts={["browser", "research"]} />
+          <div className="hidden md:flex panel w-48 h-40 items-center justify-center"><MiniBrowser /></div>
         </div>
       </section>
 

@@ -21,7 +21,7 @@ export function FinalCTA() {
           Create your account and see what&apos;s possible.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" href="/signup" className="glow-gold">
+          <Button size="lg" href="/signup">
             Create your account
           </Button>
           <Button variant="secondary" size="lg" href="/pricing">

@@ -3,6 +3,8 @@ import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { Pipeline } from "@/components/showcase/Primitives";
+import { AgentConsole } from "@/components/showcase/AgentConsole";
 
 export const metadata = createMetadata({
   title: "How It Works",
@@ -81,6 +83,14 @@ export default function HowItWorksPage() {
       </Section>
 
       <Section dark>
+        <div className="mb-16">
+          <Pipeline
+            stages={steps.map((s) => ({ name: s.title, hint: s.subtitle }))}
+          />
+        </div>
+        <div className="mb-16">
+          <AgentConsole />
+        </div>
         <div className="space-y-8">
           {steps.map((step, i) => (
             <div key={step.number} className="relative">
@@ -102,9 +112,6 @@ export default function HowItWorksPage() {
                   </div>
                   <p className="text-muted leading-relaxed mb-3">
                     {step.description}
-                  </p>
-                  <p className="text-sm text-muted/70 leading-relaxed border-t border-border pt-3">
-                    {step.detail}
                   </p>
                 </div>
               </Card>

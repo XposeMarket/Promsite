@@ -21,10 +21,10 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-[linear-gradient(180deg,#f0d98b_0%,#d6b75e_55%,#a98a3b_100%)] text-[#050505] font-semibold hover:brightness-110 active:brightness-95 shadow-[inset_0_1px_0_rgba(255,255,255,.35),0_10px_30px_-12px_rgba(214,183,94,.6)]",
+    "bg-gold text-[#050505] font-semibold border border-gold hover:bg-gold-light hover:border-gold-light active:bg-gold-dark",
   secondary:
     "bg-transparent text-foreground border border-gold/30 hover:bg-gold/[0.06] hover:border-gold/60",
-  ghost: "text-muted hover:text-foreground hover:bg-surface",
+  ghost: "text-muted hover:text-foreground",
   outline: "border border-gold/40 text-gold hover:bg-gold/10 hover:border-gold",
 };
 

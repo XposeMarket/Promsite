@@ -3,6 +3,19 @@ import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { MiniBrowser, MiniMemory, MiniFiles, MiniSchedule, MiniTeam, MiniAnywhere, MiniDesktop, MiniChart } from "@/components/showcase/MicroViz";
+import { Marquee } from "@/components/showcase/Primitives";
+
+const visuals: Record<string, React.ReactNode> = {
+  "Browser Execution": <MiniBrowser />,
+  "Memory & Context": <MiniMemory />,
+  "File Operations": <MiniFiles />,
+  "Background Tasks": <MiniChart />,
+  "Scheduling & Cron": <MiniSchedule />,
+  "Teams & Subagents": <MiniTeam />,
+  Integrations: <MiniAnywhere />,
+  "Desktop Automation": <MiniDesktop />,
+};
 
 export const metadata = createMetadata({
   title: "Capabilities",
@@ -147,10 +160,17 @@ export default function CapabilitiesPage() {
         </div>
       </Section>
 
+      <div className="-mt-10 mb-4">
+        <Marquee items={capabilities.map((c) => c.title)} />
+      </div>
+
       <Section dark>
         <div className="grid md:grid-cols-2 gap-8">
           {capabilities.map((cap) => (
-            <Card key={cap.title} hover className="flex flex-col">
+            <Card key={cap.title} hover className="flex flex-col !bg-[#0a0a09] !border-gold/15">
+              <div className="h-28 -mx-6 -mt-6 mb-6 flex items-center justify-center border-b border-gold/10 bg-black/40 rounded-t-xl">
+                {visuals[cap.title]}
+              </div>
               <div className="flex items-center gap-3 mb-4">
                 <h2 className="text-xl font-semibold">{cap.title}</h2>
                 <Badge variant="gold">{cap.badge}</Badge>
@@ -159,7 +179,7 @@ export default function CapabilitiesPage() {
                 {cap.description}
               </p>
               <ul className="space-y-2 mb-6 flex-1">
-                {cap.features.map((f) => (
+                {cap.features.slice(0, 3).map((f) => (
                   <li
                     key={f}
                     className="flex items-start gap-2 text-sm text-muted"

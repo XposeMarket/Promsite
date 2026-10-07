@@ -22,7 +22,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             className="transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(214,183,94,0.5)]"
             priority
           />
-          <span className="font-display text-xl font-semibold tracking-tight">
+          <span className="wordmark text-[1.05rem]">
             Prometheus
           </span>
         </Link>

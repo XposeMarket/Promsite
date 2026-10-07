@@ -76,8 +76,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-lg md:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Prometheus runs tools, automates your browser, manages background tasks,
-          remembers context, and orchestrates workflows. Not a chatbot. A system.
+          One agent that browses, builds, remembers and runs your work. On your machine.
         </motion.p>
 
         <motion.div
@@ -89,7 +88,6 @@ export function Hero() {
           <Button
             size="lg"
             href="/signup"
-            className="glow-gold"
             onClick={() => analytics.track({ name: "hero_cta_clicked", properties: { cta: "get_started" } })}
           >
             Get started

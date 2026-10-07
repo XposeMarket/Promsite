@@ -62,7 +62,6 @@ export function PricingPreview() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <Button
                 href="/signup"
-                className="glow-gold"
                 onClick={() =>
                   analytics.track({
                     name: "pricing_cta_clicked",

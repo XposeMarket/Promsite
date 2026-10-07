@@ -1,82 +1,58 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AsciiReveal } from "@/components/ascii/AsciiReveal";
-import { STARTUP_ASCII } from "@/content/ascii/startup";
-import { parseAsciiToLines } from "@/lib/ascii/loader";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { analytics } from "@/lib/analytics";
 
-type Phase = "startup" | "logo" | "cta";
+/**
+ * Prometheus One intro: a ~6s cinematic in four beats.
+ *  0  dark       – black, a gold hairline draws across the horizon
+ *  1  mark       – the P1 ring assembles out of light, slow rotation
+ *  2  word       – PROMETHEUS letterspaced reveal, "ONE" in gold italic
+ *  3  capabilities – four words flash beneath (Operate · Remember · Orchestrate · Create)
+ *  4  enter      – flat gold CTA
+ */
+type Beat = 0 | 1 | 2 | 3 | 4;
 
 interface IntroSequenceProps {
   onComplete: () => void;
 }
 
-const emberParticles = Array.from({ length: 46 }, (_, index) => ({
-  id: index,
-  left: `${8 + ((index * 37) % 84)}%`,
-  delay: (index % 12) * 0.22,
-  duration: 5.8 + (index % 7) * 0.45,
-  size: 2 + (index % 4),
-  drift: ((index % 9) - 4) * 9,
-  bottom: `${-8 - (index % 5) * 4}%`,
+const EASE = [0.16, 1, 0.3, 1] as const;
+const WORD = "PROMETHEUS".split("");
+const CAPS = ["Operate", "Remember", "Orchestrate", "Create"];
+
+// Slow drifting gold dust (deterministic so SSR/CSR match)
+const dust = Array.from({ length: 28 }, (_, i) => ({
+  id: i,
+  left: `${(i * 37) % 100}%`,
+  top: `${(i * 53) % 100}%`,
+  size: 1 + (i % 3),
+  dur: 9 + (i % 6),
+  delay: (i % 7) * 0.6,
 }));
 
-function EmberAtmosphere({ active }: { active: boolean }) {
-  return (
-    <motion.div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 overflow-hidden"
-      initial={false}
-      animate={{ opacity: active ? 1 : 0 }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
-    >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(214,183,94,0.16)_0%,rgba(0,0,0,0)_46%),radial-gradient(ellipse_at_15%_55%,rgba(170,72,10,0.13)_0%,rgba(0,0,0,0)_38%)]" />
-      <motion.div
-        className="absolute -left-[12%] top-[18%] h-[55%] w-[46%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,132,38,0.16),rgba(0,0,0,0)_68%)] blur-3xl"
-        animate={{ x: [0, 28, 0], opacity: [0.26, 0.42, 0.26] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -right-[18%] top-[24%] h-[48%] w-[48%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(226,106,32,0.12),rgba(0,0,0,0)_70%)] blur-3xl"
-        animate={{ x: [0, -34, 0], opacity: [0.18, 0.34, 0.18] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <div className="absolute inset-x-0 bottom-0 h-52 bg-[linear-gradient(to_top,rgba(141,56,12,0.18),rgba(0,0,0,0))]" />
-
-      {emberParticles.map((particle) => (
-        <motion.span
-          key={particle.id}
-          className="absolute rounded-full bg-gold-light shadow-[0_0_14px_rgba(240,217,139,0.75)]"
-          style={{
-            left: particle.left,
-            bottom: particle.bottom,
-            width: particle.size,
-            height: particle.size,
-          }}
-          animate={{
-            x: [0, particle.drift, particle.drift * -0.35],
-            y: [0, -220 - particle.size * 14],
-            opacity: [0, 0.66, 0.38, 0],
-            scale: [0.45, 1, 0.72],
-          }}
-          transition={{
-            duration: particle.duration,
-            delay: particle.delay,
-            repeat: Infinity,
-            ease: "easeOut",
-          }}
-        />
-      ))}
-    </motion.div>
-  );
-}
-
 export function IntroSequence({ onComplete }: IntroSequenceProps) {
-  const [phase, setPhase] = useState<Phase>("startup");
+  const [beat, setBeat] = useState<Beat>(0);
+  const [cap, setCap] = useState(0);
+
+  useEffect(() => {
+    const t = [
+      setTimeout(() => setBeat(1), 900),
+      setTimeout(() => setBeat(2), 2300),
+      setTimeout(() => setBeat(3), 3700),
+      setTimeout(() => setBeat(4), 5600),
+    ];
+    return () => t.forEach(clearTimeout);
+  }, []);
+
+  useEffect(() => {
+    if (beat !== 3) return;
+    const id = setInterval(() => setCap((c) => Math.min(c + 1, CAPS.length - 1)), 430);
+    return () => clearInterval(id);
+  }, [beat]);
 
   const handleSkip = useCallback(() => {
     analytics.track({ name: "intro_skipped" });
@@ -88,105 +64,165 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
     onComplete();
   }, [onComplete]);
 
-  const startupLines = parseAsciiToLines(STARTUP_ASCII);
-
   return (
-    <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center overflow-hidden">
-      <EmberAtmosphere active={phase !== "startup"} />
+    <div className="grain fixed inset-0 z-[100] bg-[#030303] flex items-center justify-center overflow-hidden">
+      {/* Ambient: a single warm pool of light that breathes in once the mark lands */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: beat >= 1 ? 1 : 0 }}
+        transition={{ duration: 2.2, ease: "easeOut" }}
+        style={{
+          background:
+            "radial-gradient(42% 38% at 50% 46%, rgba(214,183,94,0.13), rgba(0,0,0,0) 70%), radial-gradient(120% 60% at 50% 120%, rgba(169,138,59,0.10), rgba(0,0,0,0) 60%)",
+        }}
+      />
 
-      {/* Skip button */}
+      {/* Gold dust */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        {dust.map((d) => (
+          <motion.span
+            key={d.id}
+            className="absolute rounded-full bg-gold-light"
+            style={{ left: d.left, top: d.top, width: d.size, height: d.size }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: beat >= 1 ? [0, 0.5, 0] : 0, y: [0, -40] }}
+            transition={{ duration: d.dur, delay: d.delay, repeat: Infinity, ease: "easeInOut" }}
+          />
+        ))}
+      </div>
+
+      {/* Horizon hairline */}
+      <motion.div
+        aria-hidden
+        className="absolute left-0 right-0 top-1/2 h-px origin-center"
+        style={{ background: "linear-gradient(90deg, transparent, rgba(240,217,139,0.85), transparent)" }}
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={
+          beat === 0
+            ? { scaleX: 1, opacity: 1 }
+            : { scaleX: 1.2, opacity: 0, y: beat >= 2 ? 120 : 0 }
+        }
+        transition={{ duration: beat === 0 ? 1.1 : 1.4, ease: EASE }}
+      />
+
       <button
         onClick={handleSkip}
-        className="absolute top-6 right-6 text-xs text-muted/40 hover:text-muted/70 transition-colors z-10 tracking-widest uppercase"
+        className="absolute top-6 right-6 z-10 kicker !text-[0.62rem] !text-muted/50 hover:!text-gold transition-colors"
       >
-        Skip intro
+        Skip
       </button>
 
-      <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto px-4">
-        <AnimatePresence mode="wait">
+      <div className="relative flex flex-col items-center px-6 text-center">
+        {/* Ring mark */}
+        <motion.div
+          className="relative h-[clamp(120px,22vw,190px)] w-[clamp(120px,22vw,190px)]"
+          initial={{ opacity: 0, scale: 0.6, rotate: -40, filter: "blur(16px)" }}
+          animate={
+            beat >= 1
+              ? { opacity: 1, scale: beat >= 2 ? 0.62 : 1, rotate: 0, filter: "blur(0px)", y: beat >= 2 ? -10 : 0 }
+              : {}
+          }
+          transition={{ duration: 1.6, ease: EASE }}
+        >
+          <motion.div
+            aria-hidden
+            className="absolute -inset-6 rounded-full border border-gold/20"
+            initial={{ scale: 0.4, opacity: 0 }}
+            animate={beat >= 1 ? { scale: [0.4, 1.6], opacity: [0.7, 0] } : {}}
+            transition={{ duration: 2.2, ease: "easeOut" }}
+          />
+          <Image
+            src="/images/p1-mark-ring.png"
+            alt="Prometheus One"
+            fill
+            sizes="190px"
+            priority
+            className="object-contain select-none"
+          />
+        </motion.div>
 
-          {/* Phase 1 — flame/particle art, green terminal */}
-          {phase === "startup" && (
-            <motion.div
-              key="startup"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <AsciiReveal
-                lines={startupLines}
-                color="green"
-                msPerLine={30}
-                onComplete={() => setTimeout(() => setPhase("logo"), 600)}
-              />
-            </motion.div>
-          )}
+        {/* Wordmark */}
+        <div className="mt-2 h-[clamp(48px,9vw,92px)] flex items-end justify-center overflow-hidden">
+          {beat >= 2 &&
+            WORD.map((ch, i) => (
+              <motion.span
+                key={i}
+                className="inline-block text-foreground"
+                style={{
+                  fontFamily: "var(--font-display), Georgia, serif",
+                  fontWeight: 500,
+                  fontSize: "clamp(34px,7.2vw,78px)",
+                  letterSpacing: "0.18em",
+                  lineHeight: 1,
+                }}
+                initial={{ y: "110%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.9, delay: i * 0.055, ease: EASE }}
+              >
+                {ch}
+              </motion.span>
+            ))}
+        </div>
 
-          {/* Phase 2 — Prometheus logo lock-in */}
-          {phase === "logo" && (
-            <motion.div
-              key="logo"
-              initial={{ opacity: 0, scale: 0.16, filter: "blur(18px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, scale: 1.08, filter: "blur(10px)" }}
-              transition={{ duration: 1.55, ease: [0.16, 1, 0.3, 1] }}
-              onAnimationComplete={() => setTimeout(() => setPhase("cta"), 700)}
-              className="relative flex h-[min(56vw,420px)] w-[min(56vw,420px)] items-center justify-center"
-            >
-              <motion.div
-                className="absolute inset-8 rounded-full bg-[radial-gradient(circle,rgba(240,217,139,0.22),rgba(0,0,0,0)_68%)] blur-2xl"
-                animate={{ opacity: [0.45, 0.75, 0.45], scale: [0.9, 1.05, 0.9] }}
-                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <Image
-                src="/images/p1-mark-ring.png"
-                alt="Prometheus"
-                width={512}
-                height={512}
-                className="relative h-full w-full select-none object-contain drop-shadow-[0_0_42px_rgba(214,183,94,0.7)]"
-                priority
-              />
-            </motion.div>
-          )}
+        {/* "One" + rule */}
+        <motion.div
+          className="mt-3 flex items-center gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: beat >= 2 ? 1 : 0 }}
+          transition={{ duration: 1, delay: 0.7 }}
+        >
+          <span className="h-px w-10 sm:w-16 bg-gold/50" />
+          <em
+            className="text-gold-metal"
+            style={{ fontFamily: "var(--font-display), Georgia, serif", fontSize: "clamp(22px,3.4vw,34px)" }}
+          >
+            One
+          </em>
+          <span className="h-px w-10 sm:w-16 bg-gold/50" />
+        </motion.div>
 
-          {/* Phase 3 — CTA */}
-          {phase === "cta" && (
-            <motion.div
-              key="cta"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col items-center gap-10"
-            >
-              <div className="flex flex-col items-center gap-6">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.86 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
-                  className="relative"
-                >
-                  <div className="absolute inset-0 rounded-full bg-gold/20 blur-2xl" />
-                  <Image
-                    src="/images/p1-mark-ring.png"
-                    alt="Prometheus"
-                    width={128}
-                    height={128}
-                    className="relative drop-shadow-[0_0_28px_rgba(214,183,94,0.68)]"
-                    priority
-                  />
-                </motion.div>
-                <Button size="lg" onClick={handleEnter} className="glow-gold-strong px-10 py-4 text-lg">
-                  Enter Prometheus One
-                </Button>
-                <span className="text-sm text-muted/50 tracking-widest uppercase">
-                  The World&apos;s First Everything AI
-                </span>
-              </div>
-            </motion.div>
-          )}
+        {/* Capability words */}
+        <div className="mt-8 h-6">
+          <AnimatePresence mode="wait">
+            {beat === 3 && (
+              <motion.p
+                key={CAPS[cap]}
+                className="kicker"
+                initial={{ opacity: 0, y: 8, filter: "blur(6px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -8, filter: "blur(6px)" }}
+                transition={{ duration: 0.28 }}
+              >
+                {CAPS[cap]}
+              </motion.p>
+            )}
+            {beat === 4 && (
+              <motion.p
+                key="tagline"
+                className="kicker !text-muted"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                The everything agent
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </div>
 
-        </AnimatePresence>
+        {/* Enter */}
+        <motion.div
+          className="mt-10"
+          initial={{ opacity: 0, y: 14 }}
+          animate={beat === 4 ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+          transition={{ duration: 0.9, ease: EASE }}
+        >
+          <Button size="lg" onClick={handleEnter} className="px-12 tracking-[0.18em] uppercase text-sm">
+            Enter
+          </Button>
+        </motion.div>
       </div>
     </div>
   );

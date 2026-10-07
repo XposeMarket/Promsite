@@ -1,5 +1,6 @@
 import { createMetadata } from "@/lib/seo/metadata";
 import { Button } from "@/components/ui/Button";
+import { AgentConsole } from "@/components/showcase/AgentConsole";
 
 export const metadata = createMetadata({
   title: "Background Tasks",
@@ -22,6 +23,9 @@ export default function BackgroundTasksPage() {
             Dispatch work, close the tab, and come back to results. Prometheus keeps going.
           </p>
           <Button href="/signup" size="lg">Try background tasks</Button>
+        </div>
+        <div className="relative mx-auto max-w-3xl px-6 lg:px-8 mt-14">
+          <AgentConsole scripts={["schedule", "team"]} />
         </div>
       </section>
 

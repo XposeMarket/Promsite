@@ -13,9 +13,11 @@ export function Section({ children, className = "", id, dark = false }: SectionP
   return (
     <motion.section
       id={id}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      // Never hide content: a fast scroll can skip the intersection and leave an
+      // opacity:0 section invisible forever. Slide only; opacity stays 1.
+      initial={{ y: 24 }}
+      whileInView={{ y: 0 }}
+      viewport={{ once: true, amount: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`py-20 md:py-28 ${dark ? "bg-charcoal" : ""} ${className}`}
     >

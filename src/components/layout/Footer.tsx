@@ -60,7 +60,7 @@ export function Footer() {
                 height={28}
                 className="w-7 h-7 object-contain"
               />
-              <span className="text-xl font-medium tracking-[0.02em] text-foreground font-[family-name:var(--font-display)]">
+              <span className="wordmark text-[1.05rem] text-foreground">
                 Prometheus
               </span>
             </Link>
