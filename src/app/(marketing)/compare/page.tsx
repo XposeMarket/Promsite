@@ -4,8 +4,8 @@ import { Section } from "@/components/ui/Section";
 import { LuxHero, CompareBoard, type CompareRow } from "@/components/showcase/PageVisuals";
 
 export const metadata = createMetadata({
-  title: "Compare Prometheus",
-  description: "See how Prometheus compares to ChatGPT, Claude, and other AI tools. Feature-by-feature comparison of execution, memory, automation, and more.",
+  title: "Prometheus vs ChatGPT, Claude & AI Agents",
+  description: "How Prometheus One compares with ChatGPT, Claude and other AI agents on real execution, memory, automation, local data and price.",
   path: "/compare",
 });
 

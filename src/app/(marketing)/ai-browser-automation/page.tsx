@@ -4,8 +4,8 @@ import { AgentConsole } from "@/components/showcase/AgentConsole";
 import { MiniBrowser } from "@/components/showcase/MicroViz";
 
 export const metadata = createMetadata({
-  title: "AI Browser Automation",
-  description: "Prometheus controls a real Chrome browser to navigate websites, fill forms, extract data, and automate web workflows — no fragile selectors or scripts required.",
+  title: "AI Browser Automation Agent",
+  description: "Prometheus drives a real Chrome browser, signed in as you, to navigate sites, fill forms and extract data. No brittle selectors or scripts.",
   path: "/ai-browser-automation",
 });
 

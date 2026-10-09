@@ -5,8 +5,8 @@ import { LuxHero, InstallSteps } from "@/components/showcase/PageVisuals";
 import { Button } from "@/components/ui/Button";
 
 export const metadata = createMetadata({
-  title: "Documentation",
-  description: "Learn how to use Prometheus. Guides, tutorials, API reference, and everything you need to get the most from your AI system.",
+  title: "Docs: Setup Guides & Tutorials",
+  description: "Learn to install and use Prometheus One: setup guides, tutorials and reference for the local-first AI agent on Windows and Mac.",
   path: "/docs",
 });
 

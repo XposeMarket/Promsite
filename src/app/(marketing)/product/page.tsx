@@ -6,9 +6,9 @@ import { SectionHead, StatStrip, Pipeline } from "@/components/showcase/Primitiv
 import { CapabilityGrid, SeeItShowcase, YourMachine } from "@/components/sections/HomeVisual";
 
 export const metadata = createMetadata({
-  title: "Product",
+  title: "Product: The Local-First AI Agent",
   description:
-    "Prometheus is a local-first AI agent that executes real work: browser automation, files, scheduling, memory and multi-agent teams. Not a chatbot. An operator.",
+    "Prometheus One is a local-first AI agent that does real work: browser automation, files, scheduling, memory and multi-agent teams. Not a chatbot.",
   path: "/product",
 });
 

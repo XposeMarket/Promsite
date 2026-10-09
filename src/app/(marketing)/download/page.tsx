@@ -6,9 +6,9 @@ import { getLatestRelease } from "@/lib/releases/github";
 import { InstallSteps, SpecTiles } from "@/components/showcase/PageVisuals";
 
 export const metadata = createMetadata({
-  title: "Download Prometheus",
+  title: "Download Prometheus for Windows & Mac",
   description:
-    "Download the Prometheus desktop app for Windows or macOS. Local-first AI automation that runs on your machine.",
+    "Download Prometheus One, the free local-first AI agent for Windows 10/11 and macOS 11+. See system requirements and what gets installed.",
   path: "/download",
 });
 
