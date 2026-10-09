@@ -5,9 +5,9 @@ import { SectionHead } from "@/components/showcase/Primitives";
 import { LuxHero, BoundaryDiagram, AuditTicker, StrikeList, Principles } from "@/components/showcase/PageVisuals";
 
 export const metadata = createMetadata({
-  title: "Security & Privacy",
+  title: "Security & Privacy for a Local AI Agent",
   description:
-    "Prometheus runs locally on your machine. Your data never leaves. Permissions model, account isolation, audit trails, and responsible execution — security by architecture.",
+    "Prometheus runs locally, so your data stays on your machine. Approvals for risky actions, a permission model, account isolation and audit trails.",
   path: "/security",
 });
 

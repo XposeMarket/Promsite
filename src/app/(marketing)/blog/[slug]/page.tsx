@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts, getBlogPost, getRelatedBlogPosts } from "@/content/blog/posts";
 import { createMetadata } from "@/lib/seo/metadata";
-import { SITE_URL } from "@/lib/seo/metadata";
+import { SITE_URL, DEFAULT_OG_IMAGE, absoluteUrl } from "@/lib/seo/site";
 
 interface BlogArticlePageProps {
   params: Promise<{
@@ -44,7 +44,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
   }
 
   const relatedPosts = getRelatedBlogPosts(post.slug, 3);
-  const articleUrl = `${SITE_URL}/blog/${post.slug}`;
+  const articleUrl = absoluteUrl(`/blog/${post.slug}`);
 
   return (
     <>
@@ -68,6 +68,9 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                 url: `${SITE_URL}/images/p1-mark-ring.png`,
               },
             },
+            image: absoluteUrl(DEFAULT_OG_IMAGE.url),
+            inLanguage: "en-US",
+            isPartOf: { "@id": `${SITE_URL}/#website` },
             mainEntityOfPage: articleUrl,
             url: articleUrl,
             keywords: post.tags.join(", "),

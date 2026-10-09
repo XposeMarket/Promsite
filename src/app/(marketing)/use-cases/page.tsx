@@ -6,8 +6,8 @@ import { LuxHero, UseCasePicker, type UseCase } from "@/components/showcase/Page
 import { VizShowcase } from "@/components/showcase/VizShowcase";
 
 export const metadata = createMetadata({
-  title: "Use Cases",
-  description: "Discover how people use Prometheus for research automation, data pipelines, customer outreach, code review, content creation, and monitoring.",
+  title: "AI Agent Use Cases & Workflows",
+  description: "How people use Prometheus One for research automation, data pipelines, outreach, code review, content creation and monitoring.",
   path: "/use-cases",
 });
 

@@ -76,7 +76,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-lg md:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          One agent that browses, builds, remembers and runs your work. On your machine.
+          Prometheus One is the free, local-first AI agent that browses, builds, remembers and runs your work. On your machine.
         </motion.p>
 
         <motion.div

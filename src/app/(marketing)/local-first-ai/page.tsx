@@ -6,8 +6,8 @@ import { LuxHero, BoundaryDiagram, Principles } from "@/components/showcase/Page
 import { YourMachine } from "@/components/sections/HomeVisual";
 
 export const metadata = createMetadata({
-  title: "Local-First AI",
-  description: "Prometheus runs on your machine with your data. No cloud dependency for execution. Your files, your browser, your control.",
+  title: "Local-First AI Agent on Your Own Machine",
+  description: "Prometheus runs on your machine with your data. Files, browser sessions and memory stay local, with your choice of cloud or local models.",
   path: "/local-first-ai",
 });
 
