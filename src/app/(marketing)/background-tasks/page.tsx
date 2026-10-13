@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/Button";
 import { AgentConsole } from "@/components/showcase/AgentConsole";
 
 export const metadata = createMetadata({
-  title: "Background Tasks",
-  description: "Prometheus runs tasks in the background while you focus on other things. Schedule recurring jobs, dispatch long-running work, and collect results when you're ready.",
+  title: "AI Background Tasks & Scheduled Agents",
+  description: "Prometheus runs AI tasks in the background while you work: schedule recurring jobs, hand long-running work to subagents and collect results later.",
   path: "/background-tasks",
 });
 

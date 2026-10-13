@@ -6,8 +6,8 @@ import { LuxHero, TalkVsDo, Beliefs, FireMark } from "@/components/showcase/Page
 import { AgentConsole } from "@/components/showcase/AgentConsole";
 
 export const metadata = createMetadata({
-  title: "About",
-  description: "The story behind Prometheus. Why we built an AI system focused on execution, not conversation.",
+  title: "About: Why We Built a Local-First AI Agent",
+  description: "The story behind Prometheus One: why we built a free, local-first AI agent focused on doing real work on your machine, not just conversation.",
   path: "/about",
 });
 

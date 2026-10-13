@@ -1,16 +1,22 @@
 import type { MetadataRoute } from "next";
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://prometheus.ai";
+import { IS_INDEXABLE_DEPLOYMENT, absoluteUrl } from "@/lib/seo/site";
 
 export default function robots(): MetadataRoute.Robots {
+  if (!IS_INDEXABLE_DEPLOYMENT) {
+    // Vercel preview deployments must never compete with production in search.
+    return { rules: [{ userAgent: "*", disallow: "/" }] };
+  }
+
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
+        // /login, /signup and /get-started stay crawlable so bots can see their noindex tag.
         disallow: ["/dashboard", "/billing", "/settings", "/api/"],
       },
     ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: absoluteUrl("/sitemap.xml"),
+    host: absoluteUrl("/"),
   };
 }

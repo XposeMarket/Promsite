@@ -8,9 +8,9 @@ import { MiniBrowser, MiniMemory, MiniTeam, MiniSchedule } from "@/components/sh
 import { PricingFAQ } from "./faq";
 
 export const metadata = createMetadata({
-  title: "Pricing",
+  title: "Pricing: Free AI Agent, No Feature Tiers",
   description:
-    "Prometheus is free to use for everyone. The full AI execution system with browser automation, scheduling, teams, memory, desktop control, and no feature tiers.",
+    "Prometheus One is free for everyone: the full AI agent with browser automation, scheduling, teams, memory and desktop control. No feature tiers.",
   path: "/pricing",
 });
 

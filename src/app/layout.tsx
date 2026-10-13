@@ -2,6 +2,17 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  SITE_URL,
+  TITLE_BRAND,
+  TWITTER_HANDLE,
+  TWITTER_URL,
+  DEFAULT_OG_IMAGE,
+  SQUARE_OG_IMAGE,
+  LOGO_URL,
+  IS_INDEXABLE_DEPLOYMENT,
+} from "@/lib/seo/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,17 +31,33 @@ const cormorant = Cormorant_Garamond({
   style: ["normal", "italic"],
 });
 
-const PUBLIC_SITE_URL = "https://prometheusaiagent.com";
+const SITE_DESCRIPTION =
+  "Prometheus One is a free, local-first AI agent for Windows and Mac. It browses, codes, runs scheduled tasks, remembers context and gets real work done.";
 
 export const metadata: Metadata = {
   title: {
-    default: "Prometheus — The AI System That Actually Executes",
-    template: "%s | Prometheus",
+    default: "Prometheus One: Free Local-First AI Agent for Windows & Mac",
+    // Pages built with createMetadata() set `title.absolute`, so this only applies to plain-string titles.
+    template: `%s | ${TITLE_BRAND}`,
   },
-  description:
-    "Prometheus is an AI system that runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows. Not a chatbot. A system.",
-  metadataBase: new URL(PUBLIC_SITE_URL),
+  description: SITE_DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
   applicationName: "Prometheus",
+  authors: [{ name: "Prometheus", url: SITE_URL }],
+  creator: "Prometheus",
+  publisher: "Prometheus",
+  category: "technology",
+  keywords: [
+    "Prometheus AI",
+    "Prometheus AI agent",
+    "Prometheus One",
+    "local-first AI agent",
+    "AI agent for Windows",
+    "AI agent for Mac",
+    "AI browser automation",
+    "desktop AI agent",
+    "free AI agent",
+  ],
   manifest: "/site.webmanifest",
   icons: {
     icon: [
@@ -45,36 +72,47 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Prometheus",
-    title: "Prometheus — The AI System That Actually Executes",
-    description:
-      "Prometheus runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows.",
-    images: [
-      {
-        url: "/og/p1-og.png",
-        width: 1200,
-        height: 630,
-        alt: "Prometheus One — the everything agent. Everything just got a whole lot easier.",
-      },
-      {
-        url: "/og/p1-og-square.png",
-        width: 1254,
-        height: 1254,
-        alt: "Prometheus One logo",
-      },
-    ],
+    locale: "en_US",
+    url: SITE_URL,
+    title: "Prometheus One: Free Local-First AI Agent for Windows & Mac",
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE, SQUARE_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Prometheus — The AI System That Actually Executes",
-    description:
-      "Prometheus runs tools, automates browsers, manages background tasks, remembers context, and orchestrates workflows.",
-    images: ["/og/p1-og.png"],
+    site: TWITTER_HANDLE,
+    title: "Prometheus One: Free Local-First AI Agent for Windows & Mac",
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: IS_INDEXABLE_DEPLOYMENT
+    ? { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 }
+    : { index: false, follow: false },
+  formatDetection: { telephone: false },
 };
+
+const organizationJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: "Prometheus",
+    alternateName: ["Prometheus AI", "Prometheus One"],
+    url: SITE_URL,
+    logo: { "@type": "ImageObject", url: LOGO_URL, width: 512, height: 512 },
+    sameAs: [TWITTER_URL],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    name: "Prometheus AI",
+    alternateName: "Prometheus One",
+    url: SITE_URL,
+    inLanguage: "en-US",
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  },
+];
 
 export default function RootLayout({
   children,
@@ -87,6 +125,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <JsonLd data={organizationJsonLd} />
         <a href="#main-content" className="skip-to-content">
           Skip to content
         </a>

@@ -1,13 +1,14 @@
 import { createMetadata } from "@/lib/seo/metadata";
+import { absoluteUrl } from "@/lib/seo/site";
 import { blogPosts } from "@/content/blog/posts";
 import Link from "next/link";
 import { LuxHero } from "@/components/showcase/PageVisuals";
 import { Marquee } from "@/components/showcase/Primitives";
 
 export const metadata = createMetadata({
-  title: "Blog",
+  title: "Blog: AI Agent Guides & Product Notes",
   description:
-    "Read product stories, deep dives, and SEO-friendly guides on AI execution, browser automation, background tasks, memory, and Prometheus workflows.",
+    "Guides and field notes on local-first AI agents, browser automation, background tasks, memory and getting real work done with Prometheus One.",
   path: "/blog",
 });
 
@@ -34,7 +35,7 @@ export default function BlogPage() {
             "@type": "Blog",
             name: "Prometheus Blog",
             description: metadata.description,
-            url: "https://prometheusaiagent.com/blog",
+            url: absoluteUrl("/blog"),
             publisher: { "@type": "Organization", name: "Prometheus" },
             blogPost: blogPosts.map((post) => ({
               "@type": "BlogPosting",
@@ -42,7 +43,7 @@ export default function BlogPage() {
               description: post.description,
               datePublished: post.date,
               author: { "@type": "Organization", name: post.author },
-              url: `https://prometheusaiagent.com/blog/${post.slug}`,
+              url: absoluteUrl(`/blog/${post.slug}`),
             })),
           }),
         }}

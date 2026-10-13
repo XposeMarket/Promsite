@@ -8,9 +8,9 @@ import { AtlasExplorer, AtlasChapters, AtlasIndex } from "@/components/showcase/
 import { ATLAS } from "@/content/atlas";
 
 export const metadata = createMetadata({
-  title: "Capabilities",
+  title: "Capabilities: Everything the AI Agent Can Do",
   description:
-    "Everything Prometheus One can do: in-app browser, desktop control, code, Prom Bot, subagents, teams, schedules, voice, image and video generation, game builder, in-chat visuals, memory, Brain, skills, connectors and approvals.",
+    "Browser and desktop control, code, subagents, teams, schedules, voice, image and video, memory and connectors: everything Prometheus One can do.",
   path: "/capabilities",
 });
 

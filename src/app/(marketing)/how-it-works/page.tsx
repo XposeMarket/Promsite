@@ -7,9 +7,9 @@ import { Pipeline } from "@/components/showcase/Primitives";
 import { AgentConsole } from "@/components/showcase/AgentConsole";
 
 export const metadata = createMetadata({
-  title: "How It Works",
+  title: "How the Prometheus AI Agent Works",
   description:
-    "From request to result: how Prometheus plans, selects tools, executes actions, verifies outcomes, and persists context — all locally on your machine.",
+    "From request to result: how Prometheus plans, picks tools, executes actions, verifies outcomes and keeps context, all on your own machine.",
   path: "/how-it-works",
 });
 
